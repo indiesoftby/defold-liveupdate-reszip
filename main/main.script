@@ -1,7 +1,6 @@
 function init(self)
-    -- Add initialization code here
-    -- Learn more: https://defold.com/manuals/script/
-    -- Remove this function if not needed
+    print("Missing resources:")
+    pprint(collectionproxy.missing_resources("/level2#collectionproxy"))
 end
 
 function final(self)
