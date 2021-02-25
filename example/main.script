@@ -1,13 +1,13 @@
 local reszip = require "liveupdate_reszip.reszip"
 
-local RES_WEB_PATH = html5 and "resources.zip" or "http://localhost:8080/resources.zip"
+local RES_WEB_PATH = (html5 and "resources.zip") or "http://localhost:8080/resources.zip"
 local EXCLUDED_PROXY_URL = "/level2#collectionproxy"
 
 local function load_level2(self)
     local missing_resources = collectionproxy.missing_resources(EXCLUDED_PROXY_URL)
     if next(missing_resources) ~= nil then
         print("Resources are missing, downloading...")
-        reszip.request_and_load_zip(filename, missing_resources, function(self, err)
+        reszip.request_and_load_zip(RES_WEB_PATH, missing_resources, function(self, err)
             if not err then
                 -- All resources are loaded, finally load the level:
                 msg.post(EXCLUDED_PROXY_URL, hash("async_load"))
