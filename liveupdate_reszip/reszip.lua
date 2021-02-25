@@ -13,7 +13,7 @@ local function store_missing_resource_from_zip(self, hexdigest, status)
             -- Loading next missing resource from the ZIP archive
             local res_hash = table.remove(M._missing_resources)
 
-            local data = liveupdate_miniz.extract_file(M._resources_zip, res_hash)
+            local data = liveupdate_reszip_ext.extract_file(M._resources_zip, res_hash)
             if data then
                 resource.store_resource(resource.get_current_manifest(), data, res_hash, store_missing_resource_from_zip)
             else
@@ -30,9 +30,9 @@ end
 
 local function http_request_handler(self, id, response)
     if (response.status == 200 or response.status == 304) and response.error == nil then
-        print("DEBUG: Resources ZIP loaded, opening...")
+        print("DEBUG: Resources ZIP loaded, validating...")
         M._resources_zip = response.response
-        if liveupdate_miniz.validate_zip(M._resources_zip) then
+        if liveupdate_reszip_ext.validate_zip(M._resources_zip) then
             store_missing_resource_from_zip(self, nil, true)
         else
             call_callback_and_cleanup(self, "Invalid format of the ZIP file")
