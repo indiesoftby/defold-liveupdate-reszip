@@ -8,7 +8,7 @@ cache:
 
 script:
   # Download the latest bob.jar
-  - mkdir -p build || travis_terminate 1
+  - mkdir -p build/bob || travis_terminate 1
   - curl -s 'http://d.defold.com/stable/info.json' | python3 -c "import sys, json; print('https://d.defold.com/archive/' + json.load(sys.stdin)['sha1'] + '/bob/bob.jar')" | wget --progress=dot:mega -i - -O build/bob/bob.jar || travis_terminate 1
 
   # Build the project
