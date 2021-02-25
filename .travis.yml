@@ -20,7 +20,6 @@ script:
   - mv build/bundle/js-web/liveupdate_reszip_demo build/public/latest || travis_terminate 1
 
   # Checkout alt version and build it
-  - find . || travis_terminate 1
   - git checkout alt-version || travis_terminate 1
   - rm -rf build/default || travis_terminate 1
   - java -jar build/bob/bob.jar --email foo@bar.com --auth 12345 --texture-compression true --bundle-output build/bundle/js-web --build-report-html build/public/build_report_alt-version.html --platform js-web --archive --liveupdate yes --variant debug resolve build bundle || travis_terminate 1
