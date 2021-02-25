@@ -5,19 +5,33 @@
 -- and/or modify it under the terms of the Do What The Fuck You Want
 -- To Public License, Version 2, as published by Sam Hocevar. See
 -- the COPYING file or http://www.wtfpl.net/ for more details.
-local unpack = table.unpack or unpack
-local infl
-
-local lua_version = tonumber(_VERSION:match("^Lua (.*)"))
-if not lua_version or lua_version < 5.3 then
-    -- older version of Lua or Luajit being used - use bit/bit32-based implementation
-    infl = require("inflate-bit32")
-else
-    -- From Lua 5.3, use implementation based on bitwise operators
-    infl = require("inflate-bwo")
-end
-
 local zzlib = {}
+
+local crc32_table
+
+local function crc32(s, crc)
+    if not crc32_table then
+        crc32_table = {}
+        for i = 0, 255 do
+            local r = i
+            for j = 1, 8 do
+                r = bit.bxor(bit.rshift(r, 1), bit.band(0xedb88320, bit.bnot(bit.band(r, 1) - 1)))
+            end
+            crc32_table[i] = r
+        end
+    end
+    crc = bit.bnot(crc or 0)
+    for i = 1, #s do
+        local c = s:byte(i)
+        crc = bit.bxor(crc32_table[bit.bxor(c, bit.band(crc, 0xff))], bit.rshift(crc, 8))
+    end
+    crc = bit.bnot(crc)
+    if crc < 0 then
+        -- in Lua < 5.2, sign extension was performed
+        crc = crc + 4294967296
+    end
+    return crc
+end
 
 local function arraytostr(array)
     local tmp = {}
@@ -49,94 +63,6 @@ local function arraytostr(array)
     return str
 end
 
-local function inflate_gzip(bs)
-    local id1, id2, cm, flg = bs.buf:byte(1, 4)
-    if id1 ~= 31 or id2 ~= 139 then
-        error("invalid gzip header")
-    end
-    if cm ~= 8 then
-        error("only deflate format is supported")
-    end
-    bs.pos = 11
-    if infl.band(flg, 4) ~= 0 then
-        local xl1, xl2 = bs.buf.byte(bs.pos, bs.pos + 1)
-        local xlen = xl2 * 256 + xl1
-        bs.pos = bs.pos + xlen + 2
-    end
-    if infl.band(flg, 8) ~= 0 then
-        local pos = bs.buf:find("\0", bs.pos)
-        bs.pos = pos + 1
-    end
-    if infl.band(flg, 16) ~= 0 then
-        local pos = bs.buf:find("\0", bs.pos)
-        bs.pos = pos + 1
-    end
-    if infl.band(flg, 2) ~= 0 then
-        -- TODO: check header CRC16
-        bs.pos = bs.pos + 2
-    end
-    local result = arraytostr(infl.main(bs))
-    local crc = bs:getb(8) + 256 * (bs:getb(8) + 256 * (bs:getb(8) + 256 * bs:getb(8)))
-    bs:close()
-    if crc ~= infl.crc32(result) then
-        error("checksum verification failed")
-    end
-    return result
-end
-
--- compute Adler-32 checksum
-local function adler32(s)
-    local s1 = 1
-    local s2 = 0
-    for i = 1, #s do
-        local c = s:byte(i)
-        s1 = (s1 + c) % 65521
-        s2 = (s2 + s1) % 65521
-    end
-    return s2 * 65536 + s1
-end
-
-local function inflate_zlib(bs)
-    local cmf = bs.buf:byte(1)
-    local flg = bs.buf:byte(2)
-    if (cmf * 256 + flg) % 31 ~= 0 then
-        error("zlib header check bits are incorrect")
-    end
-    if infl.band(cmf, 15) ~= 8 then
-        error("only deflate format is supported")
-    end
-    if infl.rshift(cmf, 4) ~= 7 then
-        error("unsupported window size")
-    end
-    if infl.band(flg, 32) ~= 0 then
-        error("preset dictionary not implemented")
-    end
-    bs.pos = 3
-    local result = arraytostr(infl.main(bs))
-    local adler = ((bs:getb(8) * 256 + bs:getb(8)) * 256 + bs:getb(8)) * 256 + bs:getb(8)
-    bs:close()
-    if adler ~= adler32(result) then
-        error("checksum verification failed")
-    end
-    return result
-end
-
-function zzlib.gunzipf(filename)
-    local file, err = io.open(filename, "rb")
-    if not file then
-        return nil, err
-    end
-    return inflate_gzip(infl.bitstream_init(file))
-end
-
-function zzlib.gunzip(str)
-    return inflate_gzip(infl.bitstream_init(str))
-end
-
-function zzlib.inflate(str)
-    return inflate_zlib(infl.bitstream_init(str))
-end
-
 local function int2le(str, pos)
     local a, b = str:byte(pos, pos + 1)
     return b * 256 + a
@@ -162,12 +88,12 @@ function zzlib.unzip(buf, filename)
         if int4le(buf, p) ~= 0x02014b50 then
             error("invalid central directory header signature")
         end
-        local flag = int2le(buf, p + 8)
-        local method = int2le(buf, p + 10)
-        local crc = int4le(buf, p + 16)
         local namelen = int2le(buf, p + 28)
         local name = buf:sub(p + 46, p + 45 + namelen)
         if name == filename then
+            local flag = int2le(buf, p + 8)
+            local method = int2le(buf, p + 10)
+            local crc = int4le(buf, p + 16)
             local headoffset = int4le(buf, p + 42)
             p = 1 + headoffset
             if int4le(buf, p) ~= 0x04034b50 then
@@ -178,16 +104,18 @@ function zzlib.unzip(buf, filename)
             p = p + 30 + namelen + extlen
             if method == 0 then
                 -- no compression
+                print("no compression")
                 result = buf:sub(p, p + csize - 1)
             else
                 -- DEFLATE compression
-                local bs = infl.bitstream_init(buf)
-                bs.pos = p
-                result = arraytostr(infl.main(bs))
+                print("DEFLATE")
+                -- pprint(string.byte(crcbuf, 0, -1)) -- '\120\94' .. buf:sub(p, p + csize - 1), 0, -1))
+                result = zlib.inflate('\120\94' .. buf:sub(p, p + csize - 1) .. '\167\228\29\145') -- + adler32????
             end
-            if crc ~= infl.crc32(result) then
-                error("checksum verification failed")
-            end
+            -- DISABLED to speed up the process of decompression
+            -- if crc ~= crc32(result) then
+            --     error("checksum verification failed")
+            -- end
             return result
         end
         p = p + 46 + namelen + int2le(buf, p + 30) + int2le(buf, p + 32)
