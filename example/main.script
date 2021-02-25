@@ -1,24 +1,32 @@
-
 local reszip = require "liveupdate_reszip.reszip"
 
 local RES_WEB_PATH = html5 and "resources.zip" or "http://localhost:8080/resources.zip"
 local EXCLUDED_PROXY_URL = "/level2#collectionproxy"
 
-function init(self)
+local function load_level2(self)
     local missing_resources = collectionproxy.missing_resources(EXCLUDED_PROXY_URL)
     if next(missing_resources) ~= nil then
         print("Resources are missing, downloading...")
         reszip.request_and_load_zip(filename, missing_resources, function(self, err)
             if not err then
+                -- All resources are loaded, finally load the level:
                 msg.post(EXCLUDED_PROXY_URL, hash("async_load"))
             else
+                -- Try again?...
                 print("ERROR: " .. err)
-                -- try again?...
             end
         end)
     else
+        -- All resources exist, so load the level:
         msg.post(EXCLUDED_PROXY_URL, hash("async_load"))
     end
+end
+
+function init(self)
+    msg.post(".", hash("acquire_input_focus"))
+    msg.post("@render:", "use_fixed_fit_projection", {near = -1, far = 1})
+
+    msg.post("/level1#collectionproxy", hash("async_load"))
 end
 
 function final(self)
@@ -28,9 +36,15 @@ function update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
+    if message_id == hash("proxy_loaded") then
+        msg.post(sender, hash("enable"))
+    end
 end
 
 function on_input(self, action_id, action)
+    if action_id == hash("touch") and action.pressed then
+        load_level2(self)
+    end
 end
 
 function on_reload(self)

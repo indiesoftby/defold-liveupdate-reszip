@@ -10,6 +10,7 @@ end
 local function store_missing_resource_from_zip(self, hexdigest, status)
     if status then
         if next(M._missing_resources) ~= nil then
+            -- Loading next missing resource from the ZIP archive
             local res_hash = table.remove(M._missing_resources)
 
             local data = liveupdate_miniz.extract_file(M._resources_zip, res_hash)
