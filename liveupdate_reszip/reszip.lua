@@ -48,3 +48,5 @@ function M.request_and_load_zip(filename, missing_resources, callback)
 
     http.request(filename, "GET", http_request_handler)
 end
+
+return M
