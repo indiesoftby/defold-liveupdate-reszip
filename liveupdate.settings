@@ -1,0 +1,6 @@
+[liveupdate]
+mode = Zip
+zip-filepath = build/liveupdate_output
+publickey = liveupdate_public.der
+privatekey = liveupdate_private.der
+

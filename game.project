@@ -1,0 +1,29 @@
+[bootstrap]
+main_collection = /main/main.collectionc
+
+[script]
+shared_state = 1
+
+[display]
+width = 960
+height = 640
+high_dpi = 1
+vsync = 0
+
+[android]
+input_method = HiddenInputField
+
+[project]
+title = liveupdate_reszip_demo
+publisher = Indiesoft LLC
+version = 1.0.0
+
+[library]
+include_dirs = liveupdate_reszip
+
+[render]
+clear_color_alpha = 1.0
+
+[html5]
+scale_mode = fit
+
