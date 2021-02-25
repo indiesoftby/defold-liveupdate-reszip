@@ -10,6 +10,7 @@ local function load_level2(self)
         reszip.request_and_load_zip(RES_WEB_PATH, missing_resources, function(self, err)
             if not err then
                 -- All resources are loaded, finally load the level:
+                print("Everything is OK, load the level 2!")
                 msg.post(EXCLUDED_PROXY_URL, hash("async_load"))
             else
                 -- Try again?...
@@ -18,6 +19,7 @@ local function load_level2(self)
         end)
     else
         -- All resources exist, so load the level:
+        print("Resources are already loaded. Let's load the level 2!")
         msg.post(EXCLUDED_PROXY_URL, hash("async_load"))
     end
 end
