@@ -14,7 +14,7 @@ local function load_level2(self)
             if not err then
                 -- All resources are loaded, finally load the level:
                 print("Everything is OK, load the level 2!")
-                msg.post(EXCLUDED_PROXY_URL, hash("async_load"))
+                msg.post(EXCLUDED_PROXY_URL, hash("load"))
             else
                 -- Try again?...
                 print("ERROR: " .. err)
@@ -23,7 +23,7 @@ local function load_level2(self)
     else
         -- All resources exist, so load the level:
         print("Resources are already loaded. Let's load the level 2!")
-        msg.post(EXCLUDED_PROXY_URL, hash("async_load"))
+        msg.post(EXCLUDED_PROXY_URL, hash("load"))
     end
 end
 
