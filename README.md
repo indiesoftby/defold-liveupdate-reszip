@@ -1,4 +1,8 @@
-# LiveUpdate with "resources.zip" Demo Project 
+# LiveUpdate with "resources.zip" Demo Project
+
+This project aims to demonstrate usage of [Defold's LiveUpdate](https://defold.com/manuals/live-update/) for HTML5 games when your game contains very large resources (images, sounds etc), and you want to postpone the downloading of until they are about to show in the game.
+
+Particularly, it shows how to load extra resources for level 2 from "resources.zip" file that was prepared by LiveUpdate.
 
 # WORK IN PROGRESS
 
