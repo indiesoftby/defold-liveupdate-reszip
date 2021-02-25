@@ -46,7 +46,7 @@ embedded_instances {
   "  id: \"sprite\"\n"
   "  type: \"sprite\"\n"
   "  data: \"tile_set: \\\"/example/assets/level2.atlas\\\"\\n"
-  "default_animation: \\\"level_2_title\\\"\\n"
+  "default_animation: \\\"level_2_alt_title\\\"\\n"
   "material: \\\"/builtins/materials/sprite.material\\\"\\n"
   "blend_mode: BLEND_MODE_ALPHA\\n"
   "\"\n"
