@@ -19,7 +19,7 @@ script:
   - java -jar build/bob/bob.jar --settings .travis-settings.ini --email foo@bar.com --auth 12345 --texture-compression true --bundle-output build/bundle/js-web --platform js-web --archive --liveupdate yes --variant debug resolve build bundle || travis_terminate 1
 
   # Move LiveUpdate .zip file into the bundle dir as "resources.zip"
-  - mv "build/liveupdate_output/*.zip" "build/bundle/js-web/liveupdate_reszip_demo/${RESOURCES_ZIP}.zip"
+  - mv "build/liveupdate_output/*.zip" "build/bundle/js-web/liveupdate_reszip_demo/${RESOURCES_ZIP}"
 
 deploy:
   provider: pages
