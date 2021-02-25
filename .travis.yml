@@ -11,11 +11,15 @@ script:
   - mkdir -p build/bob || travis_terminate 1
   - curl -s 'http://d.defold.com/stable/info.json' | python3 -c "import sys, json; print('https://d.defold.com/archive/' + json.load(sys.stdin)['sha1'] + '/bob/bob.jar')" | wget --progress=dot:mega -i - -O build/bob/bob.jar || travis_terminate 1
 
+  # Generate unique name for resources.zip file for cache-busting
+  - RESOURCES_ZIP=resources_$(date +%s).zip
+  - echo "[liveupdate_reszip]\nfilename = ${RESOURCES_ZIP}" >> .travis-settings.ini
+
   # Build the project
-  - java -jar build/bob/bob.jar --email foo@bar.com --auth 12345 --texture-compression true --bundle-output build/bundle/js-web --platform js-web --archive --liveupdate yes --variant debug resolve build bundle || travis_terminate 1
+  - java -jar build/bob/bob.jar --settings .travis-settings.ini --email foo@bar.com --auth 12345 --texture-compression true --bundle-output build/bundle/js-web --platform js-web --archive --liveupdate yes --variant debug resolve build bundle || travis_terminate 1
 
   # Move LiveUpdate .zip file into the bundle dir as "resources.zip"
-  - mv build/liveupdate_output/*.zip build/bundle/js-web/liveupdate_reszip_demo/resources.zip
+  - mv "build/liveupdate_output/*.zip" "build/bundle/js-web/liveupdate_reszip_demo/${RESOURCES_ZIP}.zip"
 
 deploy:
   provider: pages

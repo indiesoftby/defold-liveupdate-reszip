@@ -1,6 +1,8 @@
 local reszip = require "liveupdate_reszip.reszip"
 
-local RES_WEB_PATH = (html5 and "resources.zip") or "http://localhost:8080/resources.zip"
+local RES_ZIP_NAME = sys.get_config("liveupdate_reszip.filename", "resources.zip")
+local RES_WEB_PATH = (html5 and RES_ZIP_NAME) or "http://localhost:8080/" .. RES_ZIP_NAME
+
 local EXCLUDED_PROXY_URL = "/level2#collectionproxy"
 local LEVEL1_PROXY_URL = "/level1#collectionproxy"
 
