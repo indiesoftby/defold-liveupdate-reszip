@@ -12,8 +12,8 @@ script:
   - curl -s 'http://d.defold.com/stable/info.json' | python3 -c "import sys, json; print('https://d.defold.com/archive/' + json.load(sys.stdin)['sha1'] + '/bob/bob.jar')" | wget --progress=dot:mega -i - -O build/bob/bob.jar || travis_terminate 1
 
   # Generate unique name for resources.zip file for cache-busting
-  - RESOURCES_ZIP=resources_$(date +%s).zip
-  - echo "[liveupdate_reszip]\nfilename = ${RESOURCES_ZIP}" >> .travis-settings.ini
+  - RESOURCES_ZIP="resources_$(date +%s).zip"
+  - echo -e "[liveupdate_reszip]\nfilename = ${RESOURCES_ZIP}" >> .travis-settings.ini
 
   # Build the project
   - java -jar build/bob/bob.jar --settings .travis-settings.ini --email foo@bar.com --auth 12345 --texture-compression true --bundle-output build/bundle/js-web --platform js-web --archive --liveupdate yes --variant debug resolve build bundle || travis_terminate 1
