@@ -6,7 +6,7 @@ Particularly, it shows how to load extra resources for level 2 from "resources.z
 
 # WORK IN PROGRESS
 
-[**Online demo 🐲**](https://indiesoftby.github.io/defold-liveupdate-reszip/index.html)
+[**Online demo 🐲**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html)
 
 ## Installation
 
