@@ -1,11 +1,6 @@
 dist: bionic
 language: java
 
-cache:
-    directories:
-     - build/bob
-     - .internal/lib
-
 script:
   # Download the latest bob.jar
   - mkdir -p build/bob || travis_terminate 1
