@@ -1,0 +1,22 @@
+<html>
+    <body>
+        <script id="engine-setup" type="text/javascript">
+            // Delete all LiveUpdate files stored in IDBFS
+            var old_preloadAndCallMain = Module._preloadAndCallMain;
+            Module._preloadAndCallMain = function () {
+                var dir = DMSYS.GetUserPersistentDataRoot();
+                var resDir = _HashSHA1("{{{project.title}}}");
+                try {
+                    FS.unlink(dir + "/." + resDir + "/liveupdate.arcd");
+                } catch (e) {}
+                try {
+                    FS.unlink(dir + "/." + resDir + "/liveupdate.arci");
+                } catch (e) {}
+                try {
+                    FS.unlink(dir + "/." + resDir + "/liveupdate.arci.tmp");
+                } catch (e) {}
+                old_preloadAndCallMain();
+            };
+        </script>
+    </body>
+</html>
