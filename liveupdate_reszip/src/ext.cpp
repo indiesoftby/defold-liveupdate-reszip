@@ -3,7 +3,6 @@
 
 #include "miniz.h"
 
-#include <dmsdk/dlib/crypt.h>
 #include <dmsdk/sdk.h>
 #include <string.h>
 
@@ -60,62 +59,9 @@ static int ValidateZip(lua_State *L) {
     return 1;
 }
 
-#ifdef DM_PLATFORM_HTML5
-
-#include <emscripten.h>
-
-static char hash_sha1_buf[20 * 2 + 1];
-
-// See lib_reszip.js
-extern "C" char *HashSHA1(const char *str);
-
-// This "dummy" function forces Emscripten to keep "HashSHA1" (see lib_reszip.js)
-extern "C" void EMSCRIPTEN_KEEPALIVE ResZip_Dummy() {
-    HashSHA1(hash_sha1_buf);
-}
-
-// Used by "HashSHA1" (see lib_reszip.js)
-extern "C" char *EMSCRIPTEN_KEEPALIVE ResZip_HashSHA1(const char *str) {
-
-    size_t len = strlen(str);
-
-    uint8_t d[20];
-    dmCrypt::HashSha1((const uint8_t *)str, len, d);
-
-    dmSnPrintf(hash_sha1_buf, sizeof(hash_sha1_buf),
-               "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", d[0], d[1], d[2],
-               d[3], d[4], d[5], d[6], d[7], d[8], d[9], d[10], d[11], d[12], d[13], d[14], d[15], d[16], d[17], d[18],
-               d[19]);
-
-    return hash_sha1_buf;
-}
-
-#endif
-
-// NOT USED
-static int Script_HashSHA1(lua_State *L) {
-    int top = lua_gettop(L);
-
-    size_t len;
-    const char *str = luaL_checklstring(L, 1, &len);
-
-    uint8_t d[20];
-    dmCrypt::HashSha1((const uint8_t *)str, len, d);
-
-    char sha1[20 * 2 + 1]; // We need a terminal zero for snprintf
-    dmSnPrintf(sha1, sizeof(sha1), "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-               d[0], d[1], d[2], d[3], d[4], d[5], d[6], d[7], d[8], d[9], d[10], d[11], d[12], d[13], d[14], d[15],
-               d[16], d[17], d[18], d[19]);
-    lua_pushstring(L, sha1);
-
-    assert(top + 1 == lua_gettop(L));
-    return 1;
-}
-
 // Functions exposed to Lua
 static const luaL_reg Module_methods[] = {{"extract_file", ExtractFile},
                                           {"validate_zip", ValidateZip},
-                                          {"hash_sha1", Script_HashSHA1},
                                           /* Sentinel: */
                                           {NULL, NULL}};
 
