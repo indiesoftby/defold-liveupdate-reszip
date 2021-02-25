@@ -2,6 +2,10 @@ images {
   image: "/example/assets/level1/defold-logo-outline-light.png"
   sprite_trim_mode: SPRITE_TRIM_MODE_OFF
 }
+images {
+  image: "/example/assets/level1/level_1_title.png"
+  sprite_trim_mode: SPRITE_TRIM_MODE_OFF
+}
 margin: 0
 extrude_borders: 2
 inner_padding: 0
