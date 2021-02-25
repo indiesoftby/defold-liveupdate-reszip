@@ -21,3 +21,11 @@ Or point to the ZIP file of a [specific release](https://github.com/indiesoftby/
 ## Usage
 
 ...
+
+## Advanced Usage
+
+1. Feel free to remove an unused manifest from the `resources.zip` file: 
+```bash
+7z d -r resources.zip liveupdate.game.dmanifest
+```
+2. 
