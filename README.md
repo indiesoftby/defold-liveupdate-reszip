@@ -1,4 +1,4 @@
-# ResZip. Use LiveUpdate to improve load speed of HTML5 game
+# ResZip: use LiveUpdate to improve load speed of HTML5 game
 
 In short, HTML5 games should load **as fast as possible**! 
 
@@ -11,7 +11,7 @@ This project aims to demonstrate the usage of LiveUpdate for HTML5 games. It con
 
 Also, the project uses [Miniz](https://github.com/richgel999/miniz), a data compression library. Take into account the fact that it increases your release build size on 20KB.
 
-Check out the online demo:
+Check out the demos:
 1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html) - this project.
 2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/alt-version/index.html) - the same but with an alternative `resources.zip` file to test that it can handle upgrade of the game.
 
