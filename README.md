@@ -25,7 +25,7 @@ https://github.com/indiesoftby/defold-liveupdate-reszip/archive/main.zip
 
 ### Advanced Usage
 
-You can to remove an unused manifest from the `resources.zip` file: 
+You can to remove an unused manifest from the `resources.zip` file to reduce its size: 
 
 ```bash
 7z d -r resources.zip liveupdate.game.dmanifest
