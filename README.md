@@ -8,11 +8,11 @@ This project aims to demonstrate the usage of LiveUpdate for HTML5 games. It con
 1. The `liveupdate_reszip.reszip` module that loads and extracts the missing resources.
 2. Travis CI script `.travis.yml` shows you how to automatically build your game and prepare the `resources.zip` file.
 
-The project uses [Miniz](https://github.com/richgel999/miniz), a data compression library. Take into account that it increases your release build size on 20KB.
+Also, the project uses [Miniz](https://github.com/richgel999/miniz), a data compression library. Take into account the fact that it increases your release build size on 20KB.
 
-# WORK IN PROGRESS
-
-[**Online demo 🐲**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html)
+Check out the online demo:
+1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html) - this project.
+2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/alt-version/index.html) - the same but with alternative `resources.zip` file to test that it can handle upgrade of the game.
 
 ## Installation
 
@@ -20,9 +20,10 @@ The project uses [Miniz](https://github.com/richgel999/miniz), a data compressio
 
 https://github.com/indiesoftby/defold-liveupdate-reszip/archive/main.zip
 
-2. 
+2. Follow the [LiveUpdate tutorial](https://defold.com/manuals/live-update/) on the Defold website to exclude choosen collections in proxies. Use the mode `Zip` for LiveUpdate and publish LiveUpdate content from `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
+3. Look at the `example/main.script` to learn how to check for the missing resources and how to load them from the .zip resources file.
 
-## Advanced Usage
+### Advanced Usage
 
 You can to remove an unused manifest from the `resources.zip` file: 
 
