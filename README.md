@@ -12,7 +12,7 @@ Also, the project uses [Miniz](https://github.com/richgel999/miniz), a data comp
 
 Check out the online demo:
 1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html) - this project.
-2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/alt-version/index.html) - the same but with alternative `resources.zip` file to test that it can handle upgrade of the game.
+2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/alt-version/index.html) - the same but with an alternative `resources.zip` file to test that it can handle upgrade of the game.
 
 ## Installation
 
