@@ -30,7 +30,7 @@ end
 
 local function http_request_handler(self, id, response)
     if (response.status == 200 or response.status == 304) and response.error == nil then
-        print("DEBUG: Resources ZIP loaded, validating...")
+        -- print("DEBUG: Resources ZIP loaded, validating...")
         M._resources_zip = response.response
         if liveupdate_reszip_ext.validate_zip(M._resources_zip) then
             store_missing_resource_from_zip(self, nil, true)
