@@ -21,7 +21,7 @@ Check out the online demo:
 
 https://github.com/indiesoftby/defold-liveupdate-reszip/archive/main.zip
 
-2. Follow the [LiveUpdate tutorial](https://defold.com/manuals/live-update/) on the Defold website to exclude choosen collections in proxies. Use the mode `Zip` for LiveUpdate and publish LiveUpdate content from `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
+2. Follow the [LiveUpdate tutorial](https://defold.com/manuals/live-update/) on the Defold website and exclude chosen collections in proxies. Use the mode `Zip` for LiveUpdate and publish the LiveUpdate content through `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
 3. Look at the `example/main.script` to learn how to check for the missing resources and how to load them from the .zip resources file.
 
 ### Advanced Usage
