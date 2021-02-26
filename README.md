@@ -6,6 +6,8 @@ This project aims to demonstrate the usage of LiveUpdate for HTML5 games. It con
 1. The `liveupdate_reszip.reszip` module that loads, extracts and stores the missing resources.
 2. Travis CI script `.travis.yml` shows you how to automatically build your game and prepare the `resources.zip` file.
 
+The project uses [Miniz](https://github.com/richgel999/miniz), a data compression library. Take into account that it increases your release build size on 20KB.
+
 # WORK IN PROGRESS
 
 [**Online demo 🐲**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html)
@@ -24,8 +26,8 @@ Or point to the ZIP file of a [specific release](https://github.com/indiesoftby/
 
 ## Advanced Usage
 
-1. Feel free to remove an unused manifest from the `resources.zip` file: 
+1. You can to remove an unused manifest from the `resources.zip` file: 
 ```bash
 7z d -r resources.zip liveupdate.game.dmanifest
 ```
-2. 
+
