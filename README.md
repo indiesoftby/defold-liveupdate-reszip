@@ -7,6 +7,7 @@ The possible solution is to split resources in the Defold game into two parts: a
 This project aims to demonstrate the usage of LiveUpdate for HTML5 games. It contains:
 1. The `liveupdate_reszip.reszip` module that loads and extracts the missing resources.
 2. Travis CI script `.travis.yml` shows you how to automatically build your game and prepare the `resources.zip` file.
+3. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes temporary LiveUpdate files before the start of your game.
 
 Also, the project uses [Miniz](https://github.com/richgel999/miniz), a data compression library. Take into account the fact that it increases your release build size on 20KB.
 
