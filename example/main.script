@@ -1,7 +1,9 @@
 local reszip = require "liveupdate_reszip.reszip"
 
 local RES_ZIP_NAME = sys.get_config("liveupdate_reszip.filename", "resources.zip")
-local RES_WEB_PATH = (html5 and RES_ZIP_NAME) or "http://localhost:8080/" .. RES_ZIP_NAME
+-- HTML5: use relative path to load the .zip from the game directory
+-- Other platforms: load .zip from your remote server.
+local RES_WEB_PATH = (html5 and RES_ZIP_NAME) or ("http://localhost:8080/" .. RES_ZIP_NAME)
 
 local EXCLUDED_PROXY_URL = "/level2#collectionproxy"
 local LEVEL1_PROXY_URL = "/level1#collectionproxy"
