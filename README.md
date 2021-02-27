@@ -1,6 +1,6 @@
 # ResZip: use LiveUpdate to improve load speed of HTML5 game
 
-In short, HTML5 games should load **as fast as possible**! 
+In short, HTML5 games should load **as fast as possible**! Why -> https://vimeo.com/350139974
 
 The possible solution is to split resources in the Defold game into two parts: all resources required for the first level of your game plus *the rest resources*. The game loads the rest resources while players are playing the first level. Defold has the [LiveUpdate](https://defold.com/manuals/live-update/) feature that we can use to implement this idea.
 
