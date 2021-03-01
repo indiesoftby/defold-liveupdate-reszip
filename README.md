@@ -1,13 +1,13 @@
-# ResZip: use LiveUpdate to improve load speed of HTML5 game
+# ResZip: use Live Update to improve load speed of HTML5 game
 
 In short, HTML5 games should load **as fast as possible**! Why -> https://vimeo.com/350139974
 
-The possible solution is to split resources in the Defold game into two parts: all resources required for the first level of your game plus *the rest resources*. The game loads the rest resources while players are playing the first level. Defold has the [LiveUpdate](https://defold.com/manuals/live-update/) feature that we can use to implement this idea.
+The possible solution is to split resources in the Defold game into two parts: all resources required for the first level of your game plus *the rest resources*. The game loads the rest resources while players are playing the first level. Defold has the [Live Update](https://defold.com/manuals/live-update/) feature that we can use to implement this idea.
 
-This project aims to demonstrate the usage of LiveUpdate for HTML5 games. It contains:
+This project aims to demonstrate the usage of Live Update for HTML5 games. It contains:
 1. The `liveupdate_reszip.reszip` module that loads and extracts the missing resources.
 2. Travis CI script `.travis.yml` shows you how to automatically build your game and prepare the `resources.zip` file.
-3. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes temporary LiveUpdate files before the start of your game.
+3. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes temporary Live Update files before the start of your game.
 
 Also, the project uses [Miniz](https://github.com/richgel999/miniz), a data compression library. Take into account the fact that it increases your release build size on 20KB.
 
@@ -21,7 +21,7 @@ Check out the online demos:
 
 https://github.com/indiesoftby/defold-liveupdate-reszip/archive/main.zip
 
-2. Follow the [LiveUpdate tutorial](https://defold.com/manuals/live-update/) on the Defold website and exclude chosen collections in proxies. Use the mode `Zip` for LiveUpdate and publish the LiveUpdate content through `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
+2. Follow the [Live Update tutorial](https://defold.com/manuals/live-update/) on the Defold website and exclude chosen collections in proxies. Use the mode `Zip` for Live Update and publish the Live Update content through `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
 3. Look at the `example/main.script` to learn how to check for the missing resources and how to load them from the .zip resources file.
 
 ### Advanced Usage
