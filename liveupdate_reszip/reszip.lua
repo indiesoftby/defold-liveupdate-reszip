@@ -1,7 +1,6 @@
 local M = {}
 
 local function call_callback_and_cleanup(self, err)
-    M._resources_zip = nil
     M._missing_resources = nil
     M._callback(self, err)
     M._callback = nil
@@ -35,6 +34,7 @@ local function http_request_handler(self, id, response)
         if liveupdate_reszip_ext.validate_zip(M._resources_zip) then
             store_missing_resource_from_zip(self, nil, true)
         else
+            M._resources_zip = nil
             call_callback_and_cleanup(self, "Invalid format of the ZIP file")
         end
     else
@@ -42,11 +42,23 @@ local function http_request_handler(self, id, response)
     end
 end
 
+--
+-- PUBLIC
+--
+
 function M.request_and_load_zip(filename, missing_resources, callback)
     M._callback = callback
     M._missing_resources = missing_resources
 
-    http.request(filename, "GET", http_request_handler)
+    if not M._resources_zip then
+        http.request(filename, "GET", http_request_handler)
+    else
+        store_missing_resource_from_zip(self, nil, true)
+    end
+end
+
+function M.clear_cache()
+    M._resources_zip = nil
 end
 
 return M
