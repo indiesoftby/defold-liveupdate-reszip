@@ -24,6 +24,9 @@ local function load_level2(self)
                 -- All resources are loaded, finally load the level:
                 print("Everything is OK, load the level 2!")
                 msg.post(EXCLUDED_PROXY_URL, hash("load"))
+
+                -- Free the memory
+                reszip.clear_cache()
             else
                 -- Try again?...
                 print("ERROR: " .. err)
