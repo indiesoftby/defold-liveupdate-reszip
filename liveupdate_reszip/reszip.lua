@@ -28,21 +28,6 @@ local function store_missing_resource_from_zip(self, hexdigest, status)
     end
 end
 
-local function http_request_handler(self, id, response)
-    if (response.status == 200 or response.status == 304) and response.error == nil then
-        -- print("DEBUG: Resources ZIP loaded, validating...")
-        M._resources_zip = response.response
-        if liveupdate_reszip_ext.validate_zip(M._resources_zip) then
-            store_missing_resource_from_zip(self, nil, true)
-        else
-            M._resources_zip = nil
-            call_callback_and_cleanup(self, "Invalid format of the ZIP file")
-        end
-    else
-        call_callback_and_cleanup(self, "Error happened while downloading:" .. response.status)
-    end
-end
-
 local function request_file_progress_handler(self, loaded, total)
     if M._progress_callback and total > 0 then
         M._progress_callback(self, loaded, total)
@@ -56,10 +41,22 @@ end
 local function request_file_load_handler(self, response)
     M._resources_zip = response
     if liveupdate_reszip_ext.validate_zip(M._resources_zip) then
+        if M._missing_resources == nil then
+            M._missing_resources = liveupdate_reszip_ext.list_resources(M._resources_zip)
+        end
+
         store_missing_resource_from_zip(self, nil, true)
     else
         M._resources_zip = nil
         call_callback_and_cleanup(self, "Invalid format of the ZIP file")
+    end
+end
+
+local function http_request_handler(self, id, response)
+    if (response.status == 200 or response.status == 304) and response.error == nil then
+        request_file_load_handler(self, response.response)
+    else
+        call_callback_and_cleanup(self, "Error happened while downloading: " .. response.status)
     end
 end
 
