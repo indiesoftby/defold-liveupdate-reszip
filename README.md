@@ -32,3 +32,13 @@ You can to remove an unused manifest from the `resources.zip` file to reduce its
 7z d -r resources.zip liveupdate.game.dmanifest
 ```
 
+## Credits
+
+This project is licensed under the terms of the CC0 1.0 Universal license. It's developed and supported by [@aglitchman](https://github.com/aglitchman). 
+
+The demo contains third-party music files which require attribution:
+```
+Ethernight Club by Kevin MacLeod
+Link: https://incompetech.filmmusic.io/song/7612-ethernight-club
+License: https://filmmusic.io/standard-license
+```

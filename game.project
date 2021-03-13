@@ -16,7 +16,7 @@ input_method = HiddenInputField
 [project]
 title = liveupdate_reszip_demo
 publisher = Indiesoft LLC
-version = 1.0.0
+version = dev
 
 [library]
 include_dirs = liveupdate_reszip
