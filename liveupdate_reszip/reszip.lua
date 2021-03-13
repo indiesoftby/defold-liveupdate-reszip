@@ -4,6 +4,7 @@ local function call_callback_and_cleanup(self, err)
     M._missing_resources = nil
     M._callback(self, err)
     M._callback = nil
+    M._progress_callback = nil
 end
 
 local function store_missing_resource_from_zip(self, hexdigest, status)
@@ -42,16 +43,47 @@ local function http_request_handler(self, id, response)
     end
 end
 
+local function request_file_progress_handler(self, loaded, total)
+    if M._progress_callback and total > 0 then
+        M._progress_callback(self, loaded, total)
+    end
+end
+
+local function request_file_error_handler(self, err)
+    call_callback_and_cleanup(self, err)
+end
+
+local function request_file_load_handler(self, response)
+    M._resources_zip = response
+    if liveupdate_reszip_ext.validate_zip(M._resources_zip) then
+        store_missing_resource_from_zip(self, nil, true)
+    else
+        M._resources_zip = nil
+        call_callback_and_cleanup(self, "Invalid format of the ZIP file")
+    end
+end
+
 --
 -- PUBLIC
 --
 
-function M.request_and_load_zip(filename, missing_resources, callback)
+function M.request_and_load_zip(filename, missing_resources, callback, progress_callback)
     M._callback = callback
+    M._progress_callback = progress_callback
     M._missing_resources = missing_resources
 
     if not M._resources_zip then
-        http.request(filename, "GET", http_request_handler)
+        if liveupdate_reszip_ext.request_file then
+            -- (HTML5 only) Load .zip file using the custom file loader
+            liveupdate_reszip_ext.request_file(
+                filename,
+                request_file_progress_handler,
+                request_file_error_handler,
+                request_file_load_handler)
+        else
+            -- Load .zip file via Defold's `http.request`
+            http.request(filename, "GET", http_request_handler)
+        end
     else
         store_missing_resource_from_zip(self, nil, true)
     end

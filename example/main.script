@@ -8,6 +8,13 @@ local RES_WEB_PATH = (html5 and RES_ZIP_NAME) or ("http://localhost:8080/" .. RE
 local EXCLUDED_PROXY_URL = "/level2#collectionproxy"
 local LEVEL1_PROXY_URL = "/level1#collectionproxy"
 
+local function http_loading_progress_handler(self, loaded, total)
+    msg.post("#loading_progress", "enable")
+
+    local progress = string.format("%dKB / %dKB", loaded / 1024, total / 1024)
+    label.set_text("#loading_progress", progress)
+end
+
 local function load_level2(self)
     local missing_resources = collectionproxy.missing_resources(EXCLUDED_PROXY_URL)
     if next(missing_resources) ~= nil then
@@ -21,7 +28,7 @@ local function load_level2(self)
                 -- Try again?...
                 print("ERROR: " .. err)
             end
-        end)
+        end, http_loading_progress_handler)
     else
         -- All resources exist, so load the level:
         print("Resources are already loaded. Let's load the level 2!")
@@ -45,6 +52,7 @@ end
 function on_message(self, message_id, message, sender)
     if message_id == hash("proxy_loaded") then
         msg.post("#loading_title", "disable")
+        msg.post("#loading_progress", "disable")
 
         msg.post(sender, "enable")
     end
