@@ -1,3 +1,5 @@
+[![ResZip Cover](cover.jpg)](https://github.com/indiesoftby/defold-liveupdate-reszip)
+
 # ResZip: use Live Update to improve load speed of HTML5 game
 
 In short, HTML5 games should load **as fast as possible**! Why -> https://vimeo.com/350139974
