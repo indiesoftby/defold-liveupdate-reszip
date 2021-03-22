@@ -19,7 +19,8 @@ local function load_level2(self)
     local missing_resources = collectionproxy.missing_resources(EXCLUDED_PROXY_URL)
     if next(missing_resources) ~= nil then
         print("Resources are missing, downloading...")
-        reszip.request_and_load_zip(RES_WEB_PATH, missing_resources, function(self, err)
+        -- TIP: You can pass the "missing_resources" table instead of "nil" to load only these resources.
+        reszip.request_and_load_zip(RES_WEB_PATH, nil, function(self, err)
             if not err then
                 -- All resources are loaded, finally load the level:
                 print("Everything is OK, load the level 2!")
