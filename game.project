@@ -27,3 +27,6 @@ clear_color_alpha = 1.0
 [html5]
 scale_mode = fit
 
+[input]
+game_binding = /builtins/input/all.input_bindingc
+
