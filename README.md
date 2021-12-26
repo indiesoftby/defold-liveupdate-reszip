@@ -9,7 +9,7 @@ It's important to deliver something meaningful to the user as soon as possible â
 The solution is to split your Defold game resources into two parts: resources required for the first level plus **everything else**. The game lazily loads more content or loads it on demand while players are playing the first level. Defold has the [Live Update](https://defold.com/manuals/live-update/) feature that we can use to implement this idea, and the project aims to demonstrate the usage of it.
 
 This project contains:
-1. The `liveupdate_reszip.reszip` module that loads and extracts the missing resources.
+1. The `liveupdate_reszip.reszip` Lua module that loads and extracts the missing resources.
 2. Travis CI script `.travis.yml` shows you how to automatically build your game and prepare the `resources.zip` file.
 3. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes temporary Live Update files before the start of your game.
 
@@ -50,7 +50,7 @@ The easiest way to use ResZip in your project is to move some of your audio file
 
 ### Advanced Usage
 
-You can to remove an unused manifest from the `resources.zip` file to reduce its size: 
+You can remove an unused manifest from the `resources.zip` file to reduce its size: 
 
 ```bash
 7z d -r resources.zip liveupdate.game.dmanifest
@@ -60,7 +60,7 @@ You can to remove an unused manifest from the `resources.zip` file to reduce its
 
 This project is licensed under the terms of the CC0 1.0 Universal license. It's developed and supported by [@aglitchman](https://github.com/aglitchman). 
 
-Also, the project uses [miniz](https://github.com/richgel999/miniz), a data compression library.
+Also, the project uses [miniz](https://github.com/richgel999/miniz), a MIT-licensed data compression library.
 
 The demo contains third-party music files which require attribution:
 ```
