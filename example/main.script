@@ -19,6 +19,11 @@ local function load_level2(self)
     local missing_resources = collectionproxy.missing_resources(EXCLUDED_PROXY_URL)
     if next(missing_resources) ~= nil then
         print("Resources are missing, downloading...")
+
+        -- Global ResZip settings (HTML5 only).
+        reszip.RESOURCES_PER_BATCH = 10
+        reszip.BATCH_MAX_TIME = 0.333 -- 2/60 frames.
+
         -- TIP: You can pass the "missing_resources" table instead of "nil" to load only these resources.
         reszip.request_and_load_zip(RES_WEB_PATH, nil, function(self, err)
             if not err then
