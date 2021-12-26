@@ -15,11 +15,11 @@ end
 
 local function store_missing_resource_from_zip(self, hexdigest, status)
     if status then
-        if M._missing_resources ~= nil and next(M._missing_resources) ~= nil then
-            if M._store_callback and M._resources_total > 0 then
-                M._store_callback(self, M._resources_stored, M._resources_total)
-            end
+        if M._store_callback and M._resources_total > 0 then
+            M._store_callback(self, M._resources_stored, M._resources_total)
+        end
 
+        if M._missing_resources ~= nil and next(M._missing_resources) ~= nil then
             -- Loading next missing resource from the ZIP archive
             local res_hash = table.remove(M._missing_resources)
             M._resources_stored = M._resources_stored + 1
