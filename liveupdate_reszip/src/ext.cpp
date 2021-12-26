@@ -7,6 +7,11 @@
 #include <stdint.h>
 #include <string.h>
 
+namespace dmLiveUpdate
+{
+    void AsyncUpdate();
+}
+
 static int ExtractFile(lua_State *L) {
     size_t buf_len = 0;
     const char *buf = luaL_checklstring(L, 1, &buf_len);
@@ -210,6 +215,12 @@ static int RequestFile(lua_State *L) {
 
 #endif
 
+static int UpdateJobQueue(lua_State *L)
+{
+    dmLiveUpdate::AsyncUpdate();
+    return 0;
+}
+
 // Functions exposed to Lua
 static const luaL_reg Module_methods[] = {{"extract_file", ExtractFile},
                                           {"validate_zip", ValidateZip},
@@ -217,6 +228,7 @@ static const luaL_reg Module_methods[] = {{"extract_file", ExtractFile},
 #if defined(DM_PLATFORM_HTML5)
                                           {"request_file", RequestFile},
 #endif
+                                          {"update_job_queue", UpdateJobQueue},
                                           /* Sentinel: */
                                           {NULL, NULL}};
 
