@@ -13,11 +13,27 @@ This project contains:
 2. Travis CI script `.travis.yml` shows you how to automatically build your game and prepare the `resources.zip` file.
 3. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes temporary Live Update files before the start of your game.
 
-Also, the project uses [Miniz](https://github.com/richgel999/miniz), a data compression library. Take into account the fact that it increases your release build size on 20KB.
-
 Check out the online demos:
 1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html) - this project. **Tap anywhere to load level 2.**
 2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/alt-version/index.html) - the same but with an alternative `resources.zip` file to test that it can handle upgrade of the game.
+
+## Current Status
+
+💬 Feel free to ask questions: [the topic about this asset is on the Defold forum](https://forum.defold.com/t/use-live-update-to-improve-load-speed-of-html5-game/67686).
+
+| Asset Version   | Defold Version | Status        |
+| --------------- | -------------- | ------------- |
+| 1.1.1           | 1.2.190        | Tested ✅     |
+
+### Showcase
+
+This is a list of some games that have used ResZip:
+
+| Game            | Links               |
+| --------------- | ------------------- |
+| Duo Vikings 3   | [Play it on Poki](https://poki.com/en/g/duo-vikings-3) |
+| Puffy Cat       | [Play it on Poki](https://poki.com/en/g/puffy-cat) |
+| Puffy Cat 2     | [Play it on Poki](https://poki.com/en/g/puffy-cat-2) |
 
 ## Installation
 
@@ -39,6 +55,8 @@ You can to remove an unused manifest from the `resources.zip` file to reduce its
 ## Credits
 
 This project is licensed under the terms of the CC0 1.0 Universal license. It's developed and supported by [@aglitchman](https://github.com/aglitchman). 
+
+Also, the project uses [miniz](https://github.com/richgel999/miniz), a data compression library.
 
 The demo contains third-party music files which require attribution:
 ```
