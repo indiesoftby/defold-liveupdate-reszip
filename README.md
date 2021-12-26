@@ -29,11 +29,11 @@ Check out the online demos:
 
 This is a list of some games that have used ResZip:
 
-| Game            | Links               |
-| --------------- | ------------------- |
+| Game            | Links | Extra |
+| --------------- | ----- | ----- |
 | Duo Vikings 3   | [Play it on Poki](https://poki.com/en/g/duo-vikings-3) |
-| Puffy Cat       | [Play it on Poki](https://poki.com/en/g/puffy-cat) |
-| Puffy Cat 2     | [Play it on Poki](https://poki.com/en/g/puffy-cat-2) |
+| Puffy Cat       | [Play it on Poki](https://poki.com/en/g/puffy-cat) | The game loads only 750 KB of data for the first three levels. Everything else (5 MB) is lazily downloaded from the `resources.zip` file. |
+| Puffy Cat 2     | [Play it on Poki](https://poki.com/en/g/puffy-cat-2) | Only music and some sounds have been cut out from the game data into the `resources.zip` file. |
 
 ## Installation
 
@@ -43,6 +43,10 @@ https://github.com/indiesoftby/defold-liveupdate-reszip/archive/main.zip
 
 2. Follow the [Live Update tutorial](https://defold.com/manuals/live-update/) on the Defold website and exclude chosen collections in proxies. Use the `Zip` mode for Live Update and publish the Live Update content through `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
 3. Look at the `example/main.script` to learn how to check for the missing resources and how to load them from the .zip resources file.
+
+### Tips
+
+The easiest way to use ResZip in your project is to move some of your audio files (i.e. sound components) to a proxied collection and exclude the collection for the release build. To play these sounds, you should make an external script that acts as a sound manager of all your in-game audio and knows when proxied sounds are loaded from the `resources.zip` file.
 
 ### Advanced Usage
 
