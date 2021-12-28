@@ -61,7 +61,19 @@ Also, you can remove an unused manifest from the `resources.zip` file to reduce 
 
 ### Advanced Usage
 
-...
+ResZip can start preloading the `resources.zip` file as soon as game loading is finished. It's recommended to enable this option:
+
+```ini
+[liveupdate_reszip]
+preload_file = your_resources_file_name.zip
+```
+
+If the `resources.zip` file contains hundreds or thousands of resources, you can speed up the process of loading resources by enabling batching:
+
+```lua
+reszip.RESOURCES_PER_BATCH = 10
+reszip.BATCH_MAX_TIME = 0, -- Seconds. Set 0 or less to disable.
+```
 
 ## Credits
 
