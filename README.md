@@ -6,12 +6,15 @@ In short, HTML5 games should load **as fast as possible**! Why -> https://vimeo.
 
 It's important to deliver something meaningful to the user as soon as possible — the longer they wait for the game to load, the bigger the chance they will leave before waiting for everything to finish.
 
-The solution is to split your Defold game resources into two parts: resources required for the first level plus **everything else**. The game lazily loads more content or loads it on demand while players are playing the first level. Defold has the [Live Update](https://defold.com/manuals/live-update/) feature that we can use to implement this idea, and the project aims to demonstrate the usage of it.
+You can do the following things:
+- Split your Defold game resources into two parts: resources required for the first level plus **everything else**. The game lazily loads more content or loads it on demand while players are playing the first level.
+- Or make SD/HD versions of your atlases to lazily load HD graphics on game start (*the example will be added later*).
 
-This project contains:
+Defold has the [Live Update](https://defold.com/manuals/live-update/) feature that we can use to implement these ideas, and the project aims to demonstrate the usage of it. The project contains:
+
 1. The `liveupdate_reszip.reszip` Lua module that loads and extracts the missing resources.
-2. Travis CI script `.travis.yml` shows you how to automatically build your game and prepare the `resources.zip` file.
-3. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes temporary Live Update files before the start of your game.
+2. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes temporary Live Update files from IndexedDB before the start of your game.
+3. Travis CI script `.travis.yml` shows you how to automatically build your game and prepare the `resources.zip` file.
 
 Check out the online demos:
 1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html) - this project. **Tap anywhere to load level 2.**
@@ -23,7 +26,7 @@ Check out the online demos:
 
 | Asset Version   | Defold Version | Status        |
 | --------------- | -------------- | ------------- |
-| 1.1.1           | 1.2.190        | Tested ✅     |
+| 1.2.0           | 1.2.190        | Tested ✅     |
 
 ### Showcase
 
@@ -50,13 +53,15 @@ https://github.com/indiesoftby/defold-liveupdate-reszip/archive/main.zip
 
 The easiest way to use ResZip in your project is to move some of your audio files (i.e. sound components) to a proxied collection and exclude the collection for the release build. To play these sounds, you should make an external script that acts as a sound manager of all your in-game audio and knows when proxied sounds are loaded from the `resources.zip` file.
 
-### Advanced Usage
-
-You can remove an unused manifest from the `resources.zip` file to reduce its size: 
+Also, you can remove an unused manifest from the `resources.zip` file to reduce its size: 
 
 ```bash
 7z d -r resources.zip liveupdate.game.dmanifest
 ```
+
+### Advanced Usage
+
+...
 
 ## Credits
 
