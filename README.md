@@ -72,7 +72,7 @@ If the `resources.zip` file contains hundreds or thousands of resources, you can
 
 ```lua
 reszip.RESOURCES_PER_BATCH = 10
-reszip.BATCH_MAX_TIME = 0, -- Seconds. Set 0 or less to disable.
+reszip.BATCH_MAX_TIME = 0 -- Seconds. Set 0 or less to disable.
 ```
 
 ## Credits
