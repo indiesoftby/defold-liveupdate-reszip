@@ -37,6 +37,7 @@ This is a list of some games that have used ResZip:
 | Duo Vikings     | [Play it on Poki](https://poki.com/en/g/duo-vikings) |
 | Duo Vikings 2   | [Play it on Poki](https://poki.com/en/g/duo-vikings-2) |
 | Duo Vikings 3   | [Play it on Poki](https://poki.com/en/g/duo-vikings-3) |
+| Fish Eat Fish   | [Play it on Poki](https://poki.com/en/g/fish-eat-fish) | The total size of the game is only 4 MB! After its start, it downloads the HD version of the graphics (~10MB) and applies it depending on the hardware capabilities. |
 | Puffy Cat       | [Play it on Poki](https://poki.com/en/g/puffy-cat) | The game loads only 750 KB of data for the first three levels. Everything else (5 MB) is lazily downloaded from the `resources.zip` file. |
 | Puffy Cat 2     | [Play it on Poki](https://poki.com/en/g/puffy-cat-2) | Only music and some sounds have been cut out from the game data into the `resources.zip` file. |
 
