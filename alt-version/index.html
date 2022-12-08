@@ -165,7 +165,7 @@
 		archive_location_filter: function( path ) {
 			return ("archive" + path + "");
 		},
-		engine_arguments: [],
+		engine_arguments: ["--verify-graphics-calls=false",],
 		custom_heap_size: 268435456,
 		full_screen_container: "#canvas-container",
 		disable_context_menu: true
@@ -262,6 +262,7 @@
             };
         </script> 
   <script id="engine-start" type="text/javascript">
+		EngineLoader.stream_wasm = "false" === "true";
 		EngineLoader.load("canvas", "liveupdate_reszip_demo");
 	</script>   
  </body>
