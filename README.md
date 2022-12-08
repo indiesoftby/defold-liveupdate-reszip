@@ -12,9 +12,9 @@ You can do the following things:
 
 Defold has the [Live Update](https://defold.com/manuals/live-update/) feature that we can use to implement these ideas, and the project aims to demonstrate the usage of it. The project contains:
 
-1. The `liveupdate_reszip.reszip` Lua module that loads and extracts the missing resources.
-2. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes temporary Live Update files from IndexedDB before the start of your game.
-3. Travis CI script `.travis.yml` shows you how to automatically build your game and prepare the `resources.zip` file.
+1. The Lua `liveupdate_reszip.reszip` module that downloads (with progress!) and extracts the missing resources.
+2. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes Live Update cache from IndexedDB before the start of your game. This step is based on our experience of Live Update usage in Defold. Defold often fails to use the mix of resources from different versions of the game and the best solution is to clear its cache on every launch.
+3. The Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to your build result folder.
 
 Check out the online demos:
 1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html) - this project. **Tap anywhere to load level 2.**
@@ -26,7 +26,7 @@ Check out the online demos:
 
 | Asset Version   | Defold Version | Status        |
 | --------------- | -------------- | ------------- |
-| 1.2.0           | 1.2.190        | Tested ✅     |
+| 1.2.0           | 1.4.0          | Tested ✅     |
 
 ### Showcase
 
@@ -38,6 +38,7 @@ This is a list of some games that have used ResZip:
 | Duo Vikings 2   | [Play it on Poki](https://poki.com/en/g/duo-vikings-2) |
 | Duo Vikings 3   | [Play it on Poki](https://poki.com/en/g/duo-vikings-3) |
 | Fish Eat Fish   | [Play it on Poki](https://poki.com/en/g/fish-eat-fish) | The total size of the game is only 4 MB! After its start, it downloads the HD version of the graphics (~10MB) and applies it depending on the hardware capabilities. |
+| Monkey Mart     | [Play it on Poki](https://poki.com/en/g/monkey-mart) |
 | Puffy Cat       | [Play it on Poki](https://poki.com/en/g/puffy-cat) | The game loads only 750 KB of data for the first three levels. Everything else (5 MB) is lazily downloaded from the `resources.zip` file. |
 | Puffy Cat 2     | [Play it on Poki](https://poki.com/en/g/puffy-cat-2) | Only music and some sounds have been cut out from the game data into the `resources.zip` file. |
 
@@ -47,8 +48,10 @@ This is a list of some games that have used ResZip:
 
 https://github.com/indiesoftby/defold-liveupdate-reszip/archive/main.zip
 
-2. Follow the [Live Update tutorial](https://defold.com/manuals/live-update/) on the Defold website and exclude chosen collections in proxies. Use the `Zip` mode for Live Update and publish the Live Update content through `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
-3. Look at the `example/main.script` to learn how to check for the missing resources and how to load them from the .zip resources file.
+2. Follow the [Live Update tutorial](https://defold.com/manuals/live-update/) on the Defold website and exclude chosen collections in proxies.
+3. Use the `Zip` mode for Live Update and publish the Live Update content through `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`).
+4. Move the resulting .zip file with resources into your production build folder.
+5. Look at the `example/main.script` to learn how to check for the missing resources and how to load them from the `.zip` resources file.
 
 ### Tips
 
@@ -62,14 +65,14 @@ Also, you can remove an unused manifest from the `resources.zip` file to reduce 
 
 ### Advanced Usage
 
-ResZip can start preloading the `resources.zip` file as soon as game loading is finished. It's recommended to enable this option:
+ResZip can start preloading the `resources.zip` file as soon as game loading is finished. It's highly recommended to enable this option:
 
 ```ini
 [liveupdate_reszip]
 preload_file = your_resources_file_name.zip
 ```
 
-If the `resources.zip` file contains hundreds or thousands of resources, you can speed up the process of loading resources by enabling batching:
+If the `resources.zip` file contains hundreds or thousands of resources, you can speed up the process of loading resources by enabling batching (only for HTML5!):
 
 ```lua
 reszip.RESOURCES_PER_BATCH = 10
