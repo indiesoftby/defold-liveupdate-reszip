@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install Java ♨️
         uses: actions/setup-java@v2
@@ -42,7 +42,7 @@ jobs:
 
           # Checkout alt version and build it
           # We use it to test how the game will suffer the different resources in the resources.zip.
-          git checkout alt-version
+          git switch alt-version
           rm -rf build/default
           java -jar build/bundle/bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/js-web --build-report-html build/bundle/public/build_report_alt-version.html --platform js-web --archive --liveupdate yes --variant debug resolve build bundle
           mv build/liveupdate_output/*.zip build/bundle/js-web/liveupdate_reszip_demo/resources.zip
