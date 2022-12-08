@@ -1,4 +1,5 @@
 local M = {
+    -- ResZip settings
     RESOURCES_PER_BATCH = 1,
     BATCH_MAX_TIME = 0, -- Seconds. Set 0 or less to disable.
 }
@@ -96,9 +97,17 @@ local function http_request_handler(self, id, response)
 end
 
 --
--- PUBLIC
+-- Public
 --
 
+--- The function makes HTTP request to load .zip file from the `filename` path or URL, if it's not loaded previously.
+-- Then it stores the file internally, and asynchronously loads resources from the `missing_resources` array.
+-- When the resources storing process is done, it calls `callback`.
+-- @param filename (string) - URL or path
+-- @param missing_resources (array)
+-- @param callback (function)
+-- @param progress_callback (function)
+-- @param store_callback (function)
 function M.request_and_load_zip(filename, missing_resources, callback, progress_callback, store_callback)
     M._callback = callback
     M._progress_callback = progress_callback
@@ -125,6 +134,7 @@ function M.request_and_load_zip(filename, missing_resources, callback, progress_
     end
 end
 
+--- Free memory if you don't need resources from the `resources.zip` file anymore.
 function M.clear_cache()
     M._resources_zip = nil
 end

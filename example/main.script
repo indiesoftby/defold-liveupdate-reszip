@@ -1,9 +1,10 @@
 local reszip = require "liveupdate_reszip.reszip"
 
-local RES_ZIP_NAME = sys.get_config("liveupdate_reszip.filename", "resources.zip")
+local ZIP_FILENAME = sys.get_config("liveupdate_reszip.filename", "resources.zip")
+
 -- HTML5: use relative path to load the .zip from the game directory
 -- Other platforms: load .zip from your remote server.
-local RES_WEB_PATH = (html5 and RES_ZIP_NAME) or ("http://localhost:8080/" .. RES_ZIP_NAME)
+local ZIP_FILE_LOCATION = (html5 and ZIP_FILENAME) or ("http://localhost:8080/" .. ZIP_FILENAME)
 
 local EXCLUDED_PROXY_URL = "/level2#collectionproxy"
 local LEVEL1_PROXY_URL = "/level1#collectionproxy"
@@ -24,14 +25,14 @@ local function load_level2(self)
         reszip.RESOURCES_PER_BATCH = 10
         reszip.BATCH_MAX_TIME = 0.0333 -- 2/60 frames.
 
-        -- TIP: You can pass the "missing_resources" table instead of "nil" to load only these resources.
-        reszip.request_and_load_zip(RES_WEB_PATH, nil, function(self, err)
+        -- TIP: You can pass the "missing_resources" table instead of "nil" to load only missing resources.
+        reszip.request_and_load_zip(ZIP_FILE_LOCATION, nil, function(self, err)
             if not err then
                 -- All resources are loaded, finally load the level:
                 print("Everything is OK, load the level 2!")
                 msg.post(EXCLUDED_PROXY_URL, hash("load"))
 
-                -- Free the memory
+                -- Free the memory, if you are not going to use the `resources.zip` file later (i.e. you can )
                 reszip.clear_cache()
             else
                 -- Try again?...
