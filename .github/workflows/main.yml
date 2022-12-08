@@ -12,7 +12,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Install Java ♨️
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: "adopt"
           java-version: "11"
@@ -42,6 +42,7 @@ jobs:
 
           # Checkout alt version and build it
           # We use it to test how the game will suffer the different resources in the resources.zip.
+          git fetch origin alt-version
           git switch alt-version
           rm -rf build/default
           java -jar build/bundle/bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/js-web --build-report-html build/bundle/public/build_report_alt-version.html --platform js-web --archive --liveupdate yes --variant debug resolve build bundle
