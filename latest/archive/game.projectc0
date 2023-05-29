@@ -125,8 +125,8 @@ localizations = en
 
 [android]
 version_code = 1
-minimum_sdk_version = 16
-target_sdk_version = 31
+minimum_sdk_version = 19
+target_sdk_version = 33
 package = com.example.todo
 gcm_sender_id = 
 manifest = /builtins/manifests/android/AndroidManifest.xml
