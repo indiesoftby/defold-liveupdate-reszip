@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Download bob.jar like that:
+# wget "https://github.com/defold/defold/releases/download/1.4.6/bob.jar" -O bob.jar
+
+# Plus, the script uses https://www.npmjs.com/package/http-server to serve local files.
+
 set -e
 
 PLATFORM=js-web

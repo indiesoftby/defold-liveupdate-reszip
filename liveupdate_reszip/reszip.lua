@@ -27,7 +27,7 @@ local function store_missing_resource_from_zip(self, hexdigest, status)
 
             local data = liveupdate_reszip_ext.extract_file(M._resources_zip, res_hash)
             if data then
-                resource.store_resource(resource.get_current_manifest(), data, res_hash, store_missing_resource_from_zip)
+                liveupdate.store_resource(liveupdate.get_current_manifest(), data, res_hash, store_missing_resource_from_zip)
                 if #M._missing_resources > 0 then
                     local time = socket.gettime()
                     local push_queue = true
