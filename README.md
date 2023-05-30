@@ -26,7 +26,9 @@ Check out the online demos:
 
 | Asset Version   | Defold Version | Status        |
 | --------------- | -------------- | ------------- |
-| 1.2.0           | 1.4.0          | Tested ✅     |
+| 1.2.0           | 1.4.7          | Tested ✅     |
+| 1.2.0           | 1.4.6          | Doesn't work ❌ |
+| 1.2.0           | 1.4.5          | Tested ✅     |
 
 ### Showcase
 
