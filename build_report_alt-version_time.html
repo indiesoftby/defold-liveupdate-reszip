@@ -55,2358 +55,2437 @@
     var data = {
   "data" : [ {
     "start" : 0,
-    "duration" : 90976,
+    "duration" : 17705,
     "name" : "Total time",
     "children" : [ {
       "start" : 0,
-      "duration" : 136,
+      "duration" : 67,
       "name" : "Java VM init"
     }, {
-      "start" : 174,
-      "duration" : 133,
+      "start" : 109,
+      "duration" : 147,
       "name" : "setupProject",
       "children" : [ {
-        "start" : 174,
-        "duration" : 16,
+        "start" : 109,
+        "duration" : 15,
         "name" : "Resolve libs"
       }, {
-        "start" : 191,
-        "duration" : 116,
+        "start" : 124,
+        "duration" : 132,
         "name" : "findSources"
       } ]
     }, {
-      "start" : 604,
-      "duration" : 6,
+      "start" : 623,
+      "duration" : 14,
       "name" : "Create root folder"
     }, {
-      "start" : 771,
+      "start" : 777,
       "duration" : 0,
       "name" : "resolve"
     }, {
-      "start" : 771,
-      "duration" : 90091,
+      "start" : 777,
+      "duration" : 16810,
       "name" : "build",
       "children" : [ {
-        "start" : 867,
-        "duration" : 72646,
-        "name" : "Build Remote Engine",
-        "variant" : "debug",
-        "withSymbols" : false
-      }, {
-        "start" : 73514,
-        "duration" : 687,
+        "start" : 862,
+        "duration" : 16621,
         "name" : "Create tasks",
-        "TasksCount" : 78.0,
         "children" : [ {
-          "start" : 73515,
-          "duration" : 1,
-          "output" : "[build/default/input/game.input_bindingc]",
-          "name" : "InputBinding",
-          "type" : "createTask"
-        }, {
-          "start" : 73516,
-          "duration" : 100,
-          "output" : "[build/default/example/assets/common.a.texturesetc, build/default/example/assets/common.texturec]",
-          "name" : "Atlas",
-          "type" : "createTask"
-        }, {
-          "start" : 73616,
-          "duration" : 1,
-          "output" : "[build/default/example/assets/level1.a.texturesetc, build/default/example/assets/level1.texturec]",
-          "name" : "Atlas",
-          "type" : "createTask"
-        }, {
-          "start" : 73617,
-          "duration" : 1,
-          "output" : "[build/default/example/assets/level2.a.texturesetc, build/default/example/assets/level2.texturec]",
-          "name" : "Atlas",
-          "type" : "createTask"
-        }, {
-          "start" : 73618,
-          "duration" : 85,
-          "output" : "[build/default/example/main.scriptc]",
-          "name" : "Script",
+          "start" : 865,
+          "duration" : 942,
           "type" : "createTask",
+          "TasksCount" : 81.0,
           "children" : [ {
-            "start" : 73621,
-            "duration" : 82,
-            "name" : "Parse"
-          } ]
-        }, {
-          "start" : 73703,
-          "duration" : 37,
-          "output" : "[build/default/example/level1/level1.collectionc, build/default/example/level1/level1.compcount_col, build/default/_generated_d5edb65596286af5.go, build/default/_generated_51bc4e823928d00a.go]",
-          "name" : "Collection",
-          "type" : "createTask",
-          "children" : [ {
-            "start" : 73727,
-            "duration" : 12,
-            "output" : "[build/default/_generated_d5edb65596286af5.goc, build/default/_generated_d5edb65596286af5.compcount_go, build/default/_generated_e97e41572740bbd8.sprite]",
-            "name" : "GameObject",
-            "type" : "createTask",
+            "start" : 872,
+            "duration" : 141,
+            "output" : "[build/default/liveupdate_reszip/reszip.luac]",
+            "name" : "Lua",
             "children" : [ {
-              "start" : 73734,
-              "duration" : 5,
-              "output" : "[build/default/_generated_e97e41572740bbd8.spritec]",
-              "name" : "SpriteDesc",
-              "type" : "createTask"
+              "start" : 886,
+              "duration" : 127,
+              "name" : "Build Remote Engine",
+              "variant" : "debug",
+              "withSymbols" : false
             } ]
           }, {
-            "start" : 73739,
-            "duration" : 1,
-            "output" : "[build/default/_generated_51bc4e823928d00a.goc, build/default/_generated_51bc4e823928d00a.compcount_go, build/default/_generated_cf593a975d429df7.sprite]",
-            "name" : "GameObject",
+            "start" : 1013,
+            "duration" : 181,
+            "output" : "[build/default/example/level2/level2.collectionc, build/default/example/level2/level2.compcount_col, build/default/_generated_e63e40a7fb72e09a.go, build/default/_generated_bcea8b195e0c2e92.go]",
+            "name" : "Collection",
             "type" : "createTask",
             "children" : [ {
-              "start" : 73740,
-              "duration" : 0,
-              "output" : "[build/default/_generated_cf593a975d429df7.spritec]",
-              "name" : "SpriteDesc",
-              "type" : "createTask"
-            } ]
-          } ]
-        }, {
-          "start" : 73740,
-          "duration" : 8,
-          "output" : "[build/default/example/main.collectionc, build/default/example/main.compcount_col, build/default/_generated_c961660227485dbf.go, build/default/_generated_fd600d69ee7c0892.go, build/default/_generated_ebe2bf53fe6a2f64.go]",
-          "name" : "Collection",
-          "type" : "createTask",
-          "children" : [ {
-            "start" : 73742,
-            "duration" : 5,
-            "output" : "[build/default/_generated_c961660227485dbf.goc, build/default/_generated_c961660227485dbf.compcount_go, build/default/_generated_db6db5c98571cd69.sprite]",
-            "name" : "GameObject",
-            "type" : "createTask",
-            "children" : [ {
-              "start" : 73747,
-              "duration" : 0,
-              "output" : "[build/default/_generated_db6db5c98571cd69.spritec]",
-              "name" : "SpriteDesc",
-              "type" : "createTask"
-            } ]
-          }, {
-            "start" : 73747,
-            "duration" : 1,
-            "output" : "[build/default/_generated_fd600d69ee7c0892.goc, build/default/_generated_fd600d69ee7c0892.compcount_go, build/default/_generated_3a42bf7933a29913.collectionproxy]",
-            "name" : "GameObject",
-            "type" : "createTask",
-            "children" : [ {
-              "start" : 73748,
-              "duration" : 0,
-              "output" : "[build/default/_generated_3a42bf7933a29913.collectionproxyc]",
-              "name" : "CollectionProxy",
-              "type" : "createTask"
-            } ]
-          }, {
-            "start" : 73748,
-            "duration" : 0,
-            "output" : "[build/default/_generated_ebe2bf53fe6a2f64.goc, build/default/_generated_ebe2bf53fe6a2f64.compcount_go, build/default/_generated_30693b135a9a955a.collectionproxy]",
-            "name" : "GameObject",
-            "type" : "createTask",
-            "children" : [ {
-              "start" : 73748,
-              "duration" : 0,
-              "output" : "[build/default/_generated_30693b135a9a955a.collectionproxyc]",
-              "name" : "CollectionProxy",
-              "type" : "createTask"
-            } ]
-          } ]
-        }, {
-          "start" : 73748,
-          "duration" : 3,
-          "output" : "[build/default/example/level2/level2.collectionc, build/default/example/level2/level2.compcount_col, build/default/_generated_e63e40a7fb72e09a.go, build/default/_generated_bcea8b195e0c2e92.go]",
-          "name" : "Collection",
-          "type" : "createTask",
-          "children" : [ {
-            "start" : 73750,
-            "duration" : 1,
-            "output" : "[build/default/_generated_e63e40a7fb72e09a.goc, build/default/_generated_e63e40a7fb72e09a.compcount_go, build/default/_generated_ff38f7014ad4bc51.sprite]",
-            "name" : "GameObject",
-            "type" : "createTask",
-            "children" : [ {
-              "start" : 73750,
+              "start" : 1156,
+              "duration" : 37,
+              "output" : "[build/default/_generated_e63e40a7fb72e09a.goc, build/default/_generated_e63e40a7fb72e09a.compcount_go, build/default/_generated_ff38f7014ad4bc51.sprite]",
+              "name" : "GameObject",
+              "type" : "createTask",
+              "children" : [ {
+                "start" : 1168,
+                "duration" : 25,
+                "output" : "[build/default/_generated_ff38f7014ad4bc51.spritec]",
+                "name" : "SpriteDesc",
+                "type" : "createTask"
+              } ]
+            }, {
+              "start" : 1193,
               "duration" : 1,
-              "output" : "[build/default/_generated_ff38f7014ad4bc51.spritec]",
-              "name" : "SpriteDesc",
-              "type" : "createTask"
+              "output" : "[build/default/_generated_bcea8b195e0c2e92.goc, build/default/_generated_bcea8b195e0c2e92.compcount_go, build/default/_generated_58c35d6dc74906a3.sprite]",
+              "name" : "GameObject",
+              "type" : "createTask",
+              "children" : [ {
+                "start" : 1194,
+                "duration" : 0,
+                "output" : "[build/default/_generated_58c35d6dc74906a3.spritec]",
+                "name" : "SpriteDesc",
+                "type" : "createTask"
+              } ]
             } ]
           }, {
-            "start" : 73751,
-            "duration" : 0,
-            "output" : "[build/default/_generated_bcea8b195e0c2e92.goc, build/default/_generated_bcea8b195e0c2e92.compcount_go, build/default/_generated_58c35d6dc74906a3.sprite]",
-            "name" : "GameObject",
+            "start" : 1194,
+            "duration" : 39,
+            "output" : "[build/default/example/main.scriptc]",
+            "name" : "Script",
             "type" : "createTask",
             "children" : [ {
-              "start" : 73751,
+              "start" : 1194,
+              "duration" : 39,
+              "name" : "Parse"
+            } ]
+          }, {
+            "start" : 1233,
+            "duration" : 19,
+            "output" : "[build/default/example/assets/common.a.texturesetc, build/default/example/assets/common.texturec]",
+            "name" : "Atlas",
+            "type" : "createTask"
+          }, {
+            "start" : 1253,
+            "duration" : 0,
+            "output" : "[build/default/example/assets/level2.a.texturesetc, build/default/example/assets/level2.texturec]",
+            "name" : "Atlas",
+            "type" : "createTask"
+          }, {
+            "start" : 1253,
+            "duration" : 1,
+            "output" : "[build/default/example/assets/level1.a.texturesetc, build/default/example/assets/level1.texturec]",
+            "name" : "Atlas",
+            "type" : "createTask"
+          }, {
+            "start" : 1254,
+            "duration" : 13,
+            "output" : "[build/default/example/assets/common.fontc]",
+            "name" : "Font",
+            "type" : "createTask"
+          }, {
+            "start" : 1267,
+            "duration" : 18,
+            "output" : "[build/default/example/main.collectionc, build/default/example/main.compcount_col, build/default/_generated_fd600d69ee7c0892.go, build/default/_generated_ebe2bf53fe6a2f64.go, build/default/_generated_4ac9da56b3235f53.go]",
+            "name" : "Collection",
+            "type" : "createTask",
+            "children" : [ {
+              "start" : 1270,
+              "duration" : 1,
+              "output" : "[build/default/_generated_fd600d69ee7c0892.goc, build/default/_generated_fd600d69ee7c0892.compcount_go, build/default/_generated_3a42bf7933a29913.collectionproxy]",
+              "name" : "GameObject",
+              "type" : "createTask",
+              "children" : [ {
+                "start" : 1271,
+                "duration" : 0,
+                "output" : "[build/default/_generated_3a42bf7933a29913.collectionproxyc]",
+                "name" : "CollectionProxy",
+                "type" : "createTask"
+              } ]
+            }, {
+              "start" : 1271,
+              "duration" : 1,
+              "output" : "[build/default/_generated_ebe2bf53fe6a2f64.goc, build/default/_generated_ebe2bf53fe6a2f64.compcount_go, build/default/_generated_30693b135a9a955a.collectionproxy]",
+              "name" : "GameObject",
+              "type" : "createTask",
+              "children" : [ {
+                "start" : 1272,
+                "duration" : 0,
+                "output" : "[build/default/_generated_30693b135a9a955a.collectionproxyc]",
+                "name" : "CollectionProxy",
+                "type" : "createTask"
+              } ]
+            }, {
+              "start" : 1272,
+              "duration" : 13,
+              "output" : "[build/default/_generated_4ac9da56b3235f53.goc, build/default/_generated_4ac9da56b3235f53.compcount_go, build/default/_generated_350f8bc3bb48609f.label, build/default/_generated_db6db5c98571cd69.sprite]",
+              "name" : "GameObject",
+              "type" : "createTask",
+              "children" : [ {
+                "start" : 1285,
+                "duration" : 0,
+                "output" : "[build/default/_generated_350f8bc3bb48609f.labelc]",
+                "name" : "LabelDesc",
+                "type" : "createTask"
+              }, {
+                "start" : 1285,
+                "duration" : 0,
+                "output" : "[build/default/_generated_db6db5c98571cd69.spritec]",
+                "name" : "SpriteDesc",
+                "type" : "createTask"
+              } ]
+            } ]
+          }, {
+            "start" : 1285,
+            "duration" : 26,
+            "output" : "[build/default/example/level1/level1.collectionc, build/default/example/level1/level1.compcount_col, build/default/_generated_1ec5ab5b17babb70.go, build/default/_generated_d5edb65596286af5.go, build/default/_generated_51bc4e823928d00a.go]",
+            "name" : "Collection",
+            "type" : "createTask",
+            "children" : [ {
+              "start" : 1287,
+              "duration" : 23,
+              "output" : "[build/default/_generated_1ec5ab5b17babb70.goc, build/default/_generated_1ec5ab5b17babb70.compcount_go, build/default/_generated_97ed4eff53b009a6.label]",
+              "name" : "GameObject",
+              "type" : "createTask",
+              "children" : [ {
+                "start" : 1309,
+                "duration" : 1,
+                "output" : "[build/default/_generated_97ed4eff53b009a6.labelc]",
+                "name" : "LabelDesc",
+                "type" : "createTask"
+              } ]
+            }, {
+              "start" : 1310,
               "duration" : 0,
-              "output" : "[build/default/_generated_58c35d6dc74906a3.spritec]",
-              "name" : "SpriteDesc",
+              "output" : "[build/default/_generated_d5edb65596286af5.goc, build/default/_generated_d5edb65596286af5.compcount_go, build/default/_generated_e97e41572740bbd8.sprite]",
+              "name" : "GameObject",
+              "type" : "createTask",
+              "children" : [ {
+                "start" : 1310,
+                "duration" : 0,
+                "output" : "[build/default/_generated_e97e41572740bbd8.spritec]",
+                "name" : "SpriteDesc",
+                "type" : "createTask"
+              } ]
+            }, {
+              "start" : 1310,
+              "duration" : 1,
+              "output" : "[build/default/_generated_51bc4e823928d00a.goc, build/default/_generated_51bc4e823928d00a.compcount_go, build/default/_generated_cf593a975d429df7.sprite]",
+              "name" : "GameObject",
+              "type" : "createTask",
+              "children" : [ {
+                "start" : 1311,
+                "duration" : 0,
+                "output" : "[build/default/_generated_cf593a975d429df7.spritec]",
+                "name" : "SpriteDesc",
+                "type" : "createTask"
+              } ]
+            } ]
+          }, {
+            "start" : 1311,
+            "duration" : 18,
+            "output" : "[build/default/builtins/materials/model.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1329,
+            "duration" : 0,
+            "output" : "[build/default/builtins/fonts/system_font.fontc]",
+            "name" : "Font",
+            "type" : "createTask"
+          }, {
+            "start" : 1329,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/font-fnt.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1330,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/font-df-singlelayer.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1331,
+            "duration" : 2,
+            "output" : "[build/default/builtins/materials/model.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1333,
+            "duration" : 15,
+            "output" : "[build/default/builtins/materials/particlefx.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1348,
+            "duration" : 0,
+            "output" : "[build/default/builtins/assets/meshes/sphere.meshsetc, build/default/builtins/assets/meshes/sphere.skeletonc, build/default/builtins/assets/meshes/sphere_generated_0.animationsetc]",
+            "name" : "Meshset",
+            "type" : "createTask"
+          }, {
+            "start" : 1349,
+            "duration" : 0,
+            "output" : "[build/default/builtins/materials/sprite_paged_atlas.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1349,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/tile_map.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1350,
+            "duration" : 0,
+            "output" : "[build/default/builtins/assets/meshes/quad.meshsetc, build/default/builtins/assets/meshes/quad.skeletonc, build/default/builtins/assets/meshes/quad_generated_0.animationsetc]",
+            "name" : "Meshset",
+            "type" : "createTask"
+          }, {
+            "start" : 1350,
+            "duration" : 0,
+            "output" : "[build/default/builtins/input/all.input_bindingc]",
+            "name" : "InputBinding",
+            "type" : "createTask"
+          }, {
+            "start" : 1350,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/tile_map.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1351,
+            "duration" : 2,
+            "output" : "[build/default/builtins/fonts/font-df-ms.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1353,
+            "duration" : 0,
+            "output" : "[build/default/builtins/fonts/label.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1353,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/font-df.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1354,
+            "duration" : 42,
+            "output" : "[build/default/builtins/scripts/socket.luac]",
+            "name" : "Lua",
+            "type" : "createTask",
+            "children" : [ {
+              "start" : 1362,
+              "duration" : 28,
+              "name" : "Parse"
+            } ]
+          }, {
+            "start" : 1396,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/particlefx_paged_atlas.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1397,
+            "duration" : 0,
+            "output" : "[build/default/builtins/materials/sprite.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1397,
+            "duration" : 16,
+            "output" : "[build/default/builtins/graphics/particle_blob.t.texturesetc, build/default/builtins/graphics/builtins/graphics/__particle_blob_tilesource.texturec]",
+            "name" : "TileSet",
+            "type" : "createTask"
+          }, {
+            "start" : 1413,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/font-fnt.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1414,
+            "duration" : 8,
+            "output" : "[build/default/builtins/fonts/font-fnt.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1422,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/label-fnt.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1423,
+            "duration" : 247,
+            "output" : "[build/default/builtins/scripts/mobdebug.luac]",
+            "name" : "Lua",
+            "type" : "createTask",
+            "children" : [ {
+              "start" : 1423,
+              "duration" : 246,
+              "name" : "Parse"
+            } ]
+          }, {
+            "start" : 1670,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/system_font.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1671,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/font.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1672,
+            "duration" : 2,
+            "output" : "[build/default/builtins/materials/model.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1674,
+            "duration" : 9,
+            "output" : "[build/default/builtins/fonts/font-df-ms-singlelayer.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1683,
+            "duration" : 7,
+            "output" : "[build/default/builtins/materials/sprite_paged_atlas.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1690,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/particlefx.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1691,
+            "duration" : 0,
+            "output" : "[build/default/builtins/materials/sprite.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1691,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/font.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1692,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/font.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1693,
+            "duration" : 0,
+            "output" : "[build/default/builtins/assets/meshes/quad_2x2.meshsetc, build/default/builtins/assets/meshes/quad_2x2.skeletonc, build/default/builtins/assets/meshes/quad_2x2_generated_0.animationsetc]",
+            "name" : "Meshset",
+            "type" : "createTask"
+          }, {
+            "start" : 1693,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/font-df.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1694,
+            "duration" : 0,
+            "output" : "[build/default/builtins/materials/particlefx.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1694,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/sprite.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1695,
+            "duration" : 0,
+            "output" : "[build/default/builtins/assets/meshes/cube.meshsetc, build/default/builtins/assets/meshes/cube.skeletonc, build/default/builtins/assets/meshes/cube_generated_0.animationsetc]",
+            "name" : "Meshset",
+            "type" : "createTask"
+          }, {
+            "start" : 1695,
+            "duration" : 7,
+            "output" : "[build/default/builtins/materials/particlefx_paged_atlas.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1702,
+            "duration" : 14,
+            "output" : "[build/default/builtins/scripts/edn.luac]",
+            "name" : "Lua",
+            "type" : "createTask",
+            "children" : [ {
+              "start" : 1703,
+              "duration" : 13,
+              "name" : "Parse"
+            } ]
+          }, {
+            "start" : 1716,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/sprite_paged_atlas.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1717,
+            "duration" : 31,
+            "output" : "[build/default/builtins/render/default.render_scriptc]",
+            "name" : "RenderScript",
+            "type" : "createTask",
+            "children" : [ {
+              "start" : 1717,
+              "duration" : 31,
+              "name" : "Parse"
+            } ]
+          }, {
+            "start" : 1748,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/tile_map.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1749,
+            "duration" : 1,
+            "output" : "[build/default/builtins/fonts/font-df.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1750,
+            "duration" : 0,
+            "output" : "[build/default/builtins/fonts/label-df.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1750,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/gui.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1751,
+            "duration" : 0,
+            "output" : "[build/default/builtins/materials/particlefx_paged_atlas.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1751,
+            "duration" : 0,
+            "output" : "[build/default/builtins/render/default.display_profilesc]",
+            "name" : "DisplayProfiles",
+            "type" : "createTask"
+          }, {
+            "start" : 1751,
+            "duration" : 21,
+            "output" : "[build/default/builtins/scripts/debugger.luac]",
+            "name" : "Lua",
+            "type" : "createTask",
+            "children" : [ {
+              "start" : 1751,
+              "duration" : 21,
+              "name" : "Parse"
+            } ]
+          }, {
+            "start" : 1772,
+            "duration" : 1,
+            "output" : "[build/default/builtins/input/default.gamepadsc]",
+            "name" : "GamepadMaps",
+            "type" : "createTask"
+          }, {
+            "start" : 1773,
+            "duration" : 0,
+            "output" : "[build/default/builtins/render/default.renderc]",
+            "name" : "Render",
+            "type" : "createTask"
+          }, {
+            "start" : 1773,
+            "duration" : 0,
+            "output" : "[build/default/builtins/fonts/font-singlelayer.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1773,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/gui.materialc]",
+            "name" : "Material",
+            "type" : "createTask"
+          }, {
+            "start" : 1774,
+            "duration" : 0,
+            "output" : "[build/default/builtins/materials/gui.vpc]",
+            "name" : "VertexProgram",
+            "type" : "createTask"
+          }, {
+            "start" : 1774,
+            "duration" : 33,
+            "output" : "[build/default/game.projectc, build/default/game.arci, build/default/game.arcd, build/default/game.dmanifest, build/default/game.public.der]",
+            "name" : "GameProjectBuilder",
+            "type" : "createTask",
+            "children" : [ {
+              "start" : 1791,
+              "duration" : 0,
+              "output" : "[]",
+              "name" : "Copy Custom Resources",
               "type" : "createTask"
             } ]
           } ]
         }, {
-          "start" : 73751,
-          "duration" : 10,
-          "output" : "[build/default/liveupdate_reszip/reszip.luac]",
-          "name" : "Lua",
-          "type" : "createTask",
+          "start" : 1807,
+          "duration" : 655,
+          "name" : "Build tasks",
+          "TasksCount" : 81.0,
           "children" : [ {
-            "start" : 73751,
-            "duration" : 10,
-            "name" : "Parse"
-          } ]
-        }, {
-          "start" : 73761,
-          "duration" : 5,
-          "output" : "[build/default/builtins/materials/model.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 73766,
-          "duration" : 6,
-          "output" : "[build/default/builtins/fonts/system_font.fontc]",
-          "name" : "Font",
-          "type" : "createTask"
-        }, {
-          "start" : 73772,
-          "duration" : 1,
-          "output" : "[build/default/builtins/fonts/font-fnt.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 73773,
-          "duration" : 0,
-          "output" : "[build/default/builtins/fonts/font-df-singlelayer.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 73773,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/model.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 73774,
-          "duration" : 10,
-          "output" : "[build/default/builtins/materials/particlefx.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 73784,
-          "duration" : 0,
-          "output" : "[build/default/builtins/assets/meshes/sphere.meshsetc, build/default/builtins/assets/meshes/sphere.skeletonc, build/default/builtins/assets/meshes/sphere_generated_0.animationsetc]",
-          "name" : "Meshset",
-          "type" : "createTask"
-        }, {
-          "start" : 73784,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/sprite_paged_atlas.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 73785,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/tile_map.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 73786,
-          "duration" : 0,
-          "output" : "[build/default/builtins/assets/meshes/quad.meshsetc, build/default/builtins/assets/meshes/quad.skeletonc, build/default/builtins/assets/meshes/quad_generated_0.animationsetc]",
-          "name" : "Meshset",
-          "type" : "createTask"
-        }, {
-          "start" : 73786,
-          "duration" : 0,
-          "output" : "[build/default/builtins/input/all.input_bindingc]",
-          "name" : "InputBinding",
-          "type" : "createTask"
-        }, {
-          "start" : 73786,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/tile_map.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 73787,
-          "duration" : 1,
-          "output" : "[build/default/builtins/fonts/font-df-ms.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 73788,
-          "duration" : 1,
-          "output" : "[build/default/builtins/fonts/label.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 73789,
-          "duration" : 0,
-          "output" : "[build/default/builtins/fonts/font-df.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 73789,
-          "duration" : 24,
-          "output" : "[build/default/builtins/scripts/socket.luac]",
-          "name" : "Lua",
-          "type" : "createTask",
-          "children" : [ {
-            "start" : 73789,
-            "duration" : 24,
-            "name" : "Parse"
-          } ]
-        }, {
-          "start" : 73813,
-          "duration" : 2,
-          "output" : "[build/default/builtins/materials/particlefx_paged_atlas.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 73815,
-          "duration" : 2,
-          "output" : "[build/default/builtins/materials/sprite.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 73817,
-          "duration" : 11,
-          "output" : "[build/default/builtins/graphics/particle_blob.t.texturesetc, build/default/builtins/graphics/builtins/graphics/__particle_blob_tilesource.texturec]",
-          "name" : "TileSet",
-          "type" : "createTask"
-        }, {
-          "start" : 73828,
-          "duration" : 1,
-          "output" : "[build/default/builtins/fonts/font-fnt.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 73829,
-          "duration" : 3,
-          "output" : "[build/default/builtins/fonts/font-fnt.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 73832,
-          "duration" : 0,
-          "output" : "[build/default/builtins/fonts/label-fnt.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 73832,
-          "duration" : 242,
-          "output" : "[build/default/builtins/scripts/mobdebug.luac]",
-          "name" : "Lua",
-          "type" : "createTask",
-          "children" : [ {
-            "start" : 73833,
-            "duration" : 239,
-            "name" : "Parse"
-          } ]
-        }, {
-          "start" : 74074,
-          "duration" : 1,
-          "output" : "[build/default/builtins/fonts/system_font.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 74075,
-          "duration" : 1,
-          "output" : "[build/default/builtins/fonts/font.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74076,
-          "duration" : 2,
-          "output" : "[build/default/builtins/materials/model.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 74078,
-          "duration" : 1,
-          "output" : "[build/default/builtins/fonts/font-df-ms-singlelayer.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74079,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/sprite_paged_atlas.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 74080,
-          "duration" : 0,
-          "output" : "[build/default/builtins/materials/particlefx.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74080,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/sprite.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74081,
-          "duration" : 0,
-          "output" : "[build/default/builtins/fonts/font.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 74081,
-          "duration" : 1,
-          "output" : "[build/default/builtins/fonts/font.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74082,
-          "duration" : 0,
-          "output" : "[build/default/builtins/assets/meshes/quad_2x2.meshsetc, build/default/builtins/assets/meshes/quad_2x2.skeletonc, build/default/builtins/assets/meshes/quad_2x2_generated_0.animationsetc]",
-          "name" : "Meshset",
-          "type" : "createTask"
-        }, {
-          "start" : 74082,
-          "duration" : 1,
-          "output" : "[build/default/builtins/fonts/font-df.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74083,
-          "duration" : 0,
-          "output" : "[build/default/builtins/materials/particlefx.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74083,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/sprite.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74084,
-          "duration" : 0,
-          "output" : "[build/default/builtins/assets/meshes/cube.meshsetc, build/default/builtins/assets/meshes/cube.skeletonc, build/default/builtins/assets/meshes/cube_generated_0.animationsetc]",
-          "name" : "Meshset",
-          "type" : "createTask"
-        }, {
-          "start" : 74084,
-          "duration" : 0,
-          "output" : "[build/default/builtins/materials/particlefx_paged_atlas.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74084,
-          "duration" : 34,
-          "output" : "[build/default/builtins/scripts/edn.luac]",
-          "name" : "Lua",
-          "type" : "createTask",
-          "children" : [ {
-            "start" : 74085,
-            "duration" : 33,
-            "name" : "Parse"
-          } ]
-        }, {
-          "start" : 74119,
-          "duration" : 3,
-          "output" : "[build/default/builtins/materials/sprite_paged_atlas.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74122,
-          "duration" : 33,
-          "output" : "[build/default/builtins/render/default.render_scriptc]",
-          "name" : "RenderScript",
-          "type" : "createTask",
-          "children" : [ {
-            "start" : 74123,
-            "duration" : 32,
-            "name" : "Parse"
-          } ]
-        }, {
-          "start" : 74155,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/tile_map.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74156,
-          "duration" : 3,
-          "output" : "[build/default/builtins/fonts/font-df.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74159,
-          "duration" : 2,
-          "output" : "[build/default/builtins/fonts/label-df.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 74161,
-          "duration" : 0,
-          "output" : "[build/default/builtins/materials/gui.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74161,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/particlefx_paged_atlas.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74163,
-          "duration" : 0,
-          "output" : "[build/default/builtins/render/default.display_profilesc]",
-          "name" : "DisplayProfiles",
-          "type" : "createTask"
-        }, {
-          "start" : 74164,
-          "duration" : 5,
-          "output" : "[build/default/builtins/scripts/debugger.luac]",
-          "name" : "Lua",
-          "type" : "createTask",
-          "children" : [ {
-            "start" : 74164,
-            "duration" : 5,
-            "name" : "Parse"
-          } ]
-        }, {
-          "start" : 74169,
-          "duration" : 0,
-          "output" : "[build/default/builtins/input/default.gamepadsc]",
-          "name" : "GamepadMaps",
-          "type" : "createTask"
-        }, {
-          "start" : 74169,
-          "duration" : 0,
-          "output" : "[build/default/builtins/render/default.renderc]",
-          "name" : "Render",
-          "type" : "createTask"
-        }, {
-          "start" : 74169,
-          "duration" : 3,
-          "output" : "[build/default/builtins/fonts/font-singlelayer.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74172,
-          "duration" : 0,
-          "output" : "[build/default/builtins/materials/gui.materialc]",
-          "name" : "Material",
-          "type" : "createTask"
-        }, {
-          "start" : 74172,
-          "duration" : 1,
-          "output" : "[build/default/builtins/materials/gui.vpc]",
-          "name" : "VertexProgram",
-          "type" : "createTask"
-        }, {
-          "start" : 74173,
-          "duration" : 28,
-          "output" : "[build/default/game.projectc, build/default/game.arci, build/default/game.arcd, build/default/game.dmanifest, build/default/game.public.der]",
-          "name" : "GameProjectBuilder",
-          "type" : "createTask",
-          "children" : [ {
-            "start" : 74178,
+            "start" : 1808,
             "duration" : 0,
-            "output" : "[]",
-            "name" : "Copy Custom Resources",
-            "type" : "createTask"
-          } ]
-        } ]
-      }, {
-        "start" : 74201,
-        "duration" : 16574,
-        "name" : "Build tasks",
-        "TasksCount" : 78.0,
-        "children" : [ {
-          "start" : 74202,
-          "duration" : 0,
-          "main input" : "builtins/materials/sprite_paged_atlas.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 74202,
-          "duration" : 26,
-          "output" : "[build/default/builtins/materials/sprite_paged_atlas.vpc]",
-          "name" : "VertexProgram",
-          "type" : "buildTask"
-        }, {
-          "start" : 74228,
-          "duration" : 2,
-          "main input" : "builtins/assets/meshes/quad_2x2.dae",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 74230,
-          "duration" : 172,
-          "output" : "[build/default/builtins/assets/meshes/quad_2x2.meshsetc, build/default/builtins/assets/meshes/quad_2x2.skeletonc, build/default/builtins/assets/meshes/quad_2x2_generated_0.animationsetc]",
-          "name" : "Meshset",
-          "type" : "buildTask",
-          "children" : [ {
-            "start" : 74372,
+            "main input" : "builtins/materials/sprite_paged_atlas.vp",
+            "color" : "#FFC0CB",
+            "name" : "compare signatures"
+          }, {
+            "start" : 1808,
+            "duration" : 17,
+            "output" : "[build/default/builtins/materials/sprite_paged_atlas.vpc]",
+            "name" : "VertexProgram",
+            "type" : "buildTask"
+          }, {
+            "start" : 1825,
+            "duration" : 1,
+            "main input" : "builtins/assets/meshes/quad_2x2.dae",
+            "color" : "#FFC0CB",
+            "name" : "compare signatures"
+          }, {
+            "start" : 1826,
+            "duration" : 309,
+            "output" : "[build/default/builtins/assets/meshes/quad_2x2.meshsetc, build/default/builtins/assets/meshes/quad_2x2.skeletonc, build/default/builtins/assets/meshes/quad_2x2_generated_0.animationsetc]",
+            "name" : "Meshset",
+            "type" : "buildTask",
+            "children" : [ {
+              "start" : 2079,
+              "duration" : 1,
+              "optimizeVertices" : "Colladautil"
+            } ]
+          }, {
+            "start" : 2135,
             "duration" : 0,
-            "optimizeVertices" : "Colladautil"
+            "main input" : "builtins/materials/sprite.vp",
+            "color" : "#FFC0CB",
+            "name" : "compare signatures"
+          }, {
+            "start" : 2135,
+            "duration" : 3,
+            "output" : "[build/default/builtins/materials/sprite.vpc]",
+            "name" : "VertexProgram",
+            "type" : "buildTask"
+          }, {
+            "start" : 2138,
+            "duration" : 0,
+            "main input" : "builtins/materials/particlefx.fp",
+            "color" : "#FFC0CB",
+            "name" : "compare signatures"
+          }, {
+            "start" : 2138,
+            "duration" : 4,
+            "output" : "[build/default/builtins/materials/particlefx.fpc]",
+            "name" : "FragmentProgram",
+            "type" : "buildTask"
+          }, {
+            "start" : 2142,
+            "duration" : 0,
+            "main input" : "liveupdate_reszip/reszip.lua",
+            "color" : "#FFC0CB",
+            "name" : "compare signatures"
+          }, {
+            "start" : 2142,
+            "duration" : 8,
+            "output" : "[build/default/liveupdate_reszip/reszip.luac]",
+            "name" : "Lua",
+            "type" : "buildTask"
+          }, {
+            "start" : 2150,
+            "duration" : 1,
+            "main input" : "builtins/render/default.render_script",
+            "color" : "#FFC0CB",
+            "name" : "compare signatures"
+          }, {
+            "start" : 2151,
+            "duration" : 0,
+            "output" : "[build/default/builtins/render/default.render_scriptc]",
+            "name" : "RenderScript",
+            "type" : "buildTask"
+          }, {
+            "start" : 2151,
+            "duration" : 0,
+            "main input" : "builtins/fonts/font-fnt.vp",
+            "color" : "#FFC0CB",
+            "name" : "compare signatures"
+          }, {
+            "start" : 2151,
+            "duration" : 2,
+            "output" : "[build/default/builtins/fonts/font-fnt.vpc]",
+            "name" : "VertexProgram",
+            "type" : "buildTask"
+          }, {
+            "start" : 2153,
+            "duration" : 0,
+            "main input" : "builtins/materials/tile_map.vp",
+            "color" : "#FFC0CB",
+            "name" : "compare signatures"
+          }, {
+            "start" : 2153,
+            "duration" : 1,
+            "output" : "[build/default/builtins/materials/tile_map.vpc]",
+            "name" : "VertexProgram",
+            "type" : "buildTask"
+          }, {
+            "start" : 2154,
+            "duration" : 2,
+            "main input" : "example/assets/common.font",
+            "color" : "#FFC0CB",
+            "name" : "compare signatures"
+          }, {
+            "start" : 2156,
+            "duration" : 181,
+            "output" : "[build/default/example/assets/common.fontc]",
+            "name" : "Font",
+            "type" : "buildTask"
           } ]
         }, {
-          "start" : 74402,
-          "duration" : 1,
-          "main input" : "builtins/materials/sprite.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 74403,
-          "duration" : 10,
-          "output" : "[build/default/builtins/materials/sprite.vpc]",
-          "name" : "VertexProgram",
-          "type" : "buildTask"
-        }, {
-          "start" : 74413,
-          "duration" : 0,
-          "main input" : "input/game.input_binding",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 74413,
-          "duration" : 15,
-          "output" : "[build/default/input/game.input_bindingc]",
-          "name" : "InputBinding",
-          "type" : "buildTask"
-        }, {
-          "start" : 74428,
-          "duration" : 0,
-          "main input" : "builtins/materials/particlefx.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 74428,
-          "duration" : 10,
-          "output" : "[build/default/builtins/materials/particlefx.fpc]",
-          "name" : "FragmentProgram",
-          "type" : "buildTask"
-        }, {
-          "start" : 74438,
-          "duration" : 0,
-          "main input" : "liveupdate_reszip/reszip.lua",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 74438,
-          "duration" : 9,
-          "output" : "[build/default/liveupdate_reszip/reszip.luac]",
-          "name" : "Lua",
-          "type" : "buildTask"
-        }, {
-          "start" : 74447,
-          "duration" : 2,
-          "main input" : "builtins/render/default.render_script",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 74449,
-          "duration" : 0,
-          "output" : "[build/default/builtins/render/default.render_scriptc]",
-          "name" : "RenderScript",
-          "type" : "buildTask"
-        }, {
-          "start" : 74450,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-fnt.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 74450,
-          "duration" : 9,
-          "output" : "[build/default/builtins/fonts/font-fnt.vpc]",
-          "name" : "VertexProgram",
-          "type" : "buildTask"
-        }, {
-          "start" : 74459,
-          "duration" : 0,
-          "main input" : "builtins/materials/tile_map.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 74459,
-          "duration" : 5,
-          "output" : "[build/default/builtins/materials/tile_map.vpc]",
-          "name" : "VertexProgram",
-          "type" : "buildTask"
-        }, {
-          "start" : 74464,
+          "start" : 2462,
           "duration" : 1,
           "main input" : "builtins/fonts/font-df-ms-singlelayer.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74465,
-          "duration" : 22,
+          "start" : 2463,
+          "duration" : 9,
           "output" : "[build/default/builtins/fonts/font-df-ms-singlelayer.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74487,
+          "start" : 2472,
           "duration" : 0,
           "main input" : "builtins/fonts/font-fnt.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74487,
-          "duration" : 2,
+          "start" : 2472,
+          "duration" : 5,
           "output" : "[build/default/builtins/fonts/font-fnt.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74489,
+          "start" : 2477,
           "duration" : 1,
           "main input" : "builtins/assets/meshes/cube.dae",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74490,
-          "duration" : 19,
+          "start" : 2478,
+          "duration" : 17,
           "output" : "[build/default/builtins/assets/meshes/cube.meshsetc, build/default/builtins/assets/meshes/cube.skeletonc, build/default/builtins/assets/meshes/cube_generated_0.animationsetc]",
           "name" : "Meshset",
           "type" : "buildTask",
           "children" : [ {
-            "start" : 74492,
+            "start" : 2482,
             "duration" : 0,
             "optimizeVertices" : "Colladautil"
           } ]
         }, {
-          "start" : 74509,
+          "start" : 2495,
           "duration" : 0,
           "main input" : "builtins/scripts/socket.lua",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74509,
-          "duration" : 1,
+          "start" : 2495,
+          "duration" : 2,
           "output" : "[build/default/builtins/scripts/socket.luac]",
           "name" : "Lua",
           "type" : "buildTask"
         }, {
-          "start" : 74510,
+          "start" : 2497,
           "duration" : 0,
           "main input" : "builtins/materials/tile_map.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74510,
-          "duration" : 2,
+          "start" : 2497,
+          "duration" : 4,
           "output" : "[build/default/builtins/materials/tile_map.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74512,
+          "start" : 2501,
           "duration" : 0,
           "main input" : "builtins/materials/particlefx_paged_atlas.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74512,
-          "duration" : 7,
+          "start" : 2501,
+          "duration" : 4,
           "output" : "[build/default/builtins/materials/particlefx_paged_atlas.vpc]",
           "name" : "VertexProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74519,
+          "start" : 2505,
           "duration" : 0,
           "main input" : "builtins/materials/sprite_paged_atlas.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74519,
-          "duration" : 3,
+          "start" : 2505,
+          "duration" : 1,
           "output" : "[build/default/builtins/materials/sprite_paged_atlas.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74522,
+          "start" : 2506,
           "duration" : 0,
           "main input" : "builtins/materials/sprite.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74522,
-          "duration" : 3,
+          "start" : 2506,
+          "duration" : 2,
           "output" : "[build/default/builtins/materials/sprite.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74525,
-          "duration" : 0,
+          "start" : 2508,
+          "duration" : 2,
           "main input" : "builtins/render/default.render",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74525,
-          "duration" : 8,
+          "start" : 2510,
+          "duration" : 5,
           "output" : "[build/default/builtins/render/default.renderc]",
           "name" : "Render",
           "type" : "buildTask"
         }, {
-          "start" : 74533,
+          "start" : 2515,
           "duration" : 0,
           "main input" : "builtins/fonts/font-singlelayer.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74533,
-          "duration" : 4,
+          "start" : 2515,
+          "duration" : 1,
           "output" : "[build/default/builtins/fonts/font-singlelayer.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74537,
-          "duration" : 0,
+          "start" : 2516,
+          "duration" : 1,
           "main input" : "builtins/fonts/label-fnt.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74537,
+          "start" : 2517,
           "duration" : 10,
           "output" : "[build/default/builtins/fonts/label-fnt.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 74547,
+          "start" : 2527,
           "duration" : 0,
           "main input" : "null",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74547,
-          "duration" : 1,
+          "start" : 2527,
+          "duration" : 0,
           "main input" : "example/assets/common.atlas",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74548,
-          "duration" : 177,
+          "start" : 2527,
+          "duration" : 62,
           "output" : "[build/default/example/assets/common.a.texturesetc, build/default/example/assets/common.texturec]",
           "name" : "Atlas",
           "type" : "buildTask",
           "children" : [ {
-            "start" : 74548,
-            "duration" : 68,
+            "start" : 2527,
+            "duration" : 42,
             "name" : "generateTextureSet"
           }, {
-            "start" : 74617,
-            "duration" : 106,
+            "start" : 2569,
+            "duration" : 18,
             "name" : "generateTexture"
           } ]
         }, {
-          "start" : 74725,
-          "duration" : 1,
+          "start" : 2589,
+          "duration" : 0,
           "main input" : "example/main.script",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74726,
-          "duration" : 0,
+          "start" : 2589,
+          "duration" : 1,
           "output" : "[build/default/example/main.scriptc]",
           "name" : "Script",
           "type" : "buildTask"
         }, {
-          "start" : 74726,
-          "duration" : 1,
+          "start" : 2590,
+          "duration" : 0,
           "main input" : "builtins/fonts/font-df.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74727,
-          "duration" : 7,
+          "start" : 2590,
+          "duration" : 5,
           "output" : "[build/default/builtins/fonts/font-df.vpc]",
           "name" : "VertexProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74734,
+          "start" : 2595,
           "duration" : 0,
           "main input" : "builtins/materials/gui.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74734,
+          "start" : 2595,
           "duration" : 2,
           "output" : "[build/default/builtins/materials/gui.vpc]",
           "name" : "VertexProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74736,
-          "duration" : 1,
+          "start" : 2597,
+          "duration" : 2,
           "main input" : "builtins/assets/meshes/sphere.dae",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74737,
-          "duration" : 31,
+          "start" : 2599,
+          "duration" : 76,
           "output" : "[build/default/builtins/assets/meshes/sphere.meshsetc, build/default/builtins/assets/meshes/sphere.skeletonc, build/default/builtins/assets/meshes/sphere_generated_0.animationsetc]",
           "name" : "Meshset",
           "type" : "buildTask",
           "children" : [ {
-            "start" : 74745,
-            "duration" : 2,
+            "start" : 2626,
+            "duration" : 1,
             "optimizeVertices" : "Colladautil"
           } ]
         }, {
-          "start" : 74768,
+          "start" : 2675,
           "duration" : 0,
           "main input" : "builtins/fonts/font-df-ms.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74768,
-          "duration" : 22,
+          "start" : 2675,
+          "duration" : 5,
           "output" : "[build/default/builtins/fonts/font-df-ms.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74790,
+          "start" : 2680,
           "duration" : 0,
           "main input" : "builtins/fonts/font-df.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74790,
-          "duration" : 14,
+          "start" : 2680,
+          "duration" : 3,
           "output" : "[build/default/builtins/fonts/font-df.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 74804,
+          "start" : 2683,
           "duration" : 1,
           "main input" : "builtins/materials/sprite.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74805,
-          "duration" : 5,
+          "start" : 2684,
+          "duration" : 8,
           "output" : "[build/default/builtins/materials/sprite.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 74810,
+          "start" : 2692,
           "duration" : 0,
           "main input" : "builtins/materials/tile_map.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74810,
-          "duration" : 4,
+          "start" : 2692,
+          "duration" : 7,
           "output" : "[build/default/builtins/materials/tile_map.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 74814,
+          "start" : 2699,
           "duration" : 0,
           "main input" : "builtins/scripts/debugger.lua",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74814,
+          "start" : 2699,
           "duration" : 1,
           "output" : "[build/default/builtins/scripts/debugger.luac]",
           "name" : "Lua",
           "type" : "buildTask"
         }, {
-          "start" : 74815,
-          "duration" : 1,
+          "start" : 2700,
+          "duration" : 3,
           "main input" : "builtins/scripts/mobdebug.lua",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74816,
-          "duration" : 1,
+          "start" : 2703,
+          "duration" : 0,
           "output" : "[build/default/builtins/scripts/mobdebug.luac]",
           "name" : "Lua",
           "type" : "buildTask"
         }, {
-          "start" : 74817,
-          "duration" : 3,
+          "start" : 2704,
+          "duration" : 5,
           "main input" : "example/assets/level1.atlas",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 74820,
-          "duration" : 5066,
+          "start" : 2709,
+          "duration" : 4622,
           "output" : "[build/default/example/assets/level1.a.texturesetc, build/default/example/assets/level1.texturec]",
           "name" : "Atlas",
           "type" : "buildTask",
           "children" : [ {
-            "start" : 74820,
-            "duration" : 749,
+            "start" : 2709,
+            "duration" : 707,
             "name" : "generateTextureSet"
           }, {
-            "start" : 75569,
-            "duration" : 3969,
+            "start" : 3416,
+            "duration" : 3661,
             "name" : "generateTexture"
           } ]
         }, {
-          "start" : 79886,
-          "duration" : 6,
+          "start" : 7331,
+          "duration" : 0,
           "main input" : "builtins/input/all.input_binding",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 79892,
-          "duration" : 22,
+          "start" : 7331,
+          "duration" : 37,
           "output" : "[build/default/builtins/input/all.input_bindingc]",
           "name" : "InputBinding",
           "type" : "buildTask"
         }, {
-          "start" : 79914,
+          "start" : 7368,
           "duration" : 0,
           "main input" : "example/level1/level1.collection",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 79914,
+          "start" : 7368,
           "duration" : 14,
-          "output" : "[build/default/example/level1/level1.collectionc, build/default/example/level1/level1.compcount_col, build/default/_generated_d5edb65596286af5.go, build/default/_generated_51bc4e823928d00a.go]",
+          "output" : "[build/default/example/level1/level1.collectionc, build/default/example/level1/level1.compcount_col, build/default/_generated_1ec5ab5b17babb70.go, build/default/_generated_d5edb65596286af5.go, build/default/_generated_51bc4e823928d00a.go]",
           "name" : "Collection",
           "type" : "buildTask"
         }, {
-          "start" : 79928,
+          "start" : 7382,
           "duration" : 0,
           "main input" : "builtins/assets/meshes/quad.dae",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 79928,
-          "duration" : 13,
+          "start" : 7382,
+          "duration" : 10,
           "output" : "[build/default/builtins/assets/meshes/quad.meshsetc, build/default/builtins/assets/meshes/quad.skeletonc, build/default/builtins/assets/meshes/quad_generated_0.animationsetc]",
           "name" : "Meshset",
           "type" : "buildTask",
           "children" : [ {
-            "start" : 79935,
+            "start" : 7388,
             "duration" : 0,
             "optimizeVertices" : "Colladautil"
           } ]
         }, {
-          "start" : 79941,
-          "duration" : 61,
+          "start" : 7392,
+          "duration" : 29,
           "main input" : "example/assets/level2.atlas",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 80002,
-          "duration" : 4879,
+          "start" : 7421,
+          "duration" : 4352,
           "output" : "[build/default/example/assets/level2.a.texturesetc, build/default/example/assets/level2.texturec]",
           "name" : "Atlas",
           "type" : "buildTask",
           "children" : [ {
-            "start" : 80002,
-            "duration" : 602,
+            "start" : 7421,
+            "duration" : 504,
             "name" : "generateTextureSet"
           }, {
-            "start" : 80604,
-            "duration" : 3940,
+            "start" : 7925,
+            "duration" : 3647,
             "name" : "generateTexture"
           } ]
         }, {
-          "start" : 84881,
-          "duration" : 0,
+          "start" : 11773,
+          "duration" : 1,
           "main input" : "builtins/materials/particlefx.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 84881,
-          "duration" : 2,
+          "start" : 11774,
+          "duration" : 1,
           "output" : "[build/default/builtins/materials/particlefx.vpc]",
           "name" : "VertexProgram",
           "type" : "buildTask"
         }, {
-          "start" : 84883,
-          "duration" : 1,
+          "start" : 11775,
+          "duration" : 0,
           "main input" : "builtins/fonts/font.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 84884,
-          "duration" : 5,
+          "start" : 11775,
+          "duration" : 1,
           "output" : "[build/default/builtins/fonts/font.vpc]",
           "name" : "VertexProgram",
           "type" : "buildTask"
         }, {
-          "start" : 84889,
+          "start" : 11776,
           "duration" : 0,
           "main input" : "example/level2/level2.collection",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 84889,
-          "duration" : 1,
+          "start" : 11776,
+          "duration" : 2,
           "output" : "[build/default/example/level2/level2.collectionc, build/default/example/level2/level2.compcount_col, build/default/_generated_e63e40a7fb72e09a.go, build/default/_generated_bcea8b195e0c2e92.go]",
           "name" : "Collection",
           "type" : "buildTask"
         }, {
-          "start" : 84890,
-          "duration" : 1,
+          "start" : 11778,
+          "duration" : 0,
           "main input" : "builtins/materials/model.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 84891,
-          "duration" : 8,
+          "start" : 11778,
+          "duration" : 1,
           "output" : "[build/default/builtins/materials/model.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 84899,
+          "start" : 11779,
           "duration" : 0,
           "main input" : "builtins/fonts/font-fnt.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 84899,
-          "duration" : 10,
+          "start" : 11779,
+          "duration" : 3,
           "output" : "[build/default/builtins/fonts/font-fnt.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 84909,
-          "duration" : 1,
+          "start" : 11782,
+          "duration" : 0,
           "main input" : "build/default/_generated_51bc4e823928d00a.go",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 84910,
-          "duration" : 6,
+          "start" : 11782,
+          "duration" : 2,
           "output" : "[build/default/_generated_51bc4e823928d00a.goc, build/default/_generated_51bc4e823928d00a.compcount_go, build/default/_generated_cf593a975d429df7.sprite]",
           "name" : "GameObject",
           "type" : "buildTask"
         }, {
-          "start" : 84916,
+          "start" : 11784,
           "duration" : 0,
           "main input" : "builtins/fonts/font-df-singlelayer.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 84916,
-          "duration" : 5,
+          "start" : 11784,
+          "duration" : 1,
           "output" : "[build/default/builtins/fonts/font-df-singlelayer.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 84921,
+          "start" : 11785,
           "duration" : 0,
           "main input" : "builtins/scripts/edn.lua",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 84921,
-          "duration" : 1,
+          "start" : 11785,
+          "duration" : 0,
           "output" : "[build/default/builtins/scripts/edn.luac]",
           "name" : "Lua",
           "type" : "buildTask"
         }, {
-          "start" : 84922,
-          "duration" : 15,
+          "start" : 11785,
+          "duration" : 3,
           "main input" : "builtins/input/default.gamepads",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 84937,
-          "duration" : 156,
+          "start" : 11788,
+          "duration" : 216,
           "output" : "[build/default/builtins/input/default.gamepadsc]",
           "name" : "GamepadMaps",
           "type" : "buildTask"
         }, {
-          "start" : 85093,
+          "start" : 12004,
           "duration" : 1,
           "main input" : "builtins/materials/particlefx_paged_atlas.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85094,
-          "duration" : 2,
+          "start" : 12005,
+          "duration" : 1,
           "output" : "[build/default/builtins/materials/particlefx_paged_atlas.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 85096,
+          "start" : 12006,
           "duration" : 0,
+          "main input" : "build/default/_generated_1ec5ab5b17babb70.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12006,
+          "duration" : 10,
+          "output" : "[build/default/_generated_1ec5ab5b17babb70.goc, build/default/_generated_1ec5ab5b17babb70.compcount_go, build/default/_generated_97ed4eff53b009a6.label]",
+          "name" : "GameObject",
+          "type" : "buildTask"
+        }, {
+          "start" : 12016,
+          "duration" : 1,
           "main input" : "builtins/fonts/font.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85096,
-          "duration" : 10,
+          "start" : 12017,
+          "duration" : 2,
           "output" : "[build/default/builtins/fonts/font.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 85107,
+          "start" : 12019,
           "duration" : 0,
           "main input" : "builtins/materials/sprite_paged_atlas.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85107,
-          "duration" : 6,
+          "start" : 12019,
+          "duration" : 12,
           "output" : "[build/default/builtins/materials/sprite_paged_atlas.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 85113,
-          "duration" : 1,
+          "start" : 12031,
+          "duration" : 2,
           "main input" : "builtins/fonts/system_font.font",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85114,
-          "duration" : 138,
+          "start" : 12033,
+          "duration" : 81,
           "output" : "[build/default/builtins/fonts/system_font.fontc]",
           "name" : "Font",
           "type" : "buildTask"
         }, {
-          "start" : 85252,
+          "start" : 12114,
           "duration" : 0,
           "main input" : "builtins/materials/model.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85252,
-          "duration" : 5,
+          "start" : 12114,
+          "duration" : 1,
           "output" : "[build/default/builtins/materials/model.vpc]",
           "name" : "VertexProgram",
           "type" : "buildTask"
         }, {
-          "start" : 85257,
-          "duration" : 0,
+          "start" : 12115,
+          "duration" : 1,
           "main input" : "builtins/fonts/system_font.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85257,
-          "duration" : 17,
+          "start" : 12116,
+          "duration" : 4,
           "output" : "[build/default/builtins/fonts/system_font.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 85274,
-          "duration" : 1,
+          "start" : 12120,
+          "duration" : 0,
           "main input" : "builtins/graphics/particle_blob.tilesource",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85275,
+          "start" : 12120,
           "duration" : 4,
           "output" : "[build/default/builtins/graphics/particle_blob.t.texturesetc, build/default/builtins/graphics/builtins/graphics/__particle_blob_tilesource.texturec]",
           "name" : "TileSet",
           "type" : "buildTask",
           "children" : [ {
-            "start" : 85277,
-            "duration" : 2,
+            "start" : 12122,
+            "duration" : 1,
             "name" : "generateTexture"
           } ]
         }, {
-          "start" : 85279,
+          "start" : 12124,
           "duration" : 0,
           "main input" : "builtins/materials/gui.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85279,
-          "duration" : 2,
+          "start" : 12124,
+          "duration" : 1,
           "output" : "[build/default/builtins/materials/gui.fpc]",
           "name" : "FragmentProgram",
           "type" : "buildTask"
         }, {
-          "start" : 85281,
+          "start" : 12125,
           "duration" : 0,
           "main input" : "builtins/fonts/label-df.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85281,
-          "duration" : 21,
+          "start" : 12125,
+          "duration" : 4,
           "output" : "[build/default/builtins/fonts/label-df.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 85302,
+          "start" : 12129,
           "duration" : 1,
           "main input" : "example/main.collection",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85303,
-          "duration" : 2,
-          "output" : "[build/default/example/main.collectionc, build/default/example/main.compcount_col, build/default/_generated_c961660227485dbf.go, build/default/_generated_fd600d69ee7c0892.go, build/default/_generated_ebe2bf53fe6a2f64.go]",
+          "start" : 12130,
+          "duration" : 4,
+          "output" : "[build/default/example/main.collectionc, build/default/example/main.compcount_col, build/default/_generated_fd600d69ee7c0892.go, build/default/_generated_ebe2bf53fe6a2f64.go, build/default/_generated_4ac9da56b3235f53.go]",
           "name" : "Collection",
           "type" : "buildTask"
         }, {
-          "start" : 85305,
+          "start" : 12134,
           "duration" : 0,
           "main input" : "builtins/render/default.display_profiles",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85305,
-          "duration" : 6,
+          "start" : 12134,
+          "duration" : 5,
           "output" : "[build/default/builtins/render/default.display_profilesc]",
           "name" : "DisplayProfiles",
           "type" : "buildTask"
         }, {
-          "start" : 85311,
+          "start" : 12139,
           "duration" : 0,
           "main input" : "builtins/materials/sprite_paged_atlas.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85311,
-          "duration" : 0,
+          "start" : 12139,
+          "duration" : 1,
           "main input" : "builtins/assets/meshes/quad_2x2.dae",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85311,
+          "start" : 12140,
           "duration" : 0,
           "main input" : "builtins/materials/sprite.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85312,
-          "duration" : 0,
-          "main input" : "input/game.input_binding",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85312,
+          "start" : 12140,
           "duration" : 0,
           "main input" : "builtins/materials/particlefx.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85312,
+          "start" : 12140,
           "duration" : 0,
           "main input" : "liveupdate_reszip/reszip.lua",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85312,
+          "start" : 12140,
           "duration" : 0,
           "main input" : "builtins/render/default.render_script",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85312,
+          "start" : 12140,
           "duration" : 0,
           "main input" : "builtins/materials/gui.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85312,
-          "duration" : 4,
+          "start" : 12140,
+          "duration" : 3,
           "output" : "[build/default/builtins/materials/gui.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 85316,
+          "start" : 12143,
+          "duration" : 0,
+          "main input" : "build/default/_generated_4ac9da56b3235f53.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12143,
+          "duration" : 3,
+          "output" : "[build/default/_generated_4ac9da56b3235f53.goc, build/default/_generated_4ac9da56b3235f53.compcount_go, build/default/_generated_350f8bc3bb48609f.label, build/default/_generated_db6db5c98571cd69.sprite]",
+          "name" : "GameObject",
+          "type" : "buildTask"
+        }, {
+          "start" : 12146,
           "duration" : 0,
           "main input" : "builtins/fonts/font-fnt.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85316,
+          "start" : 12146,
           "duration" : 0,
           "main input" : "build/default/_generated_fd600d69ee7c0892.go",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85316,
-          "duration" : 2,
+          "start" : 12146,
+          "duration" : 1,
           "output" : "[build/default/_generated_fd600d69ee7c0892.goc, build/default/_generated_fd600d69ee7c0892.compcount_go, build/default/_generated_3a42bf7933a29913.collectionproxy]",
           "name" : "GameObject",
           "type" : "buildTask"
         }, {
-          "start" : 85318,
+          "start" : 12147,
           "duration" : 0,
+          "main input" : "build/default/_generated_350f8bc3bb48609f.label",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12147,
+          "duration" : 0,
+          "output" : "[build/default/_generated_350f8bc3bb48609f.labelc]",
+          "name" : "LabelDesc",
+          "type" : "buildTask"
+        }, {
+          "start" : 12147,
+          "duration" : 1,
           "main input" : "builtins/materials/particlefx.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85318,
-          "duration" : 4,
+          "start" : 12148,
+          "duration" : 2,
           "output" : "[build/default/builtins/materials/particlefx.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 85322,
+          "start" : 12150,
           "duration" : 0,
           "main input" : "builtins/materials/tile_map.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85322,
+          "start" : 12150,
           "duration" : 0,
           "main input" : "build/default/_generated_bcea8b195e0c2e92.go",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85322,
+          "start" : 12150,
           "duration" : 1,
           "output" : "[build/default/_generated_bcea8b195e0c2e92.goc, build/default/_generated_bcea8b195e0c2e92.compcount_go, build/default/_generated_58c35d6dc74906a3.sprite]",
           "name" : "GameObject",
           "type" : "buildTask"
         }, {
-          "start" : 85323,
+          "start" : 12151,
+          "duration" : 1,
+          "main input" : "example/assets/common.font",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12152,
           "duration" : 0,
           "main input" : "builtins/fonts/font-df-ms-singlelayer.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85324,
+          "start" : 12152,
           "duration" : 0,
           "main input" : "builtins/fonts/font-fnt.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85324,
+          "start" : 12152,
           "duration" : 0,
           "main input" : "builtins/assets/meshes/cube.dae",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85324,
+          "start" : 12152,
           "duration" : 0,
           "main input" : "builtins/scripts/socket.lua",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85324,
-          "duration" : 0,
+          "start" : 12152,
+          "duration" : 1,
           "main input" : "builtins/materials/tile_map.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85324,
+          "start" : 12153,
           "duration" : 0,
           "main input" : "builtins/materials/particlefx_paged_atlas.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85324,
-          "duration" : 1,
+          "start" : 12153,
+          "duration" : 0,
           "main input" : "builtins/materials/sprite_paged_atlas.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85325,
+          "start" : 12153,
           "duration" : 0,
           "main input" : "builtins/materials/sprite.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85325,
+          "start" : 12153,
           "duration" : 0,
           "main input" : "builtins/render/default.render",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85325,
+          "start" : 12153,
           "duration" : 0,
           "main input" : "builtins/fonts/font-df.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85325,
-          "duration" : 21,
+          "start" : 12153,
+          "duration" : 4,
           "output" : "[build/default/builtins/fonts/font-df.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 85346,
+          "start" : 12157,
           "duration" : 0,
           "main input" : "builtins/fonts/font-singlelayer.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85346,
-          "duration" : 1,
+          "start" : 12157,
+          "duration" : 0,
           "main input" : "builtins/fonts/label-fnt.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85347,
+          "start" : 12157,
           "duration" : 0,
           "main input" : "null",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85347,
+          "start" : 12157,
           "duration" : 0,
           "main input" : "example/assets/common.atlas",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85347,
+          "start" : 12157,
           "duration" : 0,
           "main input" : "example/main.script",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85347,
+          "start" : 12157,
           "duration" : 0,
           "main input" : "build/default/_generated_58c35d6dc74906a3.sprite",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85347,
+          "start" : 12157,
           "duration" : 1,
           "output" : "[build/default/_generated_58c35d6dc74906a3.spritec]",
           "name" : "SpriteDesc",
           "type" : "buildTask"
         }, {
-          "start" : 85348,
-          "duration" : 0,
+          "start" : 12158,
+          "duration" : 1,
           "main input" : "builtins/fonts/font-df.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85348,
+          "start" : 12159,
           "duration" : 0,
           "main input" : "builtins/materials/gui.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85348,
+          "start" : 12159,
           "duration" : 0,
           "main input" : "build/default/_generated_d5edb65596286af5.go",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85348,
-          "duration" : 1,
+          "start" : 12159,
+          "duration" : 0,
           "output" : "[build/default/_generated_d5edb65596286af5.goc, build/default/_generated_d5edb65596286af5.compcount_go, build/default/_generated_e97e41572740bbd8.sprite]",
           "name" : "GameObject",
           "type" : "buildTask"
         }, {
-          "start" : 85349,
+          "start" : 12159,
           "duration" : 1,
           "main input" : "builtins/assets/meshes/sphere.dae",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85350,
+          "start" : 12160,
           "duration" : 0,
           "main input" : "builtins/fonts/font-df-ms.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85350,
+          "start" : 12160,
           "duration" : 0,
           "main input" : "builtins/fonts/font-df.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85350,
+          "start" : 12160,
           "duration" : 0,
           "main input" : "builtins/materials/sprite.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85350,
+          "start" : 12160,
           "duration" : 0,
           "main input" : "builtins/materials/tile_map.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85350,
+          "start" : 12160,
           "duration" : 0,
           "main input" : "builtins/scripts/debugger.lua",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85350,
+          "start" : 12160,
           "duration" : 1,
           "main input" : "builtins/scripts/mobdebug.lua",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85351,
+          "start" : 12161,
           "duration" : 0,
           "main input" : "builtins/fonts/label.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85351,
-          "duration" : 19,
+          "start" : 12161,
+          "duration" : 4,
           "output" : "[build/default/builtins/fonts/label.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 85370,
+          "start" : 12165,
+          "duration" : 0,
+          "main input" : "build/default/_generated_97ed4eff53b009a6.label",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12165,
+          "duration" : 0,
+          "output" : "[build/default/_generated_97ed4eff53b009a6.labelc]",
+          "name" : "LabelDesc",
+          "type" : "buildTask"
+        }, {
+          "start" : 12165,
           "duration" : 0,
           "main input" : "build/default/_generated_3a42bf7933a29913.collectionproxy",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85370,
-          "duration" : 4,
+          "start" : 12165,
+          "duration" : 3,
           "output" : "[build/default/_generated_3a42bf7933a29913.collectionproxyc]",
           "name" : "CollectionProxy",
           "type" : "buildTask"
         }, {
-          "start" : 85374,
+          "start" : 12168,
           "duration" : 0,
           "main input" : "example/assets/level1.atlas",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85374,
+          "start" : 12168,
           "duration" : 0,
           "main input" : "builtins/input/all.input_binding",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85374,
-          "duration" : 0,
+          "start" : 12168,
+          "duration" : 1,
           "main input" : "builtins/materials/particlefx_paged_atlas.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85374,
-          "duration" : 5,
+          "start" : 12169,
+          "duration" : 3,
           "output" : "[build/default/builtins/materials/particlefx_paged_atlas.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 85380,
+          "start" : 12172,
           "duration" : 0,
           "main input" : "example/level1/level1.collection",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85380,
+          "start" : 12172,
           "duration" : 0,
           "main input" : "builtins/assets/meshes/quad.dae",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85380,
+          "start" : 12172,
           "duration" : 0,
           "main input" : "build/default/_generated_ebe2bf53fe6a2f64.go",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85380,
-          "duration" : 1,
+          "start" : 12172,
+          "duration" : 0,
           "output" : "[build/default/_generated_ebe2bf53fe6a2f64.goc, build/default/_generated_ebe2bf53fe6a2f64.compcount_go, build/default/_generated_30693b135a9a955a.collectionproxy]",
           "name" : "GameObject",
           "type" : "buildTask"
         }, {
-          "start" : 85381,
-          "duration" : 0,
+          "start" : 12172,
+          "duration" : 1,
           "main input" : "example/assets/level2.atlas",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85381,
+          "start" : 12173,
           "duration" : 0,
           "main input" : "build/default/_generated_e63e40a7fb72e09a.go",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85381,
+          "start" : 12173,
           "duration" : 0,
           "output" : "[build/default/_generated_e63e40a7fb72e09a.goc, build/default/_generated_e63e40a7fb72e09a.compcount_go, build/default/_generated_ff38f7014ad4bc51.sprite]",
           "name" : "GameObject",
           "type" : "buildTask"
         }, {
-          "start" : 85381,
-          "duration" : 1,
+          "start" : 12173,
+          "duration" : 0,
           "main input" : "builtins/materials/model.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85382,
-          "duration" : 8,
+          "start" : 12173,
+          "duration" : 4,
           "output" : "[build/default/builtins/materials/model.materialc]",
           "name" : "Material",
           "type" : "buildTask"
         }, {
-          "start" : 85390,
+          "start" : 12177,
           "duration" : 0,
           "main input" : "builtins/materials/particlefx.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85390,
-          "duration" : 0,
-          "main input" : "build/default/_generated_c961660227485dbf.go",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85390,
-          "duration" : 1,
-          "output" : "[build/default/_generated_c961660227485dbf.goc, build/default/_generated_c961660227485dbf.compcount_go, build/default/_generated_db6db5c98571cd69.sprite]",
-          "name" : "GameObject",
-          "type" : "buildTask"
-        }, {
-          "start" : 85391,
+          "start" : 12177,
           "duration" : 0,
           "main input" : "builtins/fonts/font.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85391,
-          "duration" : 0,
-          "main input" : "build/default/_generated_cf593a975d429df7.sprite",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85391,
-          "duration" : 1,
-          "output" : "[build/default/_generated_cf593a975d429df7.spritec]",
-          "name" : "SpriteDesc",
-          "type" : "buildTask"
-        }, {
-          "start" : 85392,
+          "start" : 12177,
           "duration" : 0,
           "main input" : "build/default/_generated_ff38f7014ad4bc51.sprite",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85392,
+          "start" : 12177,
           "duration" : 0,
           "output" : "[build/default/_generated_ff38f7014ad4bc51.spritec]",
           "name" : "SpriteDesc",
           "type" : "buildTask"
         }, {
-          "start" : 85392,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85392,
-          "duration" : 17,
-          "output" : "[build/default/builtins/fonts/font.materialc]",
-          "name" : "Material",
-          "type" : "buildTask"
-        }, {
-          "start" : 85409,
-          "duration" : 0,
-          "main input" : "example/level2/level2.collection",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85409,
-          "duration" : 0,
-          "main input" : "builtins/materials/model.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85409,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-fnt.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85409,
-          "duration" : 0,
-          "main input" : "build/default/_generated_51bc4e823928d00a.go",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85409,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-df-singlelayer.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85409,
-          "duration" : 0,
-          "main input" : "builtins/scripts/edn.lua",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85409,
-          "duration" : 3,
-          "main input" : "builtins/input/default.gamepads",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85412,
-          "duration" : 0,
-          "main input" : "builtins/materials/particlefx_paged_atlas.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85412,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85412,
-          "duration" : 1,
-          "main input" : "builtins/materials/sprite_paged_atlas.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85413,
-          "duration" : 0,
-          "main input" : "build/default/_generated_db6db5c98571cd69.sprite",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85413,
-          "duration" : 0,
-          "output" : "[build/default/_generated_db6db5c98571cd69.spritec]",
-          "name" : "SpriteDesc",
-          "type" : "buildTask"
-        }, {
-          "start" : 85413,
-          "duration" : 1,
-          "main input" : "builtins/fonts/system_font.font",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85414,
-          "duration" : 0,
-          "main input" : "builtins/materials/model.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85414,
-          "duration" : 0,
-          "main input" : "builtins/fonts/system_font.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85414,
-          "duration" : 0,
-          "main input" : "builtins/graphics/particle_blob.tilesource",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85414,
-          "duration" : 0,
-          "main input" : "builtins/materials/gui.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85414,
-          "duration" : 1,
-          "main input" : "builtins/fonts/label-df.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "example/main.collection",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "builtins/render/default.display_profiles",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "builtins/materials/sprite_paged_atlas.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "builtins/assets/meshes/quad_2x2.dae",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "builtins/materials/sprite.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "input/game.input_binding",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "builtins/materials/particlefx.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "liveupdate_reszip/reszip.lua",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "builtins/render/default.render_script",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 0,
-          "main input" : "builtins/materials/gui.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85415,
-          "duration" : 1,
-          "main input" : "build/default/_generated_30693b135a9a955a.collectionproxy",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85416,
-          "duration" : 0,
-          "output" : "[build/default/_generated_30693b135a9a955a.collectionproxyc]",
-          "name" : "CollectionProxy",
-          "type" : "buildTask"
-        }, {
-          "start" : 85416,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-fnt.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85416,
-          "duration" : 0,
-          "main input" : "build/default/_generated_fd600d69ee7c0892.go",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85416,
-          "duration" : 0,
-          "main input" : "builtins/materials/particlefx.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85416,
-          "duration" : 0,
-          "main input" : "builtins/materials/tile_map.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85416,
-          "duration" : 0,
-          "main input" : "build/default/_generated_bcea8b195e0c2e92.go",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85416,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-df-ms-singlelayer.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85416,
-          "duration" : 0,
-          "main input" : "build/default/_generated_e97e41572740bbd8.sprite",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85416,
-          "duration" : 1,
-          "output" : "[build/default/_generated_e97e41572740bbd8.spritec]",
-          "name" : "SpriteDesc",
-          "type" : "buildTask"
-        }, {
-          "start" : 85417,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-fnt.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85417,
-          "duration" : 0,
-          "main input" : "builtins/assets/meshes/cube.dae",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85417,
-          "duration" : 0,
-          "main input" : "builtins/scripts/socket.lua",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85417,
-          "duration" : 0,
-          "main input" : "builtins/materials/tile_map.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85417,
-          "duration" : 0,
-          "main input" : "builtins/materials/particlefx_paged_atlas.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85417,
-          "duration" : 0,
-          "main input" : "builtins/materials/sprite_paged_atlas.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85417,
-          "duration" : 1,
-          "main input" : "builtins/materials/sprite.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "builtins/render/default.render",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-df.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-singlelayer.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "builtins/fonts/label-fnt.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "null",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "example/assets/common.atlas",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "example/main.script",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "build/default/_generated_58c35d6dc74906a3.sprite",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-df.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "builtins/materials/gui.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 0,
-          "main input" : "build/default/_generated_d5edb65596286af5.go",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85418,
-          "duration" : 1,
-          "main input" : "builtins/assets/meshes/sphere.dae",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85419,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-df-ms.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85419,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font-df.fp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85419,
-          "duration" : 0,
-          "main input" : "builtins/materials/sprite.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85419,
-          "duration" : 0,
-          "main input" : "builtins/materials/tile_map.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85419,
-          "duration" : 0,
-          "main input" : "builtins/scripts/debugger.lua",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85419,
-          "duration" : 1,
-          "main input" : "builtins/scripts/mobdebug.lua",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85420,
-          "duration" : 0,
-          "main input" : "builtins/fonts/label.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85420,
-          "duration" : 0,
-          "main input" : "build/default/_generated_3a42bf7933a29913.collectionproxy",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85420,
-          "duration" : 0,
-          "main input" : "example/assets/level1.atlas",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85420,
-          "duration" : 0,
-          "main input" : "builtins/input/all.input_binding",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85420,
-          "duration" : 1,
-          "main input" : "builtins/materials/particlefx_paged_atlas.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "example/level1/level1.collection",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "builtins/assets/meshes/quad.dae",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "build/default/_generated_ebe2bf53fe6a2f64.go",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "example/assets/level2.atlas",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "build/default/_generated_e63e40a7fb72e09a.go",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "builtins/materials/model.material",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "builtins/materials/particlefx.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "build/default/_generated_c961660227485dbf.go",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "builtins/fonts/font.vp",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
-        }, {
-          "start" : 85421,
+          "start" : 12177,
           "duration" : 0,
           "main input" : "build/default/_generated_cf593a975d429df7.sprite",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85421,
-          "duration" : 0,
-          "main input" : "build/default/_generated_ff38f7014ad4bc51.sprite",
-          "color" : "#FFC0CB",
-          "name" : "compare signatures"
+          "start" : 12177,
+          "duration" : 1,
+          "output" : "[build/default/_generated_cf593a975d429df7.spritec]",
+          "name" : "SpriteDesc",
+          "type" : "buildTask"
         }, {
-          "start" : 85421,
+          "start" : 12178,
           "duration" : 0,
           "main input" : "builtins/fonts/font.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85421,
+          "start" : 12178,
+          "duration" : 3,
+          "output" : "[build/default/builtins/fonts/font.materialc]",
+          "name" : "Material",
+          "type" : "buildTask"
+        }, {
+          "start" : 12181,
           "duration" : 0,
           "main input" : "example/level2/level2.collection",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85421,
-          "duration" : 1,
+          "start" : 12181,
+          "duration" : 0,
           "main input" : "builtins/materials/model.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85422,
+          "start" : 12181,
           "duration" : 0,
           "main input" : "builtins/fonts/font-fnt.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85422,
+          "start" : 12181,
           "duration" : 0,
           "main input" : "build/default/_generated_51bc4e823928d00a.go",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85422,
+          "start" : 12181,
           "duration" : 0,
           "main input" : "builtins/fonts/font-df-singlelayer.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85422,
-          "duration" : 0,
+          "start" : 12181,
+          "duration" : 1,
           "main input" : "builtins/scripts/edn.lua",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85422,
-          "duration" : 3,
+          "start" : 12182,
+          "duration" : 2,
           "main input" : "builtins/input/default.gamepads",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85425,
+          "start" : 12184,
           "duration" : 0,
           "main input" : "builtins/materials/particlefx_paged_atlas.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85425,
+          "start" : 12184,
+          "duration" : 0,
+          "main input" : "build/default/_generated_1ec5ab5b17babb70.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12184,
           "duration" : 0,
           "main input" : "builtins/fonts/font.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85425,
+          "start" : 12184,
           "duration" : 0,
           "main input" : "builtins/materials/sprite_paged_atlas.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85425,
-          "duration" : 0,
+          "start" : 12184,
+          "duration" : 1,
           "main input" : "build/default/_generated_db6db5c98571cd69.sprite",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85425,
+          "start" : 12185,
+          "duration" : 0,
+          "output" : "[build/default/_generated_db6db5c98571cd69.spritec]",
+          "name" : "SpriteDesc",
+          "type" : "buildTask"
+        }, {
+          "start" : 12185,
           "duration" : 1,
           "main input" : "builtins/fonts/system_font.font",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85426,
+          "start" : 12186,
           "duration" : 0,
           "main input" : "builtins/materials/model.vp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85426,
+          "start" : 12186,
           "duration" : 0,
           "main input" : "builtins/fonts/system_font.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85426,
+          "start" : 12186,
           "duration" : 0,
           "main input" : "builtins/graphics/particle_blob.tilesource",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85426,
+          "start" : 12186,
           "duration" : 0,
           "main input" : "builtins/materials/gui.fp",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85426,
+          "start" : 12186,
           "duration" : 0,
           "main input" : "builtins/fonts/label-df.material",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85426,
+          "start" : 12186,
           "duration" : 0,
           "main input" : "example/main.collection",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85426,
+          "start" : 12186,
           "duration" : 0,
           "main input" : "builtins/render/default.display_profiles",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 85426,
-          "duration" : 842,
+          "start" : 12186,
+          "duration" : 1,
+          "main input" : "builtins/materials/sprite_paged_atlas.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12187,
+          "duration" : 0,
+          "main input" : "builtins/assets/meshes/quad_2x2.dae",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12187,
+          "duration" : 0,
+          "main input" : "builtins/materials/sprite.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12187,
+          "duration" : 0,
+          "main input" : "builtins/materials/particlefx.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12187,
+          "duration" : 0,
+          "main input" : "liveupdate_reszip/reszip.lua",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12187,
+          "duration" : 0,
+          "main input" : "builtins/render/default.render_script",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12187,
+          "duration" : 0,
+          "main input" : "builtins/materials/gui.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12187,
+          "duration" : 0,
+          "main input" : "build/default/_generated_30693b135a9a955a.collectionproxy",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12187,
+          "duration" : 0,
+          "output" : "[build/default/_generated_30693b135a9a955a.collectionproxyc]",
+          "name" : "CollectionProxy",
+          "type" : "buildTask"
+        }, {
+          "start" : 12187,
+          "duration" : 0,
+          "main input" : "build/default/_generated_4ac9da56b3235f53.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12187,
+          "duration" : 1,
+          "main input" : "builtins/fonts/font-fnt.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12188,
+          "duration" : 0,
+          "main input" : "build/default/_generated_fd600d69ee7c0892.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12188,
+          "duration" : 0,
+          "main input" : "build/default/_generated_350f8bc3bb48609f.label",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12188,
+          "duration" : 0,
+          "main input" : "builtins/materials/particlefx.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12188,
+          "duration" : 0,
+          "main input" : "builtins/materials/tile_map.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12188,
+          "duration" : 0,
+          "main input" : "build/default/_generated_bcea8b195e0c2e92.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12188,
+          "duration" : 0,
+          "main input" : "example/assets/common.font",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12188,
+          "duration" : 1,
+          "main input" : "builtins/fonts/font-df-ms-singlelayer.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12189,
+          "duration" : 0,
+          "main input" : "build/default/_generated_e97e41572740bbd8.sprite",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12189,
+          "duration" : 0,
+          "output" : "[build/default/_generated_e97e41572740bbd8.spritec]",
+          "name" : "SpriteDesc",
+          "type" : "buildTask"
+        }, {
+          "start" : 12189,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font-fnt.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12189,
+          "duration" : 0,
+          "main input" : "builtins/assets/meshes/cube.dae",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12189,
+          "duration" : 0,
+          "main input" : "builtins/scripts/socket.lua",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12189,
+          "duration" : 0,
+          "main input" : "builtins/materials/tile_map.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12189,
+          "duration" : 1,
+          "main input" : "builtins/materials/particlefx_paged_atlas.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "builtins/materials/sprite_paged_atlas.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "builtins/materials/sprite.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "builtins/render/default.render",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font-df.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font-singlelayer.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "builtins/fonts/label-fnt.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "null",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "example/assets/common.atlas",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "example/main.script",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "build/default/_generated_58c35d6dc74906a3.sprite",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font-df.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 0,
+          "main input" : "builtins/materials/gui.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12190,
+          "duration" : 1,
+          "main input" : "build/default/_generated_d5edb65596286af5.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12191,
+          "duration" : 0,
+          "main input" : "builtins/assets/meshes/sphere.dae",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12191,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font-df-ms.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12191,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font-df.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12191,
+          "duration" : 0,
+          "main input" : "builtins/materials/sprite.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12191,
+          "duration" : 0,
+          "main input" : "builtins/materials/tile_map.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12191,
+          "duration" : 0,
+          "main input" : "builtins/scripts/debugger.lua",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12191,
+          "duration" : 1,
+          "main input" : "builtins/scripts/mobdebug.lua",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12192,
+          "duration" : 0,
+          "main input" : "builtins/fonts/label.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12192,
+          "duration" : 0,
+          "main input" : "build/default/_generated_97ed4eff53b009a6.label",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12192,
+          "duration" : 0,
+          "main input" : "build/default/_generated_3a42bf7933a29913.collectionproxy",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12192,
+          "duration" : 1,
+          "main input" : "example/assets/level1.atlas",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 0,
+          "main input" : "builtins/input/all.input_binding",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 0,
+          "main input" : "builtins/materials/particlefx_paged_atlas.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 0,
+          "main input" : "example/level1/level1.collection",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 0,
+          "main input" : "builtins/assets/meshes/quad.dae",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 0,
+          "main input" : "build/default/_generated_ebe2bf53fe6a2f64.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 0,
+          "main input" : "example/assets/level2.atlas",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 0,
+          "main input" : "build/default/_generated_e63e40a7fb72e09a.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 0,
+          "main input" : "builtins/materials/model.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 0,
+          "main input" : "builtins/materials/particlefx.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12193,
+          "duration" : 1,
+          "main input" : "builtins/fonts/font.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 0,
+          "main input" : "build/default/_generated_ff38f7014ad4bc51.sprite",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 0,
+          "main input" : "build/default/_generated_cf593a975d429df7.sprite",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 0,
+          "main input" : "example/level2/level2.collection",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 0,
+          "main input" : "builtins/materials/model.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font-fnt.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 0,
+          "main input" : "build/default/_generated_51bc4e823928d00a.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font-df-singlelayer.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 0,
+          "main input" : "builtins/scripts/edn.lua",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12194,
+          "duration" : 3,
+          "main input" : "builtins/input/default.gamepads",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12197,
+          "duration" : 0,
+          "main input" : "builtins/materials/particlefx_paged_atlas.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12197,
+          "duration" : 0,
+          "main input" : "build/default/_generated_1ec5ab5b17babb70.go",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12197,
+          "duration" : 0,
+          "main input" : "builtins/fonts/font.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12197,
+          "duration" : 0,
+          "main input" : "builtins/materials/sprite_paged_atlas.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12197,
+          "duration" : 0,
+          "main input" : "build/default/_generated_db6db5c98571cd69.sprite",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12197,
+          "duration" : 1,
+          "main input" : "builtins/fonts/system_font.font",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12198,
+          "duration" : 0,
+          "main input" : "builtins/materials/model.vp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12198,
+          "duration" : 0,
+          "main input" : "builtins/fonts/system_font.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12198,
+          "duration" : 0,
+          "main input" : "builtins/graphics/particle_blob.tilesource",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12198,
+          "duration" : 0,
+          "main input" : "builtins/materials/gui.fp",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12198,
+          "duration" : 1,
+          "main input" : "builtins/fonts/label-df.material",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12199,
+          "duration" : 0,
+          "main input" : "example/main.collection",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12199,
+          "duration" : 0,
+          "main input" : "builtins/render/default.display_profiles",
+          "color" : "#FFC0CB",
+          "name" : "compare signatures"
+        }, {
+          "start" : 12199,
+          "duration" : 857,
           "main input" : "game.project",
           "color" : "#FFC0CB",
           "name" : "compare signatures"
         }, {
-          "start" : 86268,
-          "duration" : 4507,
+          "start" : 13056,
+          "duration" : 4427,
           "output" : "[build/default/game.projectc, build/default/game.arci, build/default/game.arcd, build/default/game.dmanifest, build/default/game.public.der]",
           "name" : "GameProjectBuilder",
           "type" : "buildTask",
           "children" : [ {
-            "start" : 86380,
-            "duration" : 3961,
+            "start" : 13179,
+            "duration" : 3785,
             "name" : "createArchive",
             "excludedResources" : 1.0,
-            "resources" : 37.0
+            "resources" : 45.0
           } ]
         } ]
       }, {
-        "start" : 90775,
-        "duration" : 87,
+        "start" : 17483,
+        "duration" : 104,
         "name" : "Generating build size report"
       } ]
     }, {
-      "start" : 90862,
-      "duration" : 108,
+      "start" : 17587,
+      "duration" : 107,
       "name" : "bundle"
     } ]
   } ],

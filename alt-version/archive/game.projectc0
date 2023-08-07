@@ -1,6 +1,6 @@
 [project]
 title = liveupdate_reszip_demo
-version = 1.0.0
+version = dev
 write_log = 0
 compress_archive = 1
 publisher = Indiesoft LLC
@@ -82,7 +82,7 @@ max_resources = 1024
 repeat_delay = 0.5
 repeat_interval = 0.2
 gamepads = /builtins/input/default.gamepadsc
-game_binding = /input/game.input_bindingc
+game_binding = /builtins/input/all.input_bindingc
 use_accelerometer = 1
 
 [sprite]
