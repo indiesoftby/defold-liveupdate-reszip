@@ -1,5 +1,5 @@
 local M = {
-    -- ResZip settings
+    -- THESE SETTINGS ARE DEPRECATED, i.e. do nothing.
     RESOURCES_PER_BATCH = 1,
     BATCH_MAX_TIME = 0, -- Seconds. Set 0 or less to disable.
 }
@@ -29,6 +29,8 @@ local function store_missing_resource_from_zip(self, hexdigest, status)
             if data then
                 liveupdate.store_resource(liveupdate.get_current_manifest(), data, res_hash, store_missing_resource_from_zip)
                 if #M._missing_resources > 0 then
+                    -- This code doesn't do anything useful starting from Defold 1.5.0.
+                    -- >
                     local time = socket.gettime()
                     local push_queue = true
                     if M.BATCH_MAX_TIME > 0 and time - M._resources_batch_time > M.BATCH_MAX_TIME then
@@ -41,11 +43,13 @@ local function store_missing_resource_from_zip(self, hexdigest, status)
                     end
 
                     if html5 and push_queue then
-                        liveupdate_reszip_ext.update_job_queue()
+                        -- DEPRECATED
+                        -- liveupdate_reszip_ext.update_job_queue()
                     else
                         M._resources_pushed = 0
                         M._resources_batch_time = time
                     end
+                    -- <
                 end
             else
                 call_callback_and_cleanup(self, "Can't extract file " .. res_hash)

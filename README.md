@@ -26,7 +26,8 @@ Check out the online demos:
 
 | Asset Version   | Defold Version | Status        |
 | --------------- | -------------- | ------------- |
-| 1.2.0           | 1.4.7          | Tested ✅     |
+| 1.3.0           | 1.5.0          | Tested ✅     |
+| 1.2.0           | 1.4.7-8        | Tested ✅     |
 | 1.2.0           | 1.4.6          | Doesn't work ❌ |
 | 1.2.0           | 1.4.5          | Tested ✅     |
 
@@ -40,7 +41,7 @@ This is a list of some games that have used ResZip:
 | Duo Vikings 2   | [Play it on Poki](https://poki.com/en/g/duo-vikings-2) |
 | Duo Vikings 3   | [Play it on Poki](https://poki.com/en/g/duo-vikings-3) |
 | Fish Eat Fish   | [Play it on Poki](https://poki.com/en/g/fish-eat-fish) | The total size of the game is only 4 MB! After its start, it downloads the HD version of the graphics (~10MB) and applies it depending on the hardware capabilities. |
-| Monkey Mart     | [Play it on Poki](https://poki.com/en/g/monkey-mart) |
+| Monkey Mart     | [Play it on Poki](https://poki.com/en/g/monkey-mart) | In the zip archive the game stores and downloads the resources needed for the next levels (shops). |
 | Puffy Cat       | [Play it on Poki](https://poki.com/en/g/puffy-cat) | The game loads only 750 KB of data for the first three levels. Everything else (5 MB) is lazily downloaded from the `resources.zip` file. |
 | Puffy Cat 2     | [Play it on Poki](https://poki.com/en/g/puffy-cat-2) | Only music and some sounds have been cut out from the game data into the `resources.zip` file. |
 
@@ -74,7 +75,9 @@ ResZip can start preloading the `resources.zip` file as soon as game loading is 
 preload_file = your_resources_file_name.zip
 ```
 
-If the `resources.zip` file contains hundreds or thousands of resources, you can speed up the process of loading resources by enabling batching (only for HTML5!):
+#### Deprecated options
+
+~~If the `resources.zip` file contains hundreds or thousands of resources, you can speed up the process of loading resources by enabling batching (only for HTML5!):~~
 
 ```lua
 reszip.RESOURCES_PER_BATCH = 10

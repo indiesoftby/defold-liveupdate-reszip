@@ -7,11 +7,6 @@
 #include <stdint.h>
 #include <string.h>
 
-namespace dmLiveUpdate
-{
-    void AsyncUpdate();
-}
-
 static int ExtractFile(lua_State *L) {
     size_t buf_len = 0;
     const char *buf = luaL_checklstring(L, 1, &buf_len);
@@ -217,7 +212,7 @@ static int RequestFile(lua_State *L) {
 
 static int UpdateJobQueue(lua_State *L)
 {
-    dmLiveUpdate::AsyncUpdate();
+    dmLogInfo("`update_job_queue` is deprecated and does nothing.");
     return 0;
 }
 
