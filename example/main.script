@@ -21,20 +21,48 @@ local function load_level2(self)
     if next(missing_resources) ~= nil then
         print("Resources are missing, downloading...")
 
-        -- TIP: You can pass the "missing_resources" table instead of "nil" to load only missing resources.
-        reszip.request_and_load_zip(ZIP_FILE_LOCATION, nil, function(self, err)
-            if not err then
-                -- All resources are loaded, finally load the level:
-                print("Everything is OK, load the level 2!")
-                msg.post(EXCLUDED_PROXY_URL, hash("load"))
+        http.request(ZIP_FILE_LOCATION, "GET", function (self, id, response)
+            print("HTTP request status", response.status)
+            if (response.status == 200 or response.status == 304) and response.error == nil then
+                local zip = response.response
+                if html5 then
+                    local file = assert(io.open("/data/resources.zip", "wb"))
+                    file:write(zip)
+                    file:close()
 
-                -- Free the memory, if you are not going to use the `resources.zip` file later (i.e. you can )
-                reszip.clear_cache()
+                    local mounts = liveupdate.get_mounts()
+                    for _, mount in ipairs(mounts) do
+                        if mount.name == "reszip" then
+                            liveupdate.remove_mount(mount.name)
+                        end
+                    end
+                    liveupdate.add_mount("reszip", "zip:/data/resources.zip", 10, function()
+                        -- All resources are loaded, finally load the level:
+                        print("Everything is OK, load the level 2!")
+                        msg.post(EXCLUDED_PROXY_URL, hash("load"))
+                    end)
+                else
+                    assert(false, "WTF")
+                end
             else
-                -- Try again?...
-                print("ERROR: " .. err)
+                print("Error happened while downloading: " .. response.status)
             end
-        end, http_loading_progress_handler)
+        end)
+
+        -- TIP: You can pass the "missing_resources" table instead of "nil" to load only missing resources.
+        -- reszip.request_and_load_zip(ZIP_FILE_LOCATION, nil, function(self, err)
+        --     if not err then
+        --         -- All resources are loaded, finally load the level:
+        --         print("Everything is OK, load the level 2!")
+        --         msg.post(EXCLUDED_PROXY_URL, hash("load"))
+
+        --         -- Free the memory, if you are not going to use the `resources.zip` file later (i.e. you can )
+        --         reszip.clear_cache()
+        --     else
+        --         -- Try again?...
+        --         print("ERROR: " .. err)
+        --     end
+        -- end, http_loading_progress_handler)
     else
         -- All resources exist, so load the level:
         print("Resources are already loaded. Let's load the level 2!")
