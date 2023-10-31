@@ -1,102 +1,67 @@
-local M = {
-    -- THESE SETTINGS ARE DEPRECATED, i.e. do nothing.
-    RESOURCES_PER_BATCH = 1,
-    BATCH_MAX_TIME = 0, -- Seconds. Set 0 or less to disable.
-}
 
-local function call_callback_and_cleanup(self, err)
-    M._missing_resources = nil
-    if M._callback then
-        M._callback(self, err)
+-- Default values:
+local APP_NAME = sys.get_config_string("project.title", "reszip")
+local MOUNT_NAME = "reszip"
+local FILENAME = "resources.zip"
+
+local function finish(self, context, err)
+    if context.on_finish then
+        context.on_finish(self, err)
     end
-    M._callback = nil
-    M._progress_callback = nil
-    M._store_callback = nil
+    context.on_finish = nil
+    context.on_progress = nil
 end
 
-local function store_missing_resource_from_zip(self, hexdigest, status)
-    if status then
-        if M._store_callback and M._resources_total > 0 then
-            M._store_callback(self, M._resources_stored, M._resources_total)
+local function store_zip_mount(self, context, zip_data)
+    -- Remove any previous mounts with the same name
+    local mounts = liveupdate.get_mounts()
+    for i, mount in ipairs(mounts) do
+        if mount.name == context.mount_name then
+            liveupdate.remove_mount(mount.name)
         end
+    end
 
-        if M._missing_resources ~= nil and next(M._missing_resources) ~= nil then
-            -- Loading next missing resource from the ZIP archive
-            local res_hash = table.remove(M._missing_resources)
-            M._resources_stored = M._resources_stored + 1
+    local disk_path = sys.get_save_file(context.app_name, context.filename)
+    local file, err = io.open(disk_path, "wb")
+    if not file then
+        finish(self, context, "Unable to open a file for writing (" .. err .. ").")
+        return
+    end
+    local ok, err = file:write(zip_data)
+    if not ok then
+        finish(self, context, "Unable to write data into the resources file (" .. err .. ").")
+        return
+    end
+    file:close()
 
-            local data = liveupdate_reszip_ext.extract_file(M._resources_zip, res_hash)
-            if data then
-                liveupdate.store_resource(liveupdate.get_current_manifest(), data, res_hash, store_missing_resource_from_zip)
-                if #M._missing_resources > 0 then
-                    -- This code doesn't do anything useful starting from Defold 1.5.0.
-                    -- >
-                    local time = socket.gettime()
-                    local push_queue = true
-                    if M.BATCH_MAX_TIME > 0 and time - M._resources_batch_time > M.BATCH_MAX_TIME then
-                        push_queue = false
-                    end
+    zip_data = nil
 
-                    M._resources_pushed = M._resources_pushed + 1
-                    if M._resources_pushed >= M.RESOURCES_PER_BATCH then
-                        push_queue = false
-                    end
-
-                    if html5 and push_queue then
-                        -- DEPRECATED
-                        -- liveupdate_reszip_ext.update_job_queue()
-                    else
-                        M._resources_pushed = 0
-                        M._resources_batch_time = time
-                    end
-                    -- <
-                end
-            else
-                call_callback_and_cleanup(self, "Can't extract file " .. res_hash)
-            end
+    local uri = "zip:" .. disk_path
+    local priority = context.priority -- It should be higher than old live update archive priority 10
+    liveupdate.add_mount(context.mount_name, uri, priority, function(self, path, uri, result)
+        if result == 0 then -- dmLiveUpdate::RESULT_OK = 0
+            finish(self, context)
         else
-            -- SUCCESS!
-            call_callback_and_cleanup(self, nil)
+            finish(self, context, "Failed to add mount `" .. path .. "` to `" .. uri .. "` with the result code " .. result)
         end
-    else
-        call_callback_and_cleanup(self, "Error happened while storing resource: " .. hexdigest)
+    end)
+end
+
+local function request_file_progress_handler(self, context, loaded, total)
+    if context.on_progress and total > 0 then
+        context.on_progress(self, loaded, total)
     end
 end
 
-local function request_file_progress_handler(self, loaded, total)
-    if M._progress_callback and total > 0 then
-        M._progress_callback(self, loaded, total)
-    end
+local function request_file_error_handler(self, context, err)
+    finish(self, context, err)
 end
 
-local function request_file_error_handler(self, err)
-    call_callback_and_cleanup(self, err)
-end
-
-local function request_file_load_handler(self, response)
-    M._resources_zip = response
-    if liveupdate_reszip_ext.validate_zip(M._resources_zip) then
-        if M._missing_resources == nil then
-            M._missing_resources = liveupdate_reszip_ext.list_resources(M._resources_zip)
-        end
-
-        M._resources_batch_time = socket.gettime()
-        M._resources_pushed = 0
-        M._resources_stored = 0
-        M._resources_total = #M._missing_resources
-
-        store_missing_resource_from_zip(self, nil, true)
-    else
-        M._resources_zip = nil
-        call_callback_and_cleanup(self, "Invalid format of the ZIP file")
-    end
-end
-
-local function http_request_handler(self, id, response)
+local function http_request_handler(self, context, id, response)
     if (response.status == 200 or response.status == 304) and response.error == nil then
-        request_file_load_handler(self, response.response)
+        store_zip_mount(self, context, response.response)
     else
-        call_callback_and_cleanup(self, "Error happened while downloading: " .. response.status)
+        finish(self, context, "Error happened while downloading: " .. response.status)
     end
 end
 
@@ -104,43 +69,64 @@ end
 -- Public
 --
 
---- The function makes HTTP request to load .zip file from the `filename` path or URL, if it's not loaded previously.
--- Then it stores the file internally, and asynchronously loads resources from the `missing_resources` array.
--- When the resources storing process is done, it calls `callback`.
--- @param filename (string) - URL or path
--- @param missing_resources (array)
--- @param callback (function)
--- @param progress_callback (function)
--- @param store_callback (function)
-function M.request_and_load_zip(filename, missing_resources, callback, progress_callback, store_callback)
-    M._callback = callback
-    M._progress_callback = progress_callback
-    M._store_callback = store_callback
-    M._missing_resources = missing_resources
+local M = {}
 
-    if not M._resources_zip then
-        if liveupdate_reszip_ext.request_file then
-            -- (HTML5 only) Load .zip file using the custom file loader
-            liveupdate_reszip_ext.request_file(
-                filename,
-                request_file_progress_handler,
-                request_file_error_handler,
-                request_file_load_handler)
-        else
-            -- Load .zip file via Defold's `http.request`
-            http.request(filename, "GET", http_request_handler)
-        end
+--- The function makes HTTP request to load .zip file from the `url`.
+-- Then it stores the file internally, and mounts to Live Update.
+-- When the resources mounting process is done (or failed), it calls `on_finish`.
+-- @param url (string) - URL or path
+-- @param options (table) - { 
+--          on_finish = function(self, err),
+--          -- Optional:
+--          on_progress = function(self, loaded, total),
+--          app_name = string,
+--          mount_name = string,
+--          filename = string,
+--          priority = number,
+--        }
+function M.load_and_mount_zip(url, options)
+    local context = {
+        app_name = options.app_name or APP_NAME,
+        mount_name = options.mount_name or MOUNT_NAME,
+        filename = options.filename or FILENAME,
+        priority = options.priority or 20,
+        on_finish = options.on_finish,
+        on_progress = options.on_progress
+    }
+
+    if liveupdate_reszip_ext.request_file then
+        -- (HTML5 only) Load .zip file using the custom file loader
+        liveupdate_reszip_ext.request_file(
+            url,
+            function(self, loaded, total) request_file_progress_handler(self, context, loaded, total) end,
+            function(self, err) request_file_error_handler(self, context, err) end,
+            function(self, response_data) store_zip_mount(self, context, response_data) end)
     else
-        -- "timer.delay" is necessary to get "self" and use it for callbacks (if any)
-        timer.delay(0, false, function (self)
-            request_file_load_handler(self, M._resources_zip)
-        end)
+        -- Load .zip file via Defold's `http.request`
+        http.request(url, "GET", function(self, id, response) http_request_handler(self, context, id, response) end)
     end
 end
 
---- Free memory if you don't need resources from the `resources.zip` file anymore.
+--- DEPRECATED
+--- The function makes HTTP request to load .zip file from the `url`.
+-- Then it stores the file internally, and mounts to Live Update.
+-- When the resources mounting process is done, it calls `done_callback`.
+-- @param url (string) - URL or path
+-- @param missing_resources (array) - DOES NOTHING
+-- @param callback (function)
+-- @param progress_callback (function)
+-- @param store_callback (function) - DOES NOTHING
+function M.request_and_load_zip(url, missing_resources, callback, progress_callback, store_callback)
+    print("reszip.lua: `request_and_load_zip` function is deprecated. You can still use it, but it's better to call `reszip.load_and_mount_zip(url, opts)`.")
+    M.load_and_mount_zip(url, {
+        on_finish = callback,
+        on_progress = progress_callback
+    })
+end
+
+--- DEPRECATED
 function M.clear_cache()
-    M._resources_zip = nil
+    print("reszip.lua: `clear_cache` function is deprecated. Do not call it anymore.")
 end
 
 return M

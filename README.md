@@ -12,9 +12,8 @@ You can do the following things:
 
 Defold has the [Live Update](https://defold.com/manuals/live-update/) feature that we can use to implement these ideas, and the project aims to demonstrate the usage of it. The project contains:
 
-1. The Lua `liveupdate_reszip.reszip` module that downloads (with progress!) and extracts the missing resources.
-2. [The magic JS code](liveupdate_reszip/manifests/web/engine_template.html) that removes Live Update cache from IndexedDB before the start of your game. This step is based on our experience of Live Update usage in Defold. Defold often fails to use the mix of resources from different versions of the game and the best solution is to clear its cache on every launch.
-3. The Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to your build result folder.
+- The Lua `liveupdate_reszip.reszip` module that downloads (with progress!) and mounts the missing resources.
+- The Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to your build result folder.
 
 Check out the online demos:
 1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html) - this project. **Tap anywhere to load level 2.**
@@ -26,6 +25,7 @@ Check out the online demos:
 
 | Asset Version   | Defold Version | Status        |
 | --------------- | -------------- | ------------- |
+| 1.4.0           | 1.6.1          | Tested ✅     |
 | 1.3.0           | 1.5.0          | Tested ✅     |
 | 1.2.0           | 1.4.7-8        | Tested ✅     |
 | 1.2.0           | 1.4.6          | Doesn't work ❌ |
@@ -54,41 +54,54 @@ https://github.com/indiesoftby/defold-liveupdate-reszip/archive/main.zip
 2. Follow the [Live Update tutorial](https://defold.com/manuals/live-update/) on the Defold website and exclude chosen collections in proxies.
 3. Use the `Zip` mode for Live Update and publish the Live Update content through `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`).
 4. Move the resulting .zip file with resources into your production build folder.
-5. Look at the `example/main.script` to learn how to check for the missing resources and how to load them from the `.zip` resources file.
+5. Look at the `example/main.script` to learn how to check for the missing resources and how to mount the `.zip` resources file:
+
+```lua
+local zip_filename = sys.get_config("liveupdate_reszip.filename", "resources.zip")
+local zip_file_location = (html5 and zip_filename) or ("http://localhost:8080/" .. zip_filename)
+local excluded_proxy_url = "/level2#collectionproxy"
+
+local missing_resources = collectionproxy.missing_resources(excluded_proxy_url)
+if next(missing_resources) ~= nil then
+    print("Some resources are missing, so download and mount the resources archive...")
+    assert(liveupdate, "`liveupdate` module is missing.")
+
+    reszip.load_and_mount_zip(zip_file_location, {
+        on_finish = finish_handler,
+        on_progress = http_loading_progress_handler
+    })
+else
+    -- All resources exist, so load the level:
+    print("Resources are already loaded. Let's load level 2!")
+    msg.post(excluded_proxy_url, hash("load"))
+end
+```
 
 ### Tips
 
 The easiest way to use ResZip in your project is to move some of your audio files (i.e. sound components) to a proxied collection and exclude the collection for the release build. To play these sounds, you should make an external script that acts as a sound manager of all your in-game audio and knows when proxied sounds are loaded from the `resources.zip` file.
 
-Also, you can remove an unused manifest from the `resources.zip` file to reduce its size: 
-
-```bash
-7z d -r resources.zip liveupdate.game.dmanifest
-```
-
 ### Advanced Usage
 
-ResZip can start preloading the `resources.zip` file as soon as game loading is finished. It's highly recommended to enable this option:
+#### Preload resources
+
+ResZip can start preloading the `resources.zip` file as soon as game loading is finished. It's highly recommended to enable this option because the engine initialisation takes some time, during which we can already start loading resources:
 
 ```ini
 [liveupdate_reszip]
 preload_file = your_resources_file_name.zip
 ```
 
-#### Deprecated options
+If you suspect a bug in Live Update or ResZip, the following option can be used to force Live Update data to be completely cleared before the game starts:
 
-~~If the `resources.zip` file contains hundreds or thousands of resources, you can speed up the process of loading resources by enabling batching (only for HTML5!):~~
-
-```lua
-reszip.RESOURCES_PER_BATCH = 10
-reszip.BATCH_MAX_TIME = 0 -- Seconds. Set 0 or less to disable.
+```ini
+[liveupdate_reszip]
+wipe_on_start = 1
 ```
 
 ## Credits
 
 This project is licensed under the terms of the CC0 1.0 Universal license. It's developed and supported by [@aglitchman](https://github.com/aglitchman). 
-
-Also, the project uses [miniz](https://github.com/richgel999/miniz), a MIT-licensed data compression library.
 
 The demo contains third-party music files which require attribution:
 ```
