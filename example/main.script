@@ -9,6 +9,17 @@ local ZIP_FILE_LOCATION = (html5 and ZIP_FILENAME) or ("http://localhost:8080/" 
 local EXCLUDED_PROXY_URL = "/level2#collectionproxy"
 local LEVEL1_PROXY_URL = "/level1#collectionproxy"
 
+local function finish_handler(self, err)
+    if not err then
+        -- All resources are loaded, finally load the level:
+        print("Everything is OK, load level 2!")
+        msg.post(EXCLUDED_PROXY_URL, hash("load"))
+    else
+        -- Try again?...
+        print("ERROR: " .. err)
+    end
+end
+
 local function http_loading_progress_handler(self, loaded, total)
     msg.post("#loading_progress", "enable")
 
@@ -22,59 +33,13 @@ local function load_level2(self)
         print("Some resources are missing, so download the resources archive...")
         assert(liveupdate, "`liveupdate` module is missing.")
 
-        http.request(ZIP_FILE_LOCATION, "GET", function (self, id, response)
-            print("HTTP request status", response.status)
-            if (response.status == 200 or response.status == 304) and response.error == nil then
-                local zip_data = response.response
-                if html5 then
-                    local mounts = liveupdate.get_mounts()
-                    for i, mount in ipairs(mounts) do
-                        pprint(i, mount)
-                        if mount.name == "reszip" then
-                            liveupdate.remove_mount(mount.name)
-                        end
-                    end
-
-                    local file, err = io.open("/data/resources.zip", "wb")
-                    if not file then
-                        -- error
-                    end
-                    local ok, err = file:write(zip_data)
-                    if not ok then
-                        -- error
-                    end
-                    file:close()
-
-                    liveupdate.add_mount("reszip", "zip:/data/resources.zip", 10, function()
-                        -- All resources are loaded, finally load the level:
-                        print("Everything is OK, load the level 2!")
-                        msg.post(EXCLUDED_PROXY_URL, hash("load"))
-                    end)
-                else
-                    assert(false, "WTF")
-                end
-            else
-                print("Error happened while downloading: " .. response.status)
-            end
-        end)
-
-        -- TIP: You can pass the "missing_resources" table instead of "nil" to load only missing resources.
-        -- reszip.request_and_load_zip(ZIP_FILE_LOCATION, nil, function(self, err)
-        --     if not err then
-        --         -- All resources are loaded, finally load the level:
-        --         print("Everything is OK, load the level 2!")
-        --         msg.post(EXCLUDED_PROXY_URL, hash("load"))
-
-        --         -- Free the memory, if you are not going to use the `resources.zip` file later (i.e. you can )
-        --         reszip.clear_cache()
-        --     else
-        --         -- Try again?...
-        --         print("ERROR: " .. err)
-        --     end
-        -- end, http_loading_progress_handler)
+        reszip.load_and_mount_zip(ZIP_FILE_LOCATION, {
+            on_finish = finish_handler, 
+            on_progress = http_loading_progress_handler
+        })
     else
         -- All resources exist, so load the level:
-        print("Resources are already loaded. Let's load the level 2!")
+        print("Resources are already loaded. Let's load level 2!")
         msg.post(EXCLUDED_PROXY_URL, hash("load"))
     end
 end
