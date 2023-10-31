@@ -68,11 +68,20 @@ Also, you can remove an unused manifest from the `resources.zip` file to reduce 
 
 ### Advanced Usage
 
-ResZip can start preloading the `resources.zip` file as soon as game loading is finished. It's highly recommended to enable this option:
+#### Preload resources
+
+ResZip can start preloading the `resources.zip` file as soon as game loading is finished. It's highly recommended to enable this option because the engine initialisation takes some time, during which we can already start loading resources:
 
 ```ini
 [liveupdate_reszip]
 preload_file = your_resources_file_name.zip
+```
+
+If you suspect a bug in Live Update or ResZip, the following option can be used to force Live Update data to be completely cleared before the game starts:
+
+```ini
+[liveupdate_reszip]
+wipe_on_start = 1
 ```
 
 #### Deprecated options
