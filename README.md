@@ -77,6 +77,9 @@ else
 end
 ```
 
+> [!IMPORTANT]
+> The above example assumes that the `wipe_on_start = 1` option is enabled (see below!), which allows you to not worry about detecting the version of mounted resources when upgrading versions of your game.
+
 ### Tips
 
 The easiest way to use ResZip in your project is to move some of your audio files (i.e. sound components) to a proxied collection and exclude the collection for the release build. To play these sounds, you should make an external script that acts as a sound manager of all your in-game audio and knows when proxied sounds are loaded from the `resources.zip` file.
