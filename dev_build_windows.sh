@@ -8,8 +8,6 @@
 set -e
 
 PLATFORM=x86_64-win32
-RESOURCES_ZIP="resources_$(date +%s).zip"
-
 RESZIP_INI="reszip.ini"
 RESOURCES_ZIP="resources_$(date +%s).zip"
 echo -e "[liveupdate_reszip]\nfilename = ${RESOURCES_ZIP}\npreload_file = ${RESOURCES_ZIP}\n\n" > "${RESZIP_INI}"

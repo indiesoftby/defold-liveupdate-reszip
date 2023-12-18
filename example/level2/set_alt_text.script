@@ -1,0 +1,7 @@
+go.property("enabled", false)
+
+function init(self)
+	if self.enabled then
+		label.set_text("#label2", "This is the second version.")
+	end
+end
