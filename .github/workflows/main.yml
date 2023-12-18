@@ -37,6 +37,7 @@ jobs:
 
           # Checkout alt version and build it
           # We use it to test how the game will suffer the outdated LiveUpdate version of the resources.
+          git reset --hard
           git fetch origin alt-version
           git switch alt-version
           rm -rf build/default
