@@ -106,10 +106,17 @@ end
 
 ### 3. Build your project
 
-Use the `Zip` mode for Live Update and publish the Live Update content through `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
+Open `Project / Live Update Settings` and enable the `Zip` mode for Live Update. Publish the Live Update content through `Project / Bundle...` or by using Bob the builder `bob.jar` (the most important arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
 
 > [!IMPORTANT]
 > The included Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to the build result folder.
+
+### 4. Summary
+
+- Put the content that will be downloaded later into the collection proxy.
+- Exclude this collection proxy so that Defold will put it in the Live Update zip archive with resources.
+- For every unique version of the project, set a unique name for the resource file. ResZip uses resources filename to check if the current version of resources is compatible with what the player already has. This is important for updating your game between versions!
+- Use simple-to-use ResZip API to download and mount the resource file.
 
 ## Tips
 
