@@ -25,6 +25,11 @@ mkdir -p "${BUNDLE_DIR}"
 # Get project's title
 TITLE=$(awk -F "=" '/^title/ {gsub(/[ \r\n\t]/, "", $2); print $2}' game.project)
 
+# Filename of the resources archive
+RESZIP_INI="reszip.ini"
+RESOURCES_ZIP="resources_$(date +%s).zip"
+echo -e "[liveupdate_reszip]\nfilename = ${RESOURCES_ZIP}\npreload_file = ${RESOURCES_ZIP}\n\n" > "${RESZIP_INI}"
+
 # Download bob.jar. It downloads bob.jar only if it's missing or if the version differs
 BOB_SHA1=${DEFOLD_BOB_SHA1:-$(curl -s 'https://d.defold.com/stable/info.json' | jq -r .sha1)}
 BOB_LOCAL_SHA1=$((java -jar "${BUNDLE_DIR}/bob.jar" --version | cut -d' ' -f6) || true)
@@ -32,10 +37,12 @@ if [ "${BOB_LOCAL_SHA1}" != "${BOB_SHA1}" ]; then wget --progress=dot:mega -O "$
 java -jar "${BUNDLE_DIR}/bob.jar" --version
 
 # Build the game - the `release` variant with live update content.
-java -jar "${BUNDLE_DIR}/bob.jar" --email a@b.com --auth 123 --texture-compression true --bundle-output "${BUNDLE_DIR}/js-web" --platform js-web --archive --liveupdate yes --variant release resolve build bundle
+java -jar "${BUNDLE_DIR}/bob.jar" --email a@b.com --auth 123 --texture-compression true --settings "${RESZIP_INI}" --bundle-output "${BUNDLE_DIR}/js-web" --platform js-web --archive --liveupdate yes --variant release resolve build bundle
 
-# Move LiveUpdate .zip file into the bundle dir as "resources.zip"
-mv build/liveupdate_output/*.zip "${BUNDLE_DIR}/js-web/${TITLE}/resources.zip"
+# Move LiveUpdate .zip file into the bundle dir
+mv build/liveupdate_output/*.zip "${BUNDLE_DIR}/js-web/${TITLE}/${RESOURCES_ZIP}"
+
+# Cleanup
+rm -f "${RESZIP_INI}"
 
 # Done!
-

@@ -18,6 +18,15 @@ local function store_zip_mount(self, context, zip_data)
     for i, mount in ipairs(mounts) do
         if mount.name == context.mount_name then
             liveupdate.remove_mount(mount.name)
+
+            if context.delete_old_file then
+                local basename = mount.uri:match("^.+/(.+)$")
+                local path = sys.get_save_file(context.app_name, basename)
+                local ok, err = os.remove(path)
+                if not ok then
+                    print("reszip.lua: unable to delete old resources file `" .. path .. "`,", err)
+                end
+            end
         end
     end
 
@@ -71,6 +80,25 @@ end
 
 local M = {}
 
+--- The function checks the "version" of resources by comparing the resource file names.
+-- Returns nil if it can't find `reszip` mount.
+-- @param filename (string)
+-- @param mount_name (string) - Optional
+-- @return (boolean)
+function M.version_match(filename, mount_name)
+    mount_name = mount_name or MOUNT_NAME
+
+    local mounts = liveupdate.get_mounts()
+    for i, mount in ipairs(mounts) do
+        if mount.name == mount_name then
+            local basename = mount.uri:match("^.+/(.+)$")
+            return basename == filename
+        end
+    end
+
+    return nil
+end
+
 --- The function makes HTTP request to load .zip file from the `url`.
 -- Then it stores the file internally, and mounts to Live Update.
 -- When the resources mounting process is done (or failed), it calls `on_finish`.
@@ -82,6 +110,7 @@ local M = {}
 --          app_name = string,
 --          mount_name = string,
 --          filename = string,
+--          delete_old_file = boolean,
 --          priority = number,
 --        }
 function M.load_and_mount_zip(url, options)
@@ -89,6 +118,7 @@ function M.load_and_mount_zip(url, options)
         app_name = options.app_name or APP_NAME,
         mount_name = options.mount_name or MOUNT_NAME,
         filename = options.filename or FILENAME,
+        delete_old_file = type(options.delete_old_file) ~= "nil" and options.delete_old_file or false,
         priority = options.priority or 20,
         on_finish = options.on_finish,
         on_progress = options.on_progress
@@ -117,7 +147,7 @@ end
 -- @param progress_callback (function)
 -- @param store_callback (function) - DOES NOTHING
 function M.request_and_load_zip(url, missing_resources, callback, progress_callback, store_callback)
-    print("reszip.lua: `request_and_load_zip` function is deprecated. You can still use it, but it's better to call `reszip.load_and_mount_zip(url, opts)`.")
+    print("reszip.lua: `request_and_load_zip` function is deprecated. You can still use it if you set the game.project option `wipe_on_start = 1`, but it's better to call `reszip.load_and_mount_zip(url, opts)`.")
     M.load_and_mount_zip(url, {
         on_finish = callback,
         on_progress = progress_callback

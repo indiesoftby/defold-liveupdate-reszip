@@ -1,23 +1,26 @@
 [![ResZip Cover](cover.jpg)](https://github.com/indiesoftby/defold-liveupdate-reszip)
 
-# ResZip: use Live Update to improve load speed of HTML5 game
+# ResZip
 
-In short, HTML5 games should load **as fast as possible**! Why -> https://vimeo.com/350139974
+A ready-to-use Lua module and example project on how to use LiveUpdate to download extra content in your game. In the world of HTML5 games, we use this to speed up the delivery of the game, as every second counts!
 
-It's important to deliver something meaningful to the user as soon as possible — the longer they wait for the game to load, the bigger the chance they will leave before waiting for everything to finish.
+## Detailed Explanation
+
+It's important to deliver something meaningful to the user as soon as possible — the longer they wait for the game to load, the bigger the chance they will leave before waiting for everything to finish. Why? The video explains that well: https://vimeo.com/350139974
 
 You can do the following things:
 - Split your Defold game resources into two parts: resources required for the first level plus **everything else**. The game lazily loads more content or loads it on demand while players are playing the first level.
-- Or make SD/HD versions of your atlases to lazily load HD graphics on game start (*the example will be added later*).
+- Or make SD/HD versions of your atlases to lazily load HD graphics on game start.
 
 Defold has the [Live Update](https://defold.com/manuals/live-update/) feature that we can use to implement these ideas, and the project aims to demonstrate the usage of it. The project contains:
 
 - The Lua `liveupdate_reszip.reszip` module that downloads (with progress!) and mounts the missing resources.
-- The Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to your build result folder.
+- The Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to the build result folder.
 
 Check out the online demos:
-1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html) - this project. **Tap anywhere to load level 2.**
-2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/alt-version/index.html) - the same but with an alternative `resources.zip` file to test that it can handle upgrade of the game.
+1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/bundle-1/index.html) - this project. **Tap anywhere to load level 2.**
+2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/bundle-2/index.html) - the same but with an alternative `resources.zip` file to test that it can handle upgrade of the game.
+3. [**Demo 3**](https://indiesoftby.github.io/defold-liveupdate-reszip/old-version/index.html) - same thing, but using the old LiveUpdate API. To test how Defold will handle this if we next open demo 1 or 2..
 
 ## Current Status
 
@@ -25,13 +28,9 @@ Check out the online demos:
 
 | Asset Version   | Defold Version | Status        |
 | --------------- | -------------- | ------------- |
-| 1.4.0           | 1.6.1          | Tested ✅     |
-| 1.3.0           | 1.5.0          | Tested ✅     |
-| 1.2.0           | 1.4.7-8        | Tested ✅     |
-| 1.2.0           | 1.4.6          | Doesn't work ❌ |
-| 1.2.0           | 1.4.5          | Tested ✅     |
+| 1.5.0           | 1.6.2          | Tested ✅     |
 
-### Showcase
+## Showcase
 
 This is a list of some games that have used ResZip:
 
@@ -47,46 +46,86 @@ This is a list of some games that have used ResZip:
 
 ## Installation
 
-1. Use it in your own project by adding this project as a [Defold library dependency](http://www.defold.com/manuals/libraries/). Open your `game.project` file and in the dependencies field under project add:
+### 1. Add dependency
+
+Use it in your own project by adding this project as a [Defold library dependency](http://www.defold.com/manuals/libraries/). Open your `game.project` file and in the dependencies field under project add:
 
 https://github.com/indiesoftby/defold-liveupdate-reszip/archive/main.zip
 
-2. Follow the [Live Update tutorial](https://defold.com/manuals/live-update/) on the Defold website and exclude chosen collections in proxies.
-3. Use the `Zip` mode for Live Update and publish the Live Update content through `Project / Bundle...` or using `bob.jar` (the arg is `--liveupdate yes`).
-4. Move the resulting .zip file with resources into your production build folder.
-5. Look at the `example/main.script` to learn how to check for the missing resources and how to mount the `.zip` resources file:
+### 2. Prepare your project
+
+Follow the [Live Update tutorial](https://defold.com/manuals/live-update/) on the Defold website and exclude chosen collections in proxies.
+
+Look at the `example/main.script` to learn how to check for the missing resources and how to download and mount the `.zip` resources file:
 
 ```lua
+-- Paths to the resources files
 local zip_filename = sys.get_config("liveupdate_reszip.filename", "resources.zip")
-local zip_file_location = (html5 and zip_filename) or ("http://localhost:8080/" .. zip_filename)
+local zip_file_location = zip_filename
+if not html5 then
+    -- You must host your resource file on any hosting service:
+    "http://localhost:8080/" .. zip_filename
+end
+
+-- URL of the excluded proxy:
 local excluded_proxy_url = "/level2#collectionproxy"
 
+-- We check if resources are missing and also check the version of the currently
+-- mounted resources using the resource file name.
 local missing_resources = collectionproxy.missing_resources(excluded_proxy_url)
-if next(missing_resources) ~= nil then
+if liveupdate and (not reszip.version_match(zip_filename) or next(missing_resources) ~= nil) then
     print("Some resources are missing, so download and mount the resources archive...")
-    assert(liveupdate, "`liveupdate` module is missing.")
 
     reszip.load_and_mount_zip(zip_file_location, {
-        on_finish = finish_handler,
-        on_progress = http_loading_progress_handler
+        filename = zip_filename,
+        delete_old_file = true,
+        on_finish = function (self, err)
+            if not err then
+                -- All resources are loaded, finally load the level:
+                print("Everything is OK, load level 2!")
+                msg.post(excluded_proxy_url, hash("load"))
+            else
+                -- Try again?...
+                print("ERROR: " .. err)
+            end
+        end,
+        on_progress = function (self, loaded, total)
+            -- Update progress in your GUI:
+            -- local progress = string.format("%dKB / %dKB", loaded / 1024, total / 1024)
+            -- label.set_text("#loading_progress", progress)
+        end
     })
 else
-    -- All resources exist, so load the level:
+    -- LiveUpdate is not enabled, i.e. we test the game from IDE. Or all resources exist, so load the level:
     print("Resources are already loaded. Let's load level 2!")
     msg.post(excluded_proxy_url, hash("load"))
 end
 ```
 
 > [!IMPORTANT]
-> The above example assumes that the `wipe_on_start = 1` option is enabled (see below!), which allows you to not worry about detecting the version of mounted resources when upgrading versions of your game.
+> The example above assumes that you name the resource file differently for each version of the game (`resource_v1.zip`, `resources_v2.zip`), because `reszip` uses the file name to determine whether resources need to be updated.
 
-### Tips
+### 3. Build your project
+
+Open `Project / Live Update Settings` and enable the `Zip` mode for Live Update. Publish the Live Update content through `Project / Bundle...` or by using Bob the builder `bob.jar` (the most important arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
+
+> [!IMPORTANT]
+> The included Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to the build result folder.
+
+### 4. Summary
+
+- Put the content that will be downloaded later into the collection proxy.
+- Exclude this collection proxy so that Defold will put it in the Live Update zip archive with resources.
+- For every unique version of the project, set a unique name for the resource file. ResZip uses resources filename to check if the current version of resources is compatible with what the player already has. This is important for updating your game between versions!
+- Use simple-to-use ResZip API to download and mount the resource file.
+
+## Tips
 
 The easiest way to use ResZip in your project is to move some of your audio files (i.e. sound components) to a proxied collection and exclude the collection for the release build. To play these sounds, you should make an external script that acts as a sound manager of all your in-game audio and knows when proxied sounds are loaded from the `resources.zip` file.
 
-### Advanced Usage
+## Advanced Usage (HTML5 only)
 
-#### Preload resources
+### Preload resources
 
 ResZip can start preloading the `resources.zip` file as soon as game loading is finished. It's highly recommended to enable this option because the engine initialisation takes some time, during which we can already start loading resources:
 
