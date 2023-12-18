@@ -71,11 +71,6 @@ local excluded_proxy_url = "/level2#collectionproxy"
 
 -- We check if resources are missing and also check the version of the currently
 -- mounted resources using the resource file name.
---
--- So the idea is to give a new name to the resources file when building the project, 
--- so that reszip knows that this version of the game requires a completely different
--- resources file (even if missing_resources function tells us that the resources
--- are not missing).
 local missing_resources = collectionproxy.missing_resources(excluded_proxy_url)
 if not reszip.version_match(zip_filename) or next(missing_resources) ~= nil then
     print("Some resources are missing, so download and mount the resources archive...")
@@ -107,7 +102,7 @@ end
 ```
 
 > [!IMPORTANT]
-> The above example assumes that the `wipe_on_start = 1` option is enabled (see below!), which allows you to not worry about detecting the version of mounted resources when upgrading versions of your game.
+> The example above assumes that you name the resource file differently for each version of the game (`resource_v1.zip`, `resources_v2.zip`), because `reszip` uses the file name to determine whether resources need to be updated.
 
 ### 3. Build your project
 

@@ -44,6 +44,7 @@ local function load_level2(self)
 
         reszip.load_and_mount_zip(ZIP_FILE_LOCATION, {
             filename = ZIP_FILENAME,
+            delete_old_file = true,
             on_finish = finish_handler, 
             on_progress = http_loading_progress_handler
         })
