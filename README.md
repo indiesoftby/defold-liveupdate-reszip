@@ -73,12 +73,12 @@ local excluded_proxy_url = "/level2#collectionproxy"
 -- We check if resources are missing and also check the version of the currently
 -- mounted resources using the resource file name.
 local missing_resources = collectionproxy.missing_resources(excluded_proxy_url)
-if not reszip.version_match(zip_filename) or next(missing_resources) ~= nil then
+if liveupdate and (not reszip.version_match(zip_filename) or next(missing_resources) ~= nil) then
     print("Some resources are missing, so download and mount the resources archive...")
-    assert(liveupdate, "`liveupdate` module is missing.")
 
     reszip.load_and_mount_zip(zip_file_location, {
         filename = zip_filename,
+        delete_old_file = true,
         on_finish = function (self, err)
             if not err then
                 -- All resources are loaded, finally load the level:
@@ -96,7 +96,7 @@ if not reszip.version_match(zip_filename) or next(missing_resources) ~= nil then
         end
     })
 else
-    -- All resources exist, so load the level:
+    -- LiveUpdate is not enabled, i.e. we test the game from IDE. Or all resources exist, so load the level:
     print("Resources are already loaded. Let's load level 2!")
     msg.post(excluded_proxy_url, hash("load"))
 end

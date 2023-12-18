@@ -35,7 +35,7 @@ local function load_level2(self)
     --
     -- So the idea is to give a new name to the resources file when building the project, 
     -- so that reszip knows that this version of the game requires a completely different
-    -- resources file (even if missing_resources function tells us that the resources
+    -- resources file (even if missing_resources() function tells us that the resources
     -- are not missing).
     local missing_resources = collectionproxy.missing_resources(EXCLUDED_PROXY_URL)
     if liveupdate and (not reszip.version_match(ZIP_FILENAME) or next(missing_resources) ~= nil) then
@@ -48,7 +48,7 @@ local function load_level2(self)
             on_progress = http_loading_progress_handler
         })
     else
-        -- LiveUpdate is not enabled or all resources exist, so load the level:
+        -- LiveUpdate is not enabled, i.e. we test the game from IDE. Or all resources exist, so load the level:
         print("Resources are already loaded. Let's load level 2!")
         msg.post(EXCLUDED_PROXY_URL, hash("load"))
     end
