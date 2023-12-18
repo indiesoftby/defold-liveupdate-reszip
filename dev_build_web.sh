@@ -9,6 +9,8 @@ set -e
 
 PLATFORM=wasm-web
 
+mkdir -p public
+
 # BUNDLE 1
 BUNDLE_DIR=bundle-1
 RESZIP_INI="reszip.ini"
@@ -21,7 +23,7 @@ mkdir -p build/bundle
 java -jar bob.jar --email f@b.com --auth 123 --texture-compression true --settings "${RESZIP_INI}" --bundle-output build/bundle/${PLATFORM} --build-report-html build/bundle/build_report_latest.html --platform ${PLATFORM} --architectures ${PLATFORM} --archive --liveupdate yes --variant debug resolve build bundle
 mv build/liveupdate_output/*.zip "build/bundle/${PLATFORM}/liveupdate_reszip_demo/${RESOURCES_ZIP}"
 rm -f "${RESZIP_INI}"
-mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "${BUNDLE_DIR}"
+mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "public/${BUNDLE_DIR}"
 
 # BUNDLE 2
 BUNDLE_DIR=bundle-2
@@ -35,7 +37,7 @@ mkdir -p build/bundle
 java -jar bob.jar --email f@b.com --auth 123 --texture-compression true --settings "${RESZIP_INI}" --bundle-output build/bundle/${PLATFORM} --build-report-html build/bundle/build_report_latest.html --platform ${PLATFORM} --architectures ${PLATFORM} --archive --liveupdate yes --variant debug resolve build bundle
 mv build/liveupdate_output/*.zip "build/bundle/${PLATFORM}/liveupdate_reszip_demo/${RESOURCES_ZIP}"
 rm -f "${RESZIP_INI}"
-mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "${BUNDLE_DIR}"
+mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "public/${BUNDLE_DIR}"
 
 # DONE
-http-server -c-
+# http-server -c-

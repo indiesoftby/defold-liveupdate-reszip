@@ -18,8 +18,9 @@ Defold has the [Live Update](https://defold.com/manuals/live-update/) feature th
 - The Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to the build result folder.
 
 Check out the online demos:
-1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/latest/index.html) - this project. **Tap anywhere to load level 2.**
-2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/alt-version/index.html) - the same but with an alternative `resources.zip` file to test that it can handle upgrade of the game.
+1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/bundle-1/index.html) - this project. **Tap anywhere to load level 2.**
+2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/bundle-2/index.html) - the same but with an alternative `resources.zip` file to test that it can handle upgrade of the game.
+3. [**Demo 3**](https://indiesoftby.github.io/defold-liveupdate-reszip/old-version/index.html) - same thing, but using the old LiveUpdate API. To test how Defold will handle this if we next open demo 1 or 2..
 
 ## Current Status
 

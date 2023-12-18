@@ -25,35 +25,27 @@ jobs:
         run: |
           lsb_release -a
 
-          mkdir -p build/bundle/public
-
           # Download the latest bob.jar
           BOB_SHA1=${DEFOLD_BOB_SHA1:-$(curl -s 'https://d.defold.com/stable/info.json' | jq -r .sha1)}
-          BOB_LOCAL_SHA1=$((java -jar build/bundle/bob.jar --version | cut -d' ' -f6) || true)
-          if [ "${BOB_LOCAL_SHA1}" != "${BOB_SHA1}" ]; then wget --progress=dot:mega -O build/bundle/bob.jar "https://d.defold.com/archive/${BOB_SHA1}/bob/bob.jar"; fi
-          java -jar build/bundle/bob.jar --version
+          BOB_LOCAL_SHA1=$((java -jar bob.jar --version | cut -d' ' -f6) || true)
+          if [ "${BOB_LOCAL_SHA1}" != "${BOB_SHA1}" ]; then wget --progress=dot:mega -O bob.jar "https://d.defold.com/archive/${BOB_SHA1}/bob/bob.jar"; fi
+          java -jar bob.jar --version
 
           # Build the project
-          java -jar build/bundle/bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/js-web --build-report-html build/bundle/public/build_report_latest.html --platform js-web --archive --liveupdate yes --variant debug resolve build bundle
-
-          # Move LiveUpdate .zip file into the bundle dir as "resources.zip"
-          mv build/liveupdate_output/*.zip build/bundle/js-web/liveupdate_reszip_demo/resources.zip
-
-          # Move to the public directory
-          mv build/bundle/js-web/liveupdate_reszip_demo build/bundle/public/latest
+          ./dev_build_web.sh
 
           # Checkout alt version and build it
-          # We use it to test how the game will suffer the different resources in the resources.zip.
+          # We use it to test how the game will suffer the outdated LiveUpdate version of the resources.
           git fetch origin alt-version
           git switch alt-version
           rm -rf build/default
-          java -jar build/bundle/bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/js-web --build-report-html build/bundle/public/build_report_alt-version.html --platform js-web --archive --liveupdate yes --variant debug resolve build bundle
+          java -jar bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/js-web --build-report-html build/bundle/public/build_report_alt-version.html --platform js-web --archive --liveupdate yes --variant debug resolve build bundle
           mv build/liveupdate_output/*.zip build/bundle/js-web/liveupdate_reszip_demo/resources.zip
-          mv build/bundle/js-web/liveupdate_reszip_demo build/bundle/public/alt-version
+          mv build/bundle/js-web/liveupdate_reszip_demo public/old-version
 
       - name: Deploy to Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: build/bundle/public
+          folder: public
         if: github.ref == 'refs/heads/main'
