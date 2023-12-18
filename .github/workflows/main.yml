@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - 'feat/**'
 
 jobs:
   build-and-deploy:
@@ -32,7 +33,7 @@ jobs:
           java -jar bob.jar --version
 
           # Build the project
-          ./dev_build_web.sh
+          bash ./dev_build_web.sh
 
           # Checkout alt version and build it
           # We use it to test how the game will suffer the outdated LiveUpdate version of the resources.
