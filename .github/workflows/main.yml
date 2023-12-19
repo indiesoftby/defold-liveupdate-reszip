@@ -46,7 +46,7 @@ jobs:
           BUNDLE_DIR=old-version
           java -jar bob.jar --email f@b.com --auth 123 --texture-compression true --bundle-output build/bundle/${PLATFORM} --build-report-html "build/bundle/build_report_${BUNDLE_DIR}.html" --platform ${PLATFORM} --architectures ${PLATFORM} --archive --liveupdate yes --variant debug resolve build bundle
           mv build/liveupdate_output/*.zip "build/bundle/${PLATFORM}/liveupdate_reszip_demo/${RESOURCES_ZIP}"
-          mv "build/bundle/*.html" "public/"
+          mv build/bundle/*.html "public/"
           mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "public/${BUNDLE_DIR}"
 
           find "public/"
