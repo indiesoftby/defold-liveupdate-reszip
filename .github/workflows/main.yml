@@ -49,7 +49,7 @@ jobs:
           mv build/bundle/*.html "public/"
           mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "public/${BUNDLE_DIR}"
 
-          find "public/"
+          find "public/" | sort -z
 
       - name: Deploy to Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
