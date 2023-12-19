@@ -40,10 +40,14 @@ jobs:
           git reset --hard
           git fetch origin alt-version
           git switch alt-version
-          rm -rf build/default
-          java -jar bob.jar --email a@b.com --auth 123 --texture-compression true --bundle-output build/bundle/js-web --build-report-html build/bundle/public/build_report_alt-version.html --platform js-web --archive --liveupdate yes --variant debug resolve build bundle
-          mv build/liveupdate_output/*.zip build/bundle/js-web/liveupdate_reszip_demo/resources.zip
-          mv build/bundle/js-web/liveupdate_reszip_demo public/old-version
+          rm -rf build
+          mkdir -p build/bundle
+          PLATFORM=wasm-web
+          BUNDLE_DIR=old-version
+          java -jar bob.jar --email f@b.com --auth 123 --texture-compression true --bundle-output build/bundle/${PLATFORM} --build-report-html "build/bundle/build_report_${BUNDLE_DIR}.html" --platform ${PLATFORM} --architectures ${PLATFORM} --archive --liveupdate yes --variant debug resolve build bundle
+          mv build/liveupdate_output/*.zip "build/bundle/${PLATFORM}/liveupdate_reszip_demo/${RESOURCES_ZIP}"
+          mv "build/bundle/*.html" "public/"
+          mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "public/${BUNDLE_DIR}"
 
       - name: Deploy to Pages 🚀
         uses: JamesIves/github-pages-deploy-action@v4
