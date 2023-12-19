@@ -20,9 +20,10 @@ sed -i 's/"enabled", true/"enabled", false/' example/level2/set_alt_text.script
 
 rm -rf build
 mkdir -p build/bundle
-java -jar bob.jar --email f@b.com --auth 123 --texture-compression true --settings "${RESZIP_INI}" --bundle-output build/bundle/${PLATFORM} --build-report-html build/bundle/build_report_latest.html --platform ${PLATFORM} --architectures ${PLATFORM} --archive --liveupdate yes --variant debug resolve build bundle
+java -jar bob.jar --email f@b.com --auth 123 --texture-compression true --settings "${RESZIP_INI}" --bundle-output build/bundle/${PLATFORM} --build-report-html "build/bundle/build_report_${BUNDLE_DIR}.html" --platform ${PLATFORM} --architectures ${PLATFORM} --archive --liveupdate yes --variant debug resolve build bundle
 mv build/liveupdate_output/*.zip "build/bundle/${PLATFORM}/liveupdate_reszip_demo/${RESOURCES_ZIP}"
 rm -f "${RESZIP_INI}"
+mv build/bundle/*.html "public/"
 mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "public/${BUNDLE_DIR}"
 
 # BUNDLE 2
@@ -34,9 +35,10 @@ sed -i 's/"enabled", false/"enabled", true/' example/level2/set_alt_text.script
 
 rm -rf build
 mkdir -p build/bundle
-java -jar bob.jar --email f@b.com --auth 123 --texture-compression true --settings "${RESZIP_INI}" --bundle-output build/bundle/${PLATFORM} --build-report-html build/bundle/build_report_latest.html --platform ${PLATFORM} --architectures ${PLATFORM} --archive --liveupdate yes --variant debug resolve build bundle
+java -jar bob.jar --email f@b.com --auth 123 --texture-compression true --settings "${RESZIP_INI}" --bundle-output build/bundle/${PLATFORM} --build-report-html "build/bundle/build_report_${BUNDLE_DIR}.html" --platform ${PLATFORM} --architectures ${PLATFORM} --archive --liveupdate yes --variant debug resolve build bundle
 mv build/liveupdate_output/*.zip "build/bundle/${PLATFORM}/liveupdate_reszip_demo/${RESOURCES_ZIP}"
 rm -f "${RESZIP_INI}"
+mv build/bundle/*.html "public/"
 mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "public/${BUNDLE_DIR}"
 
 # DONE
