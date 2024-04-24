@@ -10,7 +10,7 @@ var LibraryResZip = {
                 {{{ makeDynCall('viii', 'onprogress') }}}(context, loaded, total);
             },
             onerror: function (err) {
-                var pError = allocate(intArrayFromString(err), "i8", ALLOC_NORMAL);
+                var pError = stringToNewUTF8(err);
                 {{{ makeDynCall('vii', 'onerror') }}}(context, pError);
                 _free(pError);
             },
@@ -42,7 +42,6 @@ var LibraryResZip = {
             FileLoader.load(
                 url,
                 "arraybuffer",
-                0,
                 function (loaded, total) {
                     preload.handler("onprogress", loaded, total);
                 },
@@ -51,7 +50,8 @@ var LibraryResZip = {
                 },
                 function (response) {
                     preload.handler("onload", response);
-                }
+                },
+                function () { }
             );
             return;
         }
@@ -83,10 +83,10 @@ var LibraryResZip = {
             //
             // Normal usage - load something from URL
             //
-            FileLoader.load(url, "arraybuffer", 0, callbacks.onprogress, callbacks.onerror, callbacks.onload);
+            FileLoader.load(url, "arraybuffer", callbacks.onprogress, callbacks.onerror, callbacks.onload, function() { });
         }
     },
 };
 
 autoAddDeps(LibraryResZip, "$ResZip");
-mergeInto(LibraryManager.library, LibraryResZip);
+addToLibrary(LibraryResZip);
