@@ -16,7 +16,8 @@ var LibraryResZip = {
             },
             onload: function (response) {
                 var ab = new Uint8Array(response);
-                var b = allocate(ab, "i8", ALLOC_NORMAL);
+                var b = _malloc(ab.length);
+                HEAPU8.set(ab, b);
                 {{{ makeDynCall('viii', 'onload') }}}(context, b, ab.length);
                 _free(b);
             },
