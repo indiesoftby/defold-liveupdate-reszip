@@ -181,19 +181,21 @@
 			runningFromFileWarning.parentNode.removeChild(runningFromFileWarning);
 		}
 	</script>   
-  <script id="engine-setup" type="text/javascript">
+  <script id="reszip-setup" type="text/javascript">
             // 
 
-            var old_preloadAndCallMain = Module._preloadAndCallMain;
-            Module._preloadAndCallMain = function () {
+            var old_callMain = Module._callMain;
+            var reszip_preloadingStarted = false;
+            Module._callMain = function () {
                 // 
 
-                if (Module._archiveLoaded) {
-                    // 
-                    _dmResZipRequestFileAsync("resources_1713990697.zip");
-                    // 
+                // 
+                if (!reszip_preloadingStarted) {
+                    _dmResZipRequestFileAsync("resources_1713994171.zip");
+                    reszip_preloadingStarted = true;
                 }
-                old_preloadAndCallMain();
+                // 
+                old_callMain();
             };
         </script>
  </body>

@@ -4580,7 +4580,8 @@ function _dmResZipRequestFileAsync(url, context, _onprogress, _onerror, _onload)
     },
     onload: function onload(response) {
       var ab = new Uint8Array(response);
-      var b = allocate(ab, "i8", ALLOC_NORMAL);
+      var b = _malloc(ab.length);
+      HEAPU8.set(ab, b);
       getWasmTableEntry(_onload)(context, b, ab.length);
       _free(b);
     }
