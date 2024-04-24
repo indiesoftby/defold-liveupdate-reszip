@@ -4555,6 +4555,94 @@ function _dmDeviceJSQueue(id, samples, sample_count) {
 function _dmGetDeviceSampleRate(id) {
   return window._dmJSDeviceShared.devices[id].sampleRate;
 }
+var ResZipFileLoader = {
+  options: {
+    retryCount: 5,
+    retryInterval: 1e3
+  },
+  request: function request(url, method, responseType, currentAttempt) {
+    if (typeof method === "undefined") throw "No method specified";
+    if (typeof method === "responseType") throw "No responseType specified";
+    if (typeof currentAttempt === "undefined") currentAttempt = 0;
+    var obj = {
+      send: function send() {
+        var onprogress = this.onprogress;
+        var onload = this.onload;
+        var onerror = this.onerror;
+        var xhr = new XMLHttpRequest();
+        xhr.open(method, url, true);
+        xhr.responseType = responseType;
+        xhr.onprogress = function (e) {
+          if (onprogress) onprogress(xhr, e);
+        };
+        xhr.onerror = function (e) {
+          if (currentAttempt == ResZipFileLoader.options.retryCount) {
+            if (onerror) onerror(xhr, e);
+            return;
+          }
+          currentAttempt = currentAttempt + 1;
+          setTimeout(obj.send.bind(obj), ResZipFileLoader.options.retryInterval);
+        };
+        xhr.onload = function (e) {
+          if (onload) onload(xhr, e);
+        };
+        xhr.send(null);
+      }
+    };
+    return obj;
+  },
+  size: function size(url, callback) {
+    var request = ResZipFileLoader.request(url, "HEAD", "text");
+    request.onerror = function (xhr, e) {
+      callback(undefined);
+    };
+    request.onload = function (xhr, e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var total = xhr.getResponseHeader("content-length");
+          callback(total);
+        } else {
+          callback(undefined);
+        }
+      }
+    };
+    request.send();
+  },
+  load: function load(url, responseType, estimatedSize, onprogress, onerror, onload) {
+    var request = ResZipFileLoader.request(url, "GET", responseType);
+    request.onprogress = function (xhr, e) {
+      if (e.lengthComputable) {
+        onprogress(e.loaded, e.total);
+        return;
+      }
+      var contentLength = xhr.getResponseHeader("content-length");
+      var size = contentLength != undefined ? contentLength : estimatedSize;
+      if (size) {
+        onprogress(e.loaded, size);
+      } else {
+        onprogress(e.loaded, e.loaded);
+      }
+    };
+    request.onerror = function (xhr, e) {
+      onerror("Error loading '" + url + "' (" + e + ")");
+    };
+    request.onload = function (xhr, e) {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          var res = xhr.response;
+          if (responseType == "json" && typeof res === "string") {
+            onload(JSON.parse(res));
+          } else {
+            onload(res);
+          }
+        } else {
+          onerror("Error loading '" + url + "' (" + e + ")");
+        }
+      }
+    };
+    request.send();
+  }
+};
 var ResZip = {
   _preloads: {}
 };
@@ -4596,13 +4684,13 @@ function _dmResZipRequestFileAsync(url, context, _onprogress, _onerror, _onload)
       }
     };
     ResZip._preloads[url] = preload;
-    FileLoader.load(url, "arraybuffer", function (loaded, total) {
+    ResZipFileLoader.load(url, "arraybuffer", 0, function (loaded, total) {
       preload.handler("onprogress", loaded, total);
     }, function (err) {
       preload.handler("onerror", err);
     }, function (response) {
       preload.handler("onload", response);
-    }, function () {});
+    });
     return;
   }
   url = UTF8ToString(url);
@@ -4621,7 +4709,7 @@ function _dmResZipRequestFileAsync(url, context, _onprogress, _onerror, _onload)
       }
     });
   } else {
-    FileLoader.load(url, "arraybuffer", callbacks.onprogress, callbacks.onerror, callbacks.onload, function () {});
+    ResZipFileLoader.load(url, "arraybuffer", 0, callbacks.onprogress, callbacks.onerror, callbacks.onload);
   }
 }
 function _dmScriptHttpRequestAsync(method, url, headers, arg, onload, onerror, onprogress, send_data, send_data_length, timeout) {

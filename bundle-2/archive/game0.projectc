@@ -205,6 +205,6 @@ run_while_iconified = 0
 fixed_update_frequency = 60
 
 [liveupdate_reszip]
-filename = resources_1713994196.zip
-preload_file = resources_1713994196.zip
+filename = resources_1713996446.zip
+preload_file = resources_1713996446.zip
 
