@@ -1,10 +1,12 @@
 [project]
 title = liveupdate_reszip_demo
 version = dev
-write_log = 0
-compress_archive = 1
 publisher = Indiesoft LLC
-developer = unnamed
+developer = 
+write_log = 0
+write_log_file = 0
+minimum_log_level = 1
+compress_archive = 1
 title_as_file_name = liveupdate_reszip_demo
 
 [display]
@@ -13,11 +15,12 @@ height = 640
 high_dpi = 1
 samples = 0
 fullscreen = 0
+display_profiles = /builtins/render/default.display_profilesc
+dynamic_orientation = 0
 update_frequency = 0
 swap_interval = 1
 vsync = 0
-display_profiles = /builtins/render/default.display_profilesc
-dynamic_orientation = 0
+variable_dt = 0
 display_device_info = 0
 
 [render]
@@ -27,18 +30,18 @@ clear_color_blue = 0
 clear_color_alpha = 1.0
 
 [physics]
-type = 2D
 max_collision_object_count = 128
+type = 2D
 use_fixed_timestep = 0
-gravity_y = -10
 debug = 0
 debug_alpha = 0.9
+debug_scale = 30
 world_count = 4
 gravity_x = 0
+gravity_y = -10
 gravity_z = 0
 scale = 1
 allow_dynamic_transforms = 1
-debug_scale = 30
 max_collisions = 64
 max_contacts = 128
 contact_impulse_limit = 0
@@ -48,9 +51,15 @@ trigger_overlap_capacity = 16
 velocity_threshold = 1
 max_fixed_timesteps = 2
 
+[box2d]
+velocity_iterations = 10
+position_iterations = 10
+sub_step_count = 4
+
 [bootstrap]
 main_collection = /example/main.collectionc
 render = /builtins/render/default.renderc
+debug_init_script = 
 
 [graphics]
 default_texture_min_filter = linear
@@ -61,6 +70,8 @@ max_font_batches = 128
 max_debug_vertices = 10000
 texture_profiles = /builtins/graphics/default.texture_profiles
 verify_graphics_calls = 1
+opengl_version_hint = 33
+opengl_core_profile_hint = 1
 memory_size = 512
 
 [shader]
@@ -68,12 +79,18 @@ output_spirv = 0
 
 [sound]
 gain = 1
+use_linear_gain = 1
 max_sound_data = 128
 max_sound_buffers = 32
 max_sound_sources = 16
 max_sound_instances = 256
 max_component_count = 32
+sample_frame_count = 0
 use_thread = 1
+stream_enabled = 0
+stream_chunk_size = 16384
+stream_preload_size = 16384
+stream_cache_size = 2097152
 
 [resource]
 http_cache = 0
@@ -93,15 +110,17 @@ subpixels = 1
 [model]
 max_count = 128
 split_meshes = 0
+max_bone_matrix_texture_width = 1024
+max_bone_matrix_texture_height = 1024
 
 [mesh]
 max_count = 128
 
 [gui]
 max_count = 64
-max_particlefx_count = 64
-max_particle_count = 1024
 max_animation_count = 1024
+max_particle_count = 1024
+max_particlefx_count = 64
 
 [collection]
 max_instances = 1024
@@ -123,15 +142,17 @@ bundle_identifier = example.unnamed
 bundle_name = 
 infoplist = /builtins/manifests/ios/Info.plist
 privacymanifest = /builtins/manifests/ios/PrivacyInfo.xcprivacy
+entitlements = 
 default_language = en
 localizations = en
 
 [android]
 version_code = 1
 minimum_sdk_version = 19
-target_sdk_version = 33
+target_sdk_version = 35
 package = com.example.todo
 gcm_sender_id = 
+fcm_application_id = 
 manifest = /builtins/manifests/android/AndroidManifest.xml
 iap_provider = GooglePlay
 input_method = HiddenInputField
@@ -139,19 +160,18 @@ immersive_mode = 0
 display_cutout = 1
 debuggable = 0
 proguard = 
+extract_native_libs = 0
 
 [osx]
-app_icon = 
-infoplist = /builtins/manifests/osx/Info.plist
-privacymanifest = /builtins/manifests/osx/PrivacyInfo.xcprivacy
 bundle_identifier = example.unnamed
 bundle_name = 
 bundle_version = 1
+infoplist = /builtins/manifests/osx/Info.plist
+privacymanifest = /builtins/manifests/osx/PrivacyInfo.xcprivacy
 default_language = en
 localizations = en
 
 [windows]
-app_icon = 
 
 [html5]
 custom_heap_size = 0
@@ -166,11 +186,13 @@ show_fullscreen_button = 1
 show_made_with_defold = 1
 show_console_banner = 1
 scale_mode = fit
+transparent_graphics_context = 0
 
 [particle_fx]
+max_particle_count = 1024
+max_particle_buffer_count = 1024
 max_count = 64
 max_emitter_count = 64
-max_particle_count = 1024
 
 [network]
 http_timeout = 0
@@ -190,11 +212,14 @@ subpixels = 1
 
 [profiler]
 track_cpu = 0
+enabled = 1
 sleep_between_server_updates = 0
+performance_timeline_enabled = 0
 
 [liveupdate]
-settings = /liveupdate.settings
 enabled = 1
+settings = /liveupdate.settings
+mount_on_start = 1
 
 [tilemap]
 max_count = 16
@@ -203,4 +228,9 @@ max_tile_count = 2048
 [engine]
 run_while_iconified = 0
 fixed_update_frequency = 60
+max_time_step = 0.033333
+
+[font]
+
+[native_extension]
 
