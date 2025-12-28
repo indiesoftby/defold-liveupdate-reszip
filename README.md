@@ -28,7 +28,7 @@ Check out the online demos:
 
 | Asset Version   | Defold Version | Status        |
 | --------------- | -------------- | ------------- |
-| 1.5.0           | 1.6.2          | Tested ✅     |
+| 1.5.0           | 1.11.2         | Tested ✅     |
 
 ## Showcase
 
