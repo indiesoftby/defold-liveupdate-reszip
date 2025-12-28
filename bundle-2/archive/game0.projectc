@@ -235,6 +235,6 @@ max_time_step = 0.033333
 [native_extension]
 
 [liveupdate_reszip]
-filename = resources_1766959086.zip
-preload_file = resources_1766959086.zip
+filename = resources_1766959391.zip
+preload_file = resources_1766959391.zip
 
