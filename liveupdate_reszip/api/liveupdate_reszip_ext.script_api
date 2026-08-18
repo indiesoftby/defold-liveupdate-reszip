@@ -1,0 +1,44 @@
+- name: liveupdate_reszip_ext
+  type: table
+  desc: HTML5 file loader used by Live Update ResZip.
+  members:
+  - name: request_file
+    type: function
+    desc: Starts an asynchronous file request. Available on HTML5.
+    parameters:
+    - name: url
+      type: string
+      desc: URL of the file to request.
+    - name: on_progress
+      type: function
+      desc: Called while the file is loading.
+      parameters:
+      - name: self
+        type: object
+        desc: The calling script instance.
+      - name: loaded
+        type: number
+        desc: Number of bytes loaded.
+      - name: total
+        type: number
+        desc: Total number of bytes.
+    - name: on_error
+      type: function
+      desc: Called if the request fails.
+      parameters:
+      - name: self
+        type: object
+        desc: The calling script instance.
+      - name: error
+        type: string
+        desc: Error message.
+    - name: on_load
+      type: function
+      desc: Called when the file has loaded.
+      parameters:
+      - name: self
+        type: object
+        desc: The calling script instance.
+      - name: data
+        type: string
+        desc: File contents.

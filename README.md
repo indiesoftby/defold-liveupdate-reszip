@@ -15,12 +15,12 @@ You can do the following things:
 Defold has the [Live Update](https://defold.com/manuals/live-update/) feature that we can use to implement these ideas, and the project aims to demonstrate the usage of it. The project contains:
 
 - The Lua `liveupdate_reszip.reszip` module that downloads (with progress!) and mounts the missing resources.
-- The Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to the build result folder.
+- The Bash script (`example_build_script.sh`) shows how to build the web version and put the resource archive into the bundle automatically.
 
 Check out the online demos:
 1. [**Demo 1**](https://indiesoftby.github.io/defold-liveupdate-reszip/bundle-1/index.html) - this project. **Tap anywhere to load level 2.**
 2. [**Demo 2**](https://indiesoftby.github.io/defold-liveupdate-reszip/bundle-2/index.html) - the same but with an alternative `resources.zip` file to test that it can handle upgrade of the game.
-3. [**Demo 3**](https://indiesoftby.github.io/defold-liveupdate-reszip/old-version/index.html) - same thing, but using the old LiveUpdate API. To test how Defold will handle this if we next open demo 1 or 2..
+3. [**Demo 3**](https://indiesoftby.github.io/defold-liveupdate-reszip/old-version/index.html) - built with Defold 1.6.2 and the old LiveUpdate API. Use it before demo 1 or 2 to test upgrading an existing browser installation.
 
 ## Current Status
 
@@ -28,7 +28,7 @@ Check out the online demos:
 
 | Asset Version   | Defold Version | Status        |
 | --------------- | -------------- | ------------- |
-| 1.5.0           | 1.11.2         | Tested ✅     |
+| main            | 1.13.1         | Tested ✅     |
 
 ## Showcase
 
@@ -60,21 +60,30 @@ Look at the `example/main.script` to learn how to check for the missing resource
 
 ```lua
 -- Paths to the resources files
-local zip_filename = sys.get_config("liveupdate_reszip.filename", "resources.zip")
+local zip_filename = sys.get_config_string("liveupdate_reszip.filename", "resources.zip")
 local zip_file_location = zip_filename
 if not html5 then
     -- You must host your resource file on any hosting service:
-    "http://localhost:8080/" .. zip_filename
+    zip_file_location = "http://localhost:8080/" .. zip_filename
 end
 
 -- URL of the excluded proxy:
 local excluded_proxy_url = "/level2#collectionproxy"
 
--- We check if resources are missing and also check the version of the currently
--- mounted resources using the resource file name.
-local missing_resources = collectionproxy.missing_resources(excluded_proxy_url)
-if liveupdate and (not reszip.version_match(zip_filename) or next(missing_resources) ~= nil) then
-    print("Some resources are missing, so download and mount the resources archive...")
+local function is_built_with_excluded_resources()
+    if not liveupdate then
+        return false
+    end
+    if liveupdate.is_built_with_excluded_files then
+        return liveupdate.is_built_with_excluded_files()
+    end
+    return next(collectionproxy.get_resources(excluded_proxy_url)) ~= nil
+end
+
+-- ResZip mounts the saved archive for this bundle version, or downloads it
+-- when it is not available.
+if is_built_with_excluded_resources() and not reszip.version_match(zip_filename) then
+    print("Mount or download the resources archive...")
 
     reszip.load_and_mount_zip(zip_file_location, {
         filename = zip_filename,
@@ -103,14 +112,20 @@ end
 ```
 
 > [!IMPORTANT]
-> The example above assumes that you name the resource file differently for each version of the game (`resource_v1.zip`, `resources_v2.zip`), because `reszip` uses the file name to determine whether resources need to be updated.
+> The example above assumes that you name the resource file differently for each version of the game (`resources_v1.zip`, `resources_v2.zip`). ResZip only restores the file named by the current bundle, so archives left by an older game version cannot override new bundled resources.
 
 ### 3. Build your project
 
-Open `Project / Live Update Settings` and enable the `Zip` mode for Live Update. Publish the Live Update content through `Project / Bundle...` or by using Bob the builder `bob.jar` (the most important arg is `--liveupdate yes`). Move the resulting .zip file with resources into your production build folder.
+Open `Project / Live Update Settings` and set these options:
+
+- Set `Mode` to `Zip`.
+- Set `Zip filename` to the same name as `liveupdate_reszip.filename`.
+- Enable `Save zip in bundle folder`.
+
+Build the game through `Project / Bundle...` or with Bob and `--liveupdate yes`. Defold will put the resource archive into the bundle. You do not need to move it yourself.
 
 > [!IMPORTANT]
-> The included Bash script (`example_build_script.sh`) shows you how to automatically build your game for the web and move the `resources.zip` file to the build result folder.
+> The included Bash script (`example_build_script.sh`) creates one archive name, passes it to Defold and ResZip, and builds the web bundle. Defold puts the archive in the correct folder.
 
 ### 4. Summary
 
@@ -132,13 +147,6 @@ ResZip can start preloading the `resources.zip` file as soon as game loading is 
 ```ini
 [liveupdate_reszip]
 preload_file = your_resources_file_name.zip
-```
-
-If you suspect a bug in Live Update or ResZip, the following option can be used to force Live Update data to be completely cleared before the game starts:
-
-```ini
-[liveupdate_reszip]
-wipe_on_start = 1
 ```
 
 ## Credits

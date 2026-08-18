@@ -1,7 +1,7 @@
 local reszip = require "liveupdate_reszip.reszip"
 
 -- Paths to the resources files
-local ZIP_FILENAME = sys.get_config("liveupdate_reszip.filename", "resources.zip")
+local ZIP_FILENAME = sys.get_config_string("liveupdate_reszip.filename", "resources.zip")
 -- HTML5: use relative path to load the .zip from the game directory
 -- Other platforms: load .zip from your remote server.
 local ZIP_FILE_LOCATION = (html5 and ZIP_FILENAME) or ("http://localhost:8080/" .. ZIP_FILENAME)
@@ -11,11 +11,28 @@ local EXCLUDED_PROXY_URL = "/level2#collectionproxy"
 
 local LEVEL1_PROXY_URL = "/level1#collectionproxy"
 
+local function try_load_level2(self)
+    if self.level1_unloaded and self.level2_resources_ready and not self.level2_load_started then
+        self.level2_load_started = true
+        msg.post(EXCLUDED_PROXY_URL, hash("load"))
+    end
+end
+
+local function is_built_with_excluded_resources()
+    if not liveupdate then
+        return false
+    end
+    if liveupdate.is_built_with_excluded_files then
+        return liveupdate.is_built_with_excluded_files()
+    end
+    return next(collectionproxy.get_resources(EXCLUDED_PROXY_URL)) ~= nil
+end
+
 local function finish_handler(self, err)
     if not err then
-        -- All resources are loaded, finally load the level:
-        print("Everything is OK, load level 2!")
-        msg.post(EXCLUDED_PROXY_URL, hash("load"))
+        print("Everything is OK, level 2 resources are ready!")
+        self.level2_resources_ready = true
+        try_load_level2(self)
     else
         -- Try again?...
         print("ERROR: " .. err)
@@ -35,10 +52,8 @@ local function load_level2(self)
     --
     -- So the idea is to give a new name to the resources file when building the project, 
     -- so that reszip knows that this version of the game requires a completely different
-    -- resources file (even if missing_resources() function tells us that the resources
-    -- are not missing).
-    local missing_resources = collectionproxy.missing_resources(EXCLUDED_PROXY_URL)
-    if liveupdate and (not reszip.version_match(ZIP_FILENAME) or next(missing_resources) ~= nil) then
+    -- resources file.
+    if is_built_with_excluded_resources() and not reszip.version_match(ZIP_FILENAME) then
         print("Some resources are missing or have different version, so download the resources archive...")
 
         reszip.load_and_mount_zip(ZIP_FILE_LOCATION, {
@@ -49,12 +64,30 @@ local function load_level2(self)
         })
     else
         -- LiveUpdate is not enabled, i.e. we test the game from IDE. Or all resources exist, so load the level:
-        print("Resources are already loaded. Let's load level 2!")
-        msg.post(EXCLUDED_PROXY_URL, hash("load"))
+        print("Resources are already loaded. Level 2 is ready!")
+        self.level2_resources_ready = true
+        try_load_level2(self)
     end
 end
 
+local function begin_level2_transition(self)
+    if self.level2_flag then
+        return
+    end
+    self.level2_flag = true
+
+    msg.post("#loading_title", "enable")
+    msg.post(LEVEL1_PROXY_URL, "disable")
+    msg.post(LEVEL1_PROXY_URL, "unload")
+
+    load_level2(self)
+end
+
 function init(self)
+    self.level1_unloaded = false
+    self.level2_resources_ready = false
+    self.level2_load_started = false
+
     msg.post(".", "acquire_input_focus")
     msg.post("@render:", "use_fixed_fit_projection", {near = -1, far = 1})
 
@@ -69,24 +102,27 @@ end
 
 function on_message(self, message_id, message, sender)
     if message_id == hash("proxy_loaded") then
+        if self.level2_flag and sender == msg.url(LEVEL1_PROXY_URL) then
+            -- Level 1 finished an async load after the transition had started.
+            -- Do not enable it again; finish unloading it instead.
+            msg.post(sender, "disable")
+            msg.post(sender, "unload")
+            return
+        end
+
         msg.post("#loading_title", "disable")
         msg.post("#loading_progress", "disable")
 
         msg.post(sender, "enable")
+    elseif message_id == hash("proxy_unloaded") and sender == msg.url(LEVEL1_PROXY_URL) then
+        self.level1_unloaded = true
+        try_load_level2(self)
     end
 end
 
 function on_input(self, action_id, action)
     if action_id == hash("touch") and action.pressed then
-        if self.level2_flag then
-            return
-        end
-        self.level2_flag = true
-
-        msg.post("#loading_title", "enable")
-        msg.post(LEVEL1_PROXY_URL, "unload")
-
-        load_level2(self)
+        begin_level2_transition(self)
     end
 end
 

@@ -13,3 +13,6 @@ builtins
 /public
 /reszip.ini
 /bob.jar
+/.editor_settings
+/dist
+/liveupdate.generated.settings
