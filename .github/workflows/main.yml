@@ -12,42 +12,31 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎️
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install Java ♨️
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: "temurin"
           java-version: "25"
 
       - name: Build 🔧
-        env:
-          DEFOLD_BOB_SHA1: ${{ secrets.DEFOLD_BOB_SHA1 }}
         run: |
           lsb_release -a
 
-          # Download the latest bob.jar
-          BOB_SHA1=${DEFOLD_BOB_SHA1:-$(curl -s 'https://d.defold.com/stable/info.json' | jq -r .sha1)}
-          BOB_LOCAL_SHA1=$((java -jar bob.jar --version | cut -d' ' -f6) || true)
+          # Download the latest stable Bob.
+          BOB_SHA1=$(curl -s 'https://d.defold.com/stable/info.json' | jq -r .sha1)
+          BOB_LOCAL_SHA1=$(java -jar bob.jar --version 2>/dev/null | cut -d' ' -f6 || true)
           if [ "${BOB_LOCAL_SHA1}" != "${BOB_SHA1}" ]; then wget --progress=dot:mega -O bob.jar "https://d.defold.com/archive/${BOB_SHA1}/bob/bob.jar"; fi
           java -jar bob.jar --version
 
           # Build the project
           bash ./dev_build_web.sh
 
-          # Checkout alt version and build it
-          # We use it to test how the game will suffer the outdated LiveUpdate version of the resources.
-          git reset --hard
-          git fetch origin alt-version
-          git switch alt-version
-          rm -rf build
-          mkdir -p build/bundle
-          PLATFORM=wasm-web
-          BUNDLE_DIR=old-version
-          java -jar bob.jar --email f@b.com --auth 123 --texture-compression true --bundle-output build/bundle/${PLATFORM} --build-report-html "build/bundle/build_report_${BUNDLE_DIR}.html" --platform ${PLATFORM} --architectures ${PLATFORM} --archive --liveupdate yes --variant debug resolve build bundle
-          mv build/liveupdate_output/*.zip "build/bundle/${PLATFORM}/liveupdate_reszip_demo/resources.zip"
-          mv build/bundle/*.html "public/"
-          mv "build/bundle/${PLATFORM}/liveupdate_reszip_demo" "public/${BUNDLE_DIR}"
+          # Preserve the published Defold 1.6.2 demo. The current Extender no
+          # longer builds native extensions for that historical engine SHA.
+          git fetch origin gh-pages
+          git archive origin/gh-pages old-version | tar -x -C public
 
           find "public/" | sort -z
 
