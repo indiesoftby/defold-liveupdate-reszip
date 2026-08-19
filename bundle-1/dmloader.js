@@ -65,11 +65,11 @@ var CUSTOM_PARAMETERS = {
     },
     update_imports: function(imports) {
     },
+    resize_window_prev_inner_width: -1,
+    resize_window_prev_inner_height: -1,
     resize_window_callback: function() {
         var is_iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
         var buttonHeight = 0;
-        var prevInnerWidth = -1;
-        var prevInnerHeight = -1;
         
         buttonHeight = 42;
         
@@ -80,17 +80,18 @@ var CUSTOM_PARAMETERS = {
         if (is_iOS) {
             window.scrollTo(0, 0);
         }
-    
+
         var app_container = document.getElementById('app-container');
         var game_canvas = document.getElementById('canvas');
         var innerWidth = window.innerWidth;
         var innerHeight = window.innerHeight - buttonHeight;
-        if (prevInnerWidth == innerWidth && prevInnerHeight == innerHeight)
+        if (CUSTOM_PARAMETERS.resize_window_prev_inner_width == innerWidth &&
+            CUSTOM_PARAMETERS.resize_window_prev_inner_height == innerHeight)
         {
             return;
         }
-        prevInnerWidth = innerWidth;
-        prevInnerHeight = innerHeight;
+        CUSTOM_PARAMETERS.resize_window_prev_inner_width = innerWidth;
+        CUSTOM_PARAMETERS.resize_window_prev_inner_height = innerHeight;
         var width = 960;
         var height = 640;
         var targetRatio = width / height;
@@ -229,15 +230,13 @@ var FileLoader = {
 var EngineLoader = {
     arc_sha1: "",
     wasm_sha1: "",
-    wasm_size: 3092339,
+    wasm_size: 2877475,
     wasmjs_sha1: "",
-    wasmjs_size: 288045,
+    wasmjs_size: 292979,
     wasm_pthread_sha1: "",
     wasm_pthread_size: 2000000,
     wasmjs_pthread_sha1: "",
     wasmjs_pthread_size: 250000,
-    asmjs_sha1: "",
-    asmjs_size: 4000000,
     wasm_instantiate_progress: 0,
 
     stream_wasm: "false" === "true",
@@ -300,8 +299,9 @@ var EngineLoader = {
                         const error = new Error("Unexpected wasm sha1: " + sha1 + ", expected: " + EngineLoader.getWasmSha1());
                         if (typeof CUSTOM_PARAMETERS["start_error"] === "function") {
                            CUSTOM_PARAMETERS["start_error"](error);
+                        } else {
+                            throw error;
                         }
-                        throw error;
                     }
                 }
                 var wasmInstantiate = WebAssembly.instantiate(new Uint8Array(wasm), imports).then(function(output) {
@@ -311,8 +311,9 @@ var EngineLoader = {
                     console.log('wasm instantiation failed! ' + e);
                     if (typeof CUSTOM_PARAMETERS["start_error"] === "function") {
                         CUSTOM_PARAMETERS["start_error"](e);
+                    } else {
+                        throw e;
                     }
-                    throw e;
                 });
             },
             function(loadedDelta, currentAttempt){
@@ -382,11 +383,7 @@ var EngineLoader = {
         EngineLoader.loadAndRunScriptAsync(EngineLoader.getWasmJSName(exeName), EngineLoader.getWasmJSSize(), EngineLoader.getWasmJSSha1());
     },
 
-    loadAsmJsAsync: function(exeName) {
-        EngineLoader.loadAndRunScriptAsync(exeName + '_asmjs.js', EngineLoader.asmjs_size, EngineLoader.asmjs_sha1);
-    },
-
-    // load and start engine script (asm.js or wasm.js)
+    // load and start the wasm loader script
     loadAndRunScriptAsync: function(src, expectedLength, expectedSHA1) {
         FileLoader.load(src, "text",
             function(delta) {
@@ -567,22 +564,24 @@ var GameArchiveLoader = {
         this._files = json.content;
 
         var isWASMSupported = Module['isWASMSupported'];
-        if (isWASMSupported) {
-            EngineLoader.loadWasmAsync(exeName);
-            totalSize += EngineLoader.getWasmSize() + EngineLoader.getWasmJSSize();
-        } else {
-            EngineLoader.loadAsmJsAsync(exeName);
-            totalSize += EngineLoader.asmjs_size;
+        if (!isWASMSupported) {
+            const error = new Error("WebAssembly is not supported in this browser.");
+            if (typeof CUSTOM_PARAMETERS["start_error"] === "function") {
+                CUSTOM_PARAMETERS["start_error"](error);
+            } else {
+                throw error;
+            }
+            return;
         }
+        EngineLoader.loadWasmAsync(exeName);
+        totalSize += EngineLoader.getWasmSize() + EngineLoader.getWasmJSSize();
         if (!Module['isDMFSSupported']) {
             // we can download in parallel here because we will not rely on FS, otherwise
             // we have to wait until after the [w]asm is loaded.
             this.downloadContent();
         }
         ProgressUpdater.resetCurrent();
-        if (isWASMSupported) {
-            EngineLoader.updateWasmInstantiateProgress(totalSize);
-        }
+        EngineLoader.updateWasmInstantiateProgress(totalSize);
         ProgressUpdater.setupTotal(totalSize + EngineLoader.wasm_instantiate_progress);
     },
 
@@ -701,7 +700,11 @@ var GameArchiveLoader = {
                 this.onFileLoaded(file);
             }).catch((e) => {
                 console.log('file verification failed! ' + e);
-                throw e;
+                if (typeof CUSTOM_PARAMETERS["start_error"] === "function") {
+                   CUSTOM_PARAMETERS["start_error"](e);
+                } else {
+                   throw e;
+                }
             });
         }
         // continue loading more pieces of the file
@@ -895,8 +898,8 @@ var Progress = {
 /* ********************************************************************* */
 
 var Module = {
-    engineVersion: "1.11.2",
-    engineSdkSha1: "cddb6eb43c32e4930257fcbbb30f19cf28deb081",
+    engineVersion: "1.13.1",
+    engineSdkSha1: "574678c7d44be490d874fbed2d0ae6211feec4d9",
     noInitialRun: true,
 
     _filesToPreload: [],
